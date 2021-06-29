@@ -13,12 +13,6 @@ section {
     padding-top: 75px;
 }
 
-footer {
-    height: 75px;
-    background: #3F68B8;
-    color: #F4F4F9;
-}
-
 .bg-blue {
     background: #3F68B8;
 }
@@ -54,8 +48,8 @@ footer {
     font-size: 3.5rem;
 }
 
-#index-main {
-    height: 100vh;
+.last-section {
+    padding-bottom: 75px;
 }
 
 .card {
@@ -66,4 +60,20 @@ footer {
 .card-img-top {
     height: 60%;
     width: auto;
+}
+
+footer {
+    height: 80px;
+    background: #3F68B8;
+    color: #F4F4F9;
+}
+
+footer a {
+    color: #F4F4F9;
+}
+
+footer a:hover,
+footer a:focus,
+footer a:active {
+    color: #F4F4F9;
 }
