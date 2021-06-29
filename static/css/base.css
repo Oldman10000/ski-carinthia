@@ -1,5 +1,53 @@
+body {
+    background: #F4F4F9;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    -webkit-transition: background 0.25s; /* For Safari 3.1 to 6.0 */
+    transition: background 0.25s;
+    height: 60px;
+}
+
+section {
+    padding-top: 75px;
+}
+
+.bg-blue {
+    background: #3F68B8;
+}
+
+.light-text {
+    color: #F4F4F9;
+}
+
+.light-text:hover {
+    color: #F4F4F9;
+}
+
+.blue-text {
+    color: #3F68B8;
+}
+
 #hero {
-    background: url('/media/ski-background.jpg') no-repeat center center fixed;
+    background: url('/media/ski-background.jpg') no-repeat center center;
     background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+.titles {
+    padding-top: 20%;
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3.5rem;
+}
+
+#index-main {
     height: 100vh;
 }

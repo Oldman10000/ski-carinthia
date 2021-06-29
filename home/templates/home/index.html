@@ -2,6 +2,123 @@
 {% load static %}
 
 {% block content %}
-    <div id="hero">
+
+<!-- Hero Image -->
+<section id="hero">
+    <div class="container">
+        <div class="row text-center titles">
+            <div class="col-12 mb-5">
+                <h1 class="light-text">Ski Carinthia</h1>
+            </div>
+            <div class="col-12 mt-5 mb-5">
+                <p class="dark-text">Get excited by the finest mountains in the eastern alps.</p>
+            </div>
+        </div>
     </div>
+    <a href="#" class="scroll-down blue-text" address="true">
+        <i class="fas fa-arrow-alt-circle-down"></i>
+    </a>
+</section>
+
+
+<section id="index-main">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12 mt-5">
+                <h2>Where To Go?</h2>
+            </div>
+            <div class="col-12 mt-5">
+                <p>Carinthia has a wide range of mountains to suit every need. Find anything from family friendly
+                    resorts to the
+                    toughest mountains that even the most seasoned skiier will be challenged by.</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+<script>
+    $(document).ready(function () {
+
+        // checks scroll position and changes navbar colour accordingly
+        function checkScrollPosition() {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 600) {
+                $('header').removeClass('bg-transparent').addClass('bg-blue');
+            } else {
+                $('header').addClass('bg-transparent').removeClass('bg-blue');
+            }
+        }
+
+        // checks window size and activates navbar colour function for large screens
+        function largeOnlyNav() {
+            if ($(window).width() > 960) {
+
+                checkScrollPosition();
+
+                $(window).scroll(function () {
+                    checkScrollPosition();
+                });
+            }
+        }
+
+        largeOnlyNav();
+
+        // checks window size and changes navbar colour accordingly
+        function checkNav() {
+            if ($(window).width() < 960) {
+                $('header').removeClass('bg-transparent').addClass('bg-blue');
+            } else {
+                $('header').addClass('bg-transparent').removeClass('bg-blue');
+            }
+        }
+
+        checkNav();
+
+        // if window size is changed by user
+        $(window).resize(function () {
+            largeOnlyNav();
+            checkNav();
+        });
+
+        // button to scroll to next section
+        $('.scroll-down').click(function () {
+            $('html, body').animate({
+                scrollTop: $('#index-main').offset().top
+            }, 'slow');
+            return false;
+        });
+    });
+</script>
 {% endblock %}
