@@ -62,6 +62,14 @@ section {
     width: auto;
 }
 
+/* index map */
+
+#index-map {
+    height: 500px;
+}
+
+/* footer */
+
 footer {
     height: 80px;
     background: #3F68B8;

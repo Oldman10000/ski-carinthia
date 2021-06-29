@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Image -->
@@ -21,7 +27,7 @@
 </section>
 
 <!-- main section in index page -->
-<section id="index-main" class="last-section">
+<section id="index-main">
     <div class="container">
         <div class="row text-center mb-5">
             <div class="col-12 mt-5">
@@ -78,9 +84,18 @@
     </div>
 </section>
 
+<section class="last-section">
+    <div id="index-map">
+
+    </div>
+</section>
+
 {% endblock %}
 
 {% block postloadjs %}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
 <script>
     $(document).ready(function () {
 
@@ -132,6 +147,26 @@
             }, 'slow');
             return false;
         });
+
+        var mapTileLayers = L.tileLayer(
+            "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+                attribution: "Powered by <a href='https://developers.arcgis.com/terms/attribution/' target='_blank' rel='noopener'>Esri</a>"
+            });
+
+        var map = L.map("index-map", {
+            layers: [mapTileLayers],
+            center: [23.5, 12],
+            zoom: 2
+        }).setView([46.79, 13.95], 9);
+
+        var skiIcon = new L.Icon({
+            iconUrl: "../../../media/ski-icon2.png",
+            iconSize: [25, 25],
+            iconAnchor: [10, 25]
+        })
+
+        var heiligenBlut = L.marker([47.04, 12.85], {icon: skiIcon}).addTo(map).bindPopup("Heiligenblut");
+        var moelltallerGletscher = L.marker([46.98, 13.05], {icon: skiIcon}).addTo(map);
     });
 </script>
 {% endblock %}
