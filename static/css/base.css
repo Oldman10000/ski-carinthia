@@ -13,6 +13,12 @@ section {
     padding-top: 75px;
 }
 
+footer {
+    height: 75px;
+    background: #3F68B8;
+    color: #F4F4F9;
+}
+
 .bg-blue {
     background: #3F68B8;
 }
