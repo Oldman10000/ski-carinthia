@@ -51,3 +51,13 @@ section {
 #index-main {
     height: 100vh;
 }
+
+.card {
+    height: 400px;
+    width: auto;
+}
+
+.card-img-top {
+    height: 60%;
+    width: auto;
+}
