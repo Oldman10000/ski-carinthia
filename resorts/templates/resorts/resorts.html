@@ -2,17 +2,39 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            {{ resorts }}
+
+{% include '../headers/header.html' %}
+
+<section id="sort-section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form method="GET">
+                    <input type="text" class="form-control" name="q" placeholder="Find a mountain">
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="resorts-section">
+    <div class="container">
+        <div class="row">
             {% for resort in resorts %}
-            <p>
-                {{ resort.name }}
-                {{ resort.description }}
-            </p>
+            <div class="col-12 col-md-6 mt-5">
+                <div class="card">
+                    <img src="../../../media/{{ resort.image }}" class="card-img-top" alt="{{ resort.image }}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ resort.name }}
+                        </h5>
+                        <p class="card-text">{{ resort.description }}</p>
+                    </div>
+                </div>
+            </div>
             {% endfor %}
         </div>
     </div>
-</div>
+</section>
+
 {% endblock %}
