@@ -4,6 +4,7 @@ from django.db import models
 class Resort(models.Model):
     name = models.CharField(max_length=36)
     description = models.TextField()
+    extra_info = models.TextField(null=True, blank=True)
     difficulty = models.CharField(max_length=12, null=True, blank=True)
     scenic = models.BooleanField(default=False, null=True, blank=True)
     adult_price = models.DecimalField(max_digits=6,
