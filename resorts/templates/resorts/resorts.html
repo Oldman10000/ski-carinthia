@@ -22,7 +22,7 @@
         <div class="row">
             {% for resort in resorts %}
             <div class="col-12 col-md-6 mt-5">
-                <div class="card">
+                <a href="{% url 'resort_detail' resort.id %}" class="card">
                     <img src="../../../media/{{ resort.image }}" class="card-img-top" alt="{{ resort.image }}">
                     <div class="card-body">
                         <h5 class="card-title">
@@ -30,7 +30,7 @@
                         </h5>
                         <p class="card-text">{{ resort.description }}</p>
                     </div>
-                </div>
+                </a>
             </div>
             {% endfor %}
         </div>
