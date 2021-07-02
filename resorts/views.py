@@ -13,10 +13,20 @@ def all_resorts(request):
     query = None
 
     if request.GET:
+        if 'family_friendly' in request.GET:
+            resorts = resorts.filter(family_friendly=True)
+
+        if 'scenic' in request.GET:
+            resorts = resorts.filter(scenic=True)
+
+        if 'large' in request.GET:
+            resorts = resorts.filter(size='large')
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!")
                 return redirect(reverse('resorts'))
 
             queries = Q(
