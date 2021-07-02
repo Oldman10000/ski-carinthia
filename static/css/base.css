@@ -85,3 +85,10 @@ footer a:focus,
 footer a:active {
     color: #F4F4F9;
 }
+
+/* Resort detail */
+
+.resort-hero {
+    width: 100%;
+    height: auto;
+}
