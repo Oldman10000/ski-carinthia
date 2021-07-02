@@ -5,13 +5,37 @@
 
 {% include '../headers/header.html' %}
 
-<section id="resorts-section">
-    <div class="container">
-        <h1 class="text-center">&#169 {{ resort.name }}</h1>
-        <div class="resort-hero">
-            
+<div class="resort-hero">
+    <img src="../../../media/{{ resort.image }}" alt="{{ resort.image }}">
+</div>
+
+<section class="resort-section">
+    <h2 class="text-center">{{ resort.name }}</h2>
+    
+    <div class="row">
+        <div class="col-10 col-md-8 offset-1 offset-md-2 text-center mt-3">
+            <p>{{ resort.description }}</p>
+        </div>
+        <div class="col-12 col-md-4 pl-5">
+            <div class="row">
+                <div class="col-12">
+                    <p>{{ resort.extra_info }}</p>
+                </div>
+                <div class="col-12">
+                    <p>Weather Info Here</p>
+                </div>
+                <div class="col-12">
+                    <h5>Buy Ski Passes</h5>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <img src="../../../media/{{ resort.map_image }}" alt="{{ resort.map_image }}">
         </div>
     </div>
+
 </section>
+
 
 {% endblock %}

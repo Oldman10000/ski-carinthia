@@ -3,7 +3,7 @@
         "model": "resorts.resort",
         "fields": {
             "name": "Innerkrems",
-            "description": "Innerkrems is one of Carinthia's snowiest ski resorts, located at between 1,550 and 2,200 metres in Familiental, the �Family Valley�. This is a region where FAMILY comes first, offering perfect winter holidays to suit every taste and budget.",
+            "description": "Innerkrems is one of Carinthia's snowiest ski resorts, located at between 1,550 and 2,200 metres in Familiental, the 'Family Valley'. This is a region where FAMILY comes first, offering perfect winter holidays to suit every taste and budget.",
             "extra_info": "36km of pistes, 10 lifts",
             "size": "medium",
             "street_address_1": "Innerkremser Seilbahnen",

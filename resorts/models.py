@@ -7,11 +7,11 @@ class Resort(models.Model):
     extra_info = models.TextField(null=True, blank=True)
     size = models.CharField(max_length=6)
     street_address_1 = models.CharField(max_length=80,
-                                       null=False,
-                                       blank=False)
+                                        null=False,
+                                        blank=False)
     street_address_2 = models.CharField(max_length=80,
-                                       null=True,
-                                       blank=True)
+                                        null=True,
+                                        blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
