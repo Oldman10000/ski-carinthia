@@ -11,8 +11,22 @@ def all_resorts(request):
 
     resorts = Resort.objects.all()
     query = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'price':
+                sortkey = 'adult_price'
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            resorts = resorts.order_by(sortkey)
+
         if 'family_friendly' in request.GET:
             resorts = resorts.filter(family_friendly=True)
 
@@ -33,9 +47,13 @@ def all_resorts(request):
                 name__icontains=query) | Q(description__icontains=query)
             resorts = resorts.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+    print(current_sorting)
+
     context = {
         'resorts': resorts,
         'search_term': query,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'resorts/resorts.html', context)
