@@ -32,12 +32,14 @@
                                 <p>€{{ item.product.adult_price }}</p>
                             </td>
                             <td>
-                                <form class="form update-form" action="" method="POST">
+                                <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                     {% csrf_token %}
                                     <input class="form-control form-control-sm" type="number" id="adult-ticket"
                                         name="adult_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
+                                <a class="update-link">Update</a>
+                                <a class="remove-item" id="remove_{{ item.item_id }}" data-type="adult_quantity">Remove</a>
                             </td>
                             <td>
                                 <p>€{{ item.product.adult_price }}</p>
@@ -52,14 +54,14 @@
                                 <p>€{{ item.product.child_price }}</p>
                             </td>
                             <td>
-                                <form class="form update-form" action="" method="POST">
+                                <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                     {% csrf_token %}
                                     <input class="form-control form-control-sm" type="number" id="child-ticket"
                                         name="child_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
-                                <a href="" class="update-link">Update</a>
-                                <a href="" class="remove-item" id="remove_{{ item.item_id }}" data-type="child_quantity">Remove</a>
+                                <a class="update-link">Update</a>
+                                <a class="remove-item" id="remove_{{ item.item_id }}" data-type="child_quantity">Remove</a>
                             </td>
                             <td>
                                 <p>€{{ item.product.child_price }}</p>
@@ -74,12 +76,14 @@
                                 <p>€{{ item.product.family_price }}</p>
                             </td>
                             <td>
-                                <form class="form update-form" action="" method="POST">
+                                <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                     {% csrf_token %}
                                     <input class="form-control form-control-sm" type="number" id="family-ticket"
                                         name="family_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
+                                <a class="update-link">Update</a>
+                                <a class="remove-item" id="remove_{{ item.item_id }}" data-type="family_quantity">Remove</a>
                             </td>
                             <td>
                                 <p>€{{ item.product.family_price }}</p>
@@ -117,7 +121,7 @@
             var csrfToken = "{{ csrf_token }}";
             var itemId = $(this).attr('id').split('remove_')[1];
             var type = $(this).data('type');
-            var url = `/bag/remove/${itemId}`;
+            var url = `/bag/remove/${itemId}/`;
             var data = {'csrfmiddlewaretoken': csrfToken, 'type': type};
 
             $.post(url, data)
