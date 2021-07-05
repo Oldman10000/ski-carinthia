@@ -16,7 +16,7 @@
         <div class="col-10 col-md-8 offset-1 offset-md-2 text-center mt-3">
             <p>{{ resort.description }}</p>
         </div>
-        <div class="col-12 col-md-4 pl-5">
+        <div class="col-12 pl-5">
             <div class="row">
                 <div class="col-12">
                     <p>{{ resort.extra_info }}</p>
@@ -24,13 +24,55 @@
                 <div class="col-12">
                     <p>Weather Info Here</p>
                 </div>
-                <div class="col-12">
-                    <h5>Buy Ski Passes</h5>
-                    
+                <div class="col-12 col-md-6 offset-md-3 mb-5">
+                    <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
+
+                    <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-12 col-md-3">
+                                <label for="adult-quantity">Adult Pass</label>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <p>€{{ resort.adult_price }} each</p>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input class="form-control" type="number" id="adult-ticket" name="adult_quantity"
+                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 col-md-3">
+                                <label for="child-quantity">Child Pass</label>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <p>€{{ resort.child_price }} each</p>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input class="form-control" type="number" id="child-ticket" name="child_quantity"
+                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12 col-md-3">
+                                <label for="family-quantity">Family Pass <small>(2 Adults + 2 Children)</small></label>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <p>€{{ resort.family_price }} each</p>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <input class="form-control" type="number" id="family-ticket" name="family_quantity"
+                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                            </div>
+                        </div>
+                        <input type="submit" value="Add to bag">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
+
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12">
             <img src="../../../media/{{ resort.map_image }}" alt="{{ resort.map_image }}">
         </div>
     </div>

@@ -5,13 +5,28 @@
 
 {% include '../headers/header.html' %}
 
-<section id="sort-section">
-    <div class="container">
+<section>
+    <div class="container h-100">
         
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-
+                {% for item in bag_items %}
+                {% if item.adult_ticket %}
+                {{ item.product.name }}
+                {{ item.product.adult_price }}
+                {{ item.quantity }}
+                {% elif item.child_ticket %}
+                {{ item.product.name }}
+                {{ item.product.child_price }}
+                {{ item.quantity }}
+                {% elif item.family_ticket %}
+                {{ item.product.name }}
+                {{ item.product.family_price }}
+                {{ item.quantity }}
+                {% endif %}
+                {% endfor %}
+                {{ total }}
                 {% else %}
                 <p>No items in your bag</p>
                 <a href="{% url 'resorts' %}">Back to all resorts</a>
