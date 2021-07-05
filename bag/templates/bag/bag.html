@@ -7,25 +7,88 @@
 
 <section>
     <div class="container h-100">
-        
+
         <div class="row">
             <div class="col">
                 {% if bag_items %}
-                {% for item in bag_items %}
-                {% if item.adult_ticket %}
-                {{ item.product.name }}
-                {{ item.product.adult_price }}
-                {{ item.quantity }}
-                {% elif item.child_ticket %}
-                {{ item.product.name }}
-                {{ item.product.child_price }}
-                {{ item.quantity }}
-                {% elif item.family_ticket %}
-                {{ item.product.name }}
-                {{ item.product.family_price }}
-                {{ item.quantity }}
-                {% endif %}
-                {% endfor %}
+
+                <div class="table-responsive">
+                    <table class="table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        {% for item in bag_items %}
+                        {% if item.adult_ticket %}
+                        <tr>
+                            <td>
+                                <p>Adult Pass for {{ item.product.name }}</p>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.adult_price }}</p>
+                            </td>
+                            <td>
+                                <form class="form update-form" action="" method="POST">
+                                    {% csrf_token %}
+                                    <input class="form-control form-control-sm" type="number" id="adult-ticket"
+                                        name="adult_quantity" min="0" value="{{ item.quantity }}"
+                                        data-item_id="{{ item.item_id }}" id="">
+                                </form>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.adult_price }}</p>
+                            </td>
+                        </tr>
+                        {% elif item.child_ticket %}
+                        <tr>
+                            <td>
+                                <p>Child Pass for {{ item.product.name }}</p>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.child_price }}</p>
+                            </td>
+                            <td>
+                                <form class="form update-form" action="" method="POST">
+                                    {% csrf_token %}
+                                    <input class="form-control form-control-sm" type="number" id="child-ticket"
+                                        name="child_quantity" min="0" value="{{ item.quantity }}"
+                                        data-item_id="{{ item.item_id }}" id="">
+                                </form>
+                                <a href="" class="update-link">Update</a>
+                                <a href="" class="remove-item" id="remove_{{ item.item_id }}" data-type="child_quantity">Remove</a>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.child_price }}</p>
+                            </td>
+                        </tr>
+                        {% elif item.family_ticket %}
+                        <tr>
+                            <td>
+                                <p>Family Pass for {{ item.product.name }}</p>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.family_price }}</p>
+                            </td>
+                            <td>
+                                <form class="form update-form" action="" method="POST">
+                                    {% csrf_token %}
+                                    <input class="form-control form-control-sm" type="number" id="family-ticket"
+                                        name="family_quantity" min="0" value="{{ item.quantity }}"
+                                        data-item_id="{{ item.item_id }}" id="">
+                                </form>
+                            </td>
+                            <td>
+                                <p>€{{ item.product.family_price }}</p>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
                 {{ total }}
                 {% else %}
                 <p>No items in your bag</p>
@@ -36,4 +99,32 @@
     </div>
 </section>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script>
+    $(document).ready(function () {
+        // update quantity on click
+        $('.update-link').click(function(e) {
+            var form = $(this).prev('.update-form');
+            form.submit();
+        });
+
+        // remove item
+        $('.remove-item').click(function(e) {
+            var csrfToken = "{{ csrf_token }}";
+            var itemId = $(this).attr('id').split('remove_')[1];
+            var type = $(this).data('type');
+            var url = `/bag/remove/${itemId}`;
+            var data = {'csrfmiddlewaretoken': csrfToken, 'type': type};
+
+            $.post(url, data)
+             .done(function(){
+                location.reload();
+             });
+        });
+    });
+</script>
 {% endblock %}
