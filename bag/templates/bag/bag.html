@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bag_tools %}
 
 {% block content %}
 
@@ -91,9 +92,18 @@
                         </tr>
                         {% endif %}
                         {% endfor %}
+                        <tr>
+                            <td colspan="5" class="text-right">
+                                <a href="{% url 'resorts' %}" class="btn btn-info">
+                                    Keep Shopping
+                                </a>
+                                <a href="{% url 'checkout' %}" class="btn btn-success">
+                                    Secure Checkout
+                                </a>
+                            </td>
+                        </tr>
                     </table>
                 </div>
-                {{ total }}
                 {% else %}
                 <p>No items in your bag</p>
                 <a href="{% url 'resorts' %}">Back to all resorts</a>
