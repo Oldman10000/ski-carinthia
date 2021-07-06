@@ -105,7 +105,7 @@ img {
 .message-container {
     position: fixed;
     top: 80px;
-    right: 20px;
+    right: 15px;
     z-index: 99999999;
 }
 

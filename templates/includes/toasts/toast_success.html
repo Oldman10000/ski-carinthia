@@ -1,5 +1,4 @@
 <div class="toast custom-toast" role="alert" data-autohide="false">
-    <div class="arrow-up arrow-success"></div>
     <div class="w-100 toast-capper bg-success"></div>
     <div class="toast-header bg-white text-dark">
         <strong class="mr-auto">Success!</strong>
@@ -8,6 +7,50 @@
         </button>
     </div>
     <div class="toast-body bg-white">
-        {{ message }}
+        <div class="row">
+            <div class="col">
+                {{ message }}
+                <hr class="mt-1 mb-3">
+            </div>
+        </div>
+        {% if total %}
+        <p>Your bag ({{ product_count }} items)</p>
+        <div class="bag-notification-wrapper">
+            {% for item in bag_items %}
+            {% if item.adult_ticket %}
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>{{ item.product.name }}:</strong> {{ item.quantity }} Adult Pass{% if item.quantity > 1 %}es{% endif %} @ <strong>€{{ item.product.adult_price }}</strong> each
+                    </p>
+                </div>
+            </div>
+            {% elif item.child_ticket %}
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>{{ item.product.name }}:</strong> {{ item.quantity }} Child Pass{% if item.quantity > 1 %}es{% endif %} @ <strong>€{{ item.product.child_price }}</strong> each
+                    </p>
+                </div>
+            </div>
+            {% elif item.family_ticket %}
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <strong>{{ item.product.name }}:</strong> {{ item.quantity }} Family Pass{% if item.quantity > 1 %}es{% endif %} @ <strong>€{{ item.product.family_price }}</strong> each
+                    </p>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <a href="{% url 'view_bag' %}" class="btn btn-success">
+                    Go to secure checkout
+                </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
