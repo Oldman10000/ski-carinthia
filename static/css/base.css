@@ -99,3 +99,20 @@ img {
     height: auto;
     object-fit: cover;
 }
+
+/* toasts */
+
+.message-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 99999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}

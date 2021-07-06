@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.contrib import messages
+from resorts.models import Resort
 
 
 def view_bag(request):
@@ -14,29 +16,35 @@ def add_to_bag(request, item_id):
     add items to bag
     """
 
+    resort = Resort.objects.get(pk=item_id)
     adult_quantity = int(request.POST.get('adult_quantity'))
     child_quantity = int(request.POST.get('child_quantity'))
     family_quantity = int(request.POST.get('family_quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
-    def add_quantity(quantity, type, item_id, bag):
+    def add_quantity(quantity, ticket_type, item_id, bag, resort, friendly_ticket):
         """
-        adds quantity of specific pass type to bag
+        adds quantity of specific pass ticket_type to bag
         """
 
         if quantity:
             if item_id in list(bag.keys()):
-                if f'{type}' in bag[item_id]:
-                    bag[item_id][f'{type}'] += quantity
+                if f'{ticket_type}' in bag[item_id]:
+                    bag[item_id][f'{ticket_type}'] += quantity
                 else:
-                    bag[item_id][f'{type}'] = quantity
+                    bag[item_id][f'{ticket_type}'] = quantity
             else:
-                bag[item_id] = {f'{type}': quantity}
+                bag[item_id] = {f'{ticket_type}': quantity}
+                messages.success(
+                    request, f'Added {quantity} {resort}, {friendly_ticket} to your bag')
 
-    add_quantity(adult_quantity, 'adult_quantity', item_id, bag)
-    add_quantity(child_quantity, 'child_quantity', item_id, bag)
-    add_quantity(family_quantity, 'family_quantity', item_id, bag)
+    add_quantity(
+        adult_quantity, 'adult_quantity', item_id, bag, resort.name, 'adult pass')
+    add_quantity(
+        child_quantity, 'child_quantity', item_id, bag, resort.name, 'child pass')
+    add_quantity(
+        family_quantity, 'family_quantity', item_id, bag, resort.name, 'child pass')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -62,19 +70,19 @@ def adjust_bag(request, item_id):
     else:
         return redirect(reverse('view_bag'))
 
-    def add_quantity(quantity, type, item_id, bag):
+    def add_quantity(quantity, ticket_type, item_id, bag):
         """
-        adds quantity of specific pass type to bag
+        adds quantity of specific pass ticket_type to bag
         """
 
         if quantity:
             if item_id in list(bag.keys()):
-                if f'{type}' in bag:
-                    bag[item_id][f'{type}'] += quantity
+                if f'{ticket_type}' in bag:
+                    bag[item_id][f'{ticket_type}'] += quantity
                 else:
-                    bag[item_id][f'{type}'] = quantity
+                    bag[item_id][f'{ticket_type}'] = quantity
             else:
-                bag[item_id] = {f'{type}': quantity}
+                bag[item_id] = {f'{ticket_type}': quantity}
 
     bag = request.session.get('bag', {})
     if adult_quantity is not None:
@@ -110,9 +118,9 @@ def remove_from_bag(request, item_id):
 
     try:
         bag = request.session.get('bag', {})
-        type = request.POST['type']
+        ticket_type = request.POST['type']
 
-        del bag[item_id][f'{type}']
+        del bag[item_id][f'{ticket_type}']
         if not bag[item_id]:
             bag.pop(item_id)
 
