@@ -37,7 +37,7 @@ def bag_contents(request):
         if family_quantity.get('family_quantity'):
             product = get_object_or_404(Resort, pk=item_id)
             total += family_quantity.get(
-                'family_quantity') * product.child_price
+                'family_quantity') * product.family_price
             product_count += family_quantity.get('family_quantity')
             bag_items.append({
                 'item_id': item_id,

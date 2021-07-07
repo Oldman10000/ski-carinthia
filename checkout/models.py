@@ -33,7 +33,7 @@ class Order(models.Model):
         Updates total each time a line item is added
         """
         self.order_total = self.lineitems.aggregate(
-            Sum('lineitem_total'))['lineitem_total__sum']
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.save()
 
     def save(self, *args, **kwargs):
@@ -52,6 +52,7 @@ class Order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     resort = models.ForeignKey(Resort, null=False, blank=False, on_delete=models.CASCADE)
+    ticket_type = models.CharField(max_length=12, null=False, blank=False)
     ticket_price = models.DecimalField(max_digits=6,
                                        decimal_places=2,
                                        null=True,
