@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% include '../headers/header.html' %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>Thank You</h5>
+                    <hr>
+                <p>Your order information is below. Your passes will be sent to <strong>{{ order.email }}</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
