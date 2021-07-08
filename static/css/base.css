@@ -12,7 +12,7 @@ header {
     height: 60px;
 }
 
-section {
+section, main {
     padding-top: 75px;
 }
 
@@ -119,4 +119,15 @@ img {
 
 .toast-capper {
     height: 2px;
+}
+
+/* allauth forms */
+
+.allauth-form-inner-content {
+    margin-top: 1.5rem;
+    color: #343a40;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
 }
