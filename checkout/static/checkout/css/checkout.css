@@ -30,6 +30,16 @@
     right: .5rem;
 }
 
+select,
+select option {
+  color: black;
+}
+
+select:invalid,
+select option[value=""] {
+  color: #aab7c4 !important
+}
+
 #loading-overlay {
   display: none;
   position: fixed;
