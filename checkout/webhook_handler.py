@@ -1,5 +1,12 @@
 from django.http import HttpResponse
 
+from .models import Order, OrderLineItem
+from resorts.models import Resort
+
+import json
+import time
+from decimal import Decimal
+
 
 class StripeWH_Handler:
     """
@@ -22,10 +29,112 @@ class StripeWH_Handler:
         Handle the payment_intent.succeeded webhook from Stripe
         """
         intent = event.data.object
-        print(intent)
+        pid = intent.id
+        bag = intent.metadata.bag
+        save_info = intent.metadata.save_info
+
+        billing_details = intent.charges.data[0].billing_details
+        TWOPLACES = Decimal(10) ** -2
+        grand_total = Decimal(
+            round(intent.charges.data[0].amount / 100, 2)).quantize(TWOPLACES)
+
+        for field, value in billing_details.address.items():
+            if value == "":
+                billing_details.address[field] = None
+        print(billing_details)
+        print(grand_total)
+        print(bag)
+        print(pid)
+        order_exists = False
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=billing_details.name,
+                    email__iexact=billing_details.email,
+                    phone_number__iexact=billing_details.phone,
+                    street_address1__iexact=billing_details.address.line1,
+                    street_address2__iexact=billing_details.address.line2,
+                    postcode__iexact=billing_details.address.postal_code,
+                    town_or_city__iexact=billing_details.address.city,
+                    county__iexact=billing_details.address.state,
+                    country__iexact=billing_details.address.country,
+                    order_total=grand_total,
+                    original_bag=bag,
+                    stripe_pid=pid,
+                )
+                order_exists = True
+                print('exists')
+                break
+            except Order.DoesNotExist:
+                print('doesnotexist')
+                attempt += 1
+                time.sleep(1)
+        if order_exists:
+            return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | Success: Verified order already in database',
+                    status=200)
+        else:
+            try:
+                order = Order.objects.create(
+                        full_name=billing_details.name,
+                        email=billing_details.email,
+                        phone_number=billing_details.phone,
+                        street_address1=billing_details.address.line1,
+                        street_address2=billing_details.address.line2,
+                        postcode=billing_details.address.postal_code,
+                        town_or_city=billing_details.address.city,
+                        county=billing_details.address.state,
+                        country=billing_details.address.country,
+                        order_total=grand_total,
+                        original_bag=bag,
+                        stripe_pid=pid,
+                    )
+                for item_id, adult_quantity in json.loads(bag).items():
+                    if adult_quantity.get('adult_quantity'):
+                        resort = Resort.objects.get(id=item_id)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            resort=resort,
+                            ticket_price=resort.adult_price,
+                            quantity=adult_quantity.get('adult_quantity'),
+                            ticket_type='Adult Pass',
+                        )
+                        order_line_item.save()
+
+                for item_id, child_quantity in json.loads(bag).items():
+                    if child_quantity.get('child_quantity'):
+                        resort = Resort.objects.get(id=item_id)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            resort=resort,
+                            ticket_price=resort.child_price,
+                            quantity=child_quantity.get('child_quantity'),
+                            ticket_type='Child Pass',
+                        )
+                        order_line_item.save()
+
+                for item_id, family_quantity in json.loads(bag).items():
+                    if family_quantity.get('family_quantity'):
+                        resort = Resort.objects.get(id=item_id)
+                        order_line_item = OrderLineItem(
+                            order=order,
+                            resort=resort,
+                            ticket_price=resort.family_price,
+                            quantity=adult_quantity.get('family_quantity'),
+                            ticket_type='Family Pass',
+                        )
+                        order_line_item.save()
+            except Exception as e:
+                if order:
+                    order.delete()
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | ERROR: {e} ',
+                    status=500)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
-            status=200)
+            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            status=200
+        )
 
     def handle_payment_intent_payment_failed(self, event):
         """

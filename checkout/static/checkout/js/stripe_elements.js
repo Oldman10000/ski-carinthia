@@ -71,6 +71,7 @@ form.addEventListener('submit', function (e) {
                     address: {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
+                        postal_code: $.trim(form.postcode.value),
                         city: $.trim(form.town_or_city.value),
                         country: $.trim(form.country.value),
                         state: $.trim(form.county.value),

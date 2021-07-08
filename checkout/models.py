@@ -13,7 +13,7 @@ class Order(models.Model):
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
-    postcode = models.CharField(max_length=20, null=True, blank=True)
+    postcode = models.CharField(max_length=20, null=False, blank=False, default='')
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -21,6 +21,9 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     order_total = models.DecimalField(
         max_digits=10, decimal_places=2, null=False, default=0)
+    original_bag = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False,
+                                  default='')
 
     def _generate_order_number(self):
         """
@@ -50,15 +53,25 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    resort = models.ForeignKey(Resort, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order,
+                              null=False,
+                              blank=False,
+                              on_delete=models.CASCADE,
+                              related_name='lineitems')
+    resort = models.ForeignKey(Resort,
+                               null=False,
+                               blank=False,
+                               on_delete=models.CASCADE)
     ticket_type = models.CharField(max_length=12, null=False, blank=False)
     ticket_price = models.DecimalField(max_digits=6,
                                        decimal_places=2,
                                        null=True,
                                        blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
+    lineitem_total = models.DecimalField(max_digits=6,
+                                         decimal_places=2,
+                                         null=False,
+                                         blank=False)
 
     def save(self, *args, **kwargs):
         """
