@@ -1,0 +1,22 @@
+Hello {{ order.full_name }}
+
+This is a confirmation of your order at Ski Carinthia. Your order information is below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+{% for item in order.lineitems.all %}
+{{ item.resort.name }} {{ item.ticket_type }} {{ item.quantity }} pass{% if item.quantity > 1 %}es{% endif %} @ €{{ item.ticket_price }} each
+{% endfor %}
+
+Order Total: {{ order.order_total }}
+
+This email serves as your ticket.
+
+If you have any questions, feel free to contact us at {{ contact_email }}
+
+Thank you for your order!
+
+Sincerely,
+
+Ski Carinthia
