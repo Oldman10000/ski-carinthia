@@ -14,10 +14,29 @@
         <div class="row">
             <div class="col">
                 <h2>My Profile</h2>
-                    <hr>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <h5 class="mb-3">User Details</h5>
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-success">Update Info</button>
+                </form>
+            </div>
+            <div class="col-12 col-lg-6">
+                <h5>Order History</h5>
+                {{ orders }}
             </div>
         </div>
     </div>
 </main>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'profiles/js/profile.js' %}"></script>
 {% endblock %}
