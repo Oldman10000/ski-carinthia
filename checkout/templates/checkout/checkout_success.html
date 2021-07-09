@@ -18,6 +18,9 @@
                 <hr>
                 <p class="text-black">Your order information is below. Your passes will be emailed to
                     <strong>{{ order.email }}</strong>.</p>
+                    {% if from_profile %}
+                    <a href="{% url 'profile' %}">Return to profile</a>
+                    {% endif %}
             </div>
         </div>
 
