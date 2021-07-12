@@ -67,7 +67,7 @@ section, main {
 
 /* index map */
 
-#index-map {
+#index-map, #resort-map {
     height: 500px;
 }
 

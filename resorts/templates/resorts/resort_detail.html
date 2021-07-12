@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+{% endblock %}
+
 {% block content %}
 
 {% include '../headers/header.html' %}
@@ -72,12 +78,52 @@
                 </div>
             </div>
         </div>
-        <div class="col-12">
+        <div class="col-12 mb-5">
             <img src="../../../media/{{ resort.map_image }}" alt="{{ resort.map_image }}">
         </div>
     </div>
 
 </section>
 
+<section class="last-section">
+    <div id="resort-map">
 
+    </div>
+</section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<!-- script to get the map markers for the resort -->
+<script>
+    $(document).ready(function () {
+        var mapTileLayers = L.tileLayer(
+            "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+                attribution: "Powered by <a href='https://developers.arcgis.com/terms/attribution/' target='_blank' rel='noopener'>Esri</a>"
+            });
+
+        let xReference = JSON.parse("{{ resort.x_map_reference|escapejs }}");
+        let yReference = JSON.parse("{{ resort.y_map_reference|escapejs }}");
+
+        var map = L.map("resort-map", {
+            layers: [mapTileLayers],
+            center: [xReference, yReference],
+            zoom: 2
+        }).setView([xReference, yReference], 11);
+
+        var skiIcon = new L.Icon({
+            iconUrl: "../../../media/ski-icon2.png",
+            iconSize: [25, 25],
+            iconAnchor: [10, 25]
+        });
+
+        var marker = L.marker([xReference, yReference], {
+            icon: skiIcon
+        }).addTo(map).bindPopup("");
+    });
+</script>
 {% endblock %}
