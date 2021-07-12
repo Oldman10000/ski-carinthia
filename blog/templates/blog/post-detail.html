@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../headers/header.html' %}
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>{{ post.title }}</h2>
+                <p><span class="boldtext">Author:</span> {{ post.user_profile }}</p>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="col-xs-9">
+                    <p>{{ post.content }}</p>
+                    <p><span class="boldtext">Published on:</span> {{post.published_on }}</p>
+                    <p><span class="boldtext">Views:</span> {{post.views }}</p>
+                    <p><span class="boldtext">Tag:</span> {{post.tag }}</p>
+                    <a href="{% url 'blogs' %}" class="btn-btn-default">Back to Blog</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn-btn-default">Edit Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

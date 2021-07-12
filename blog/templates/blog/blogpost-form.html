@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../headers/header.html' %}
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2>New Post</h2>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-8">
+                <form action="{% url 'new_post' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <button type="submit" class="btn btn-info">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

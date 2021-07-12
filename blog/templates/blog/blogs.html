@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col">
                 <form method="GET" action="{% url 'blogs' %}">
-                    <input type="text" class="form-control" name="q" placeholder="Find a mountain">
+                    <input type="text" class="form-control" name="q" placeholder="Find a blog">
                 </form>
             </div>
         </div>
@@ -24,8 +24,10 @@
             {% for post in posts %}
             <div class="col">
                 <div class="col-xs-9">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.user_profile }}</p>
                     <p>{{ post.content|truncatewords:30 }}</p>
-                    <p><a href="{% url 'post_detail' post.id %}" class="btn btn-default">Read More</a></p>
+                    <p><a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a></p>
                     <p><span class="boldtext">Published on:</span> {{ post.published_date }}</p>
                     <p><span class="boldtext">Views:</span> {{ post.views }}</p>
                     <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
