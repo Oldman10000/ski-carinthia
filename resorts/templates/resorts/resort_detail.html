@@ -15,14 +15,16 @@
     <img src="../../../media/{{ resort.image }}" alt="{{ resort.image }}">
 </div>
 
-<section class="resort-section">
+<section class="resort-section pt-4">
     <h2 class="text-center">{{ resort.name }}</h2>
 
     <div class="row">
-        <div class="col-10 col-md-8 offset-1 offset-md-2 text-center mt-3">
+        <div class="col-10 col-md-8 offset-1 offset-md-2 text-center pt-2 mb-4">
             <p>{{ resort.description }}</p>
+            <hr>
         </div>
-        <div class="col-12 pl-5">
+        <div class="col-12 col-md-6 order-md-last">
+            <h3 class="mb-4">More Info</h3>
             <div class="row">
                 <div class="col-12">
                     <p>{{ resort.extra_info }}</p>
@@ -30,64 +32,85 @@
                 <div class="col-12">
                     <p>Weather Info Here</p>
                 </div>
-                <div class="col-12 col-md-6 offset-md-3 mb-5">
+                <div class="col-10">
                     <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
 
                     <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
                         {% csrf_token %}
-                        <div class="form-row">
-                            <div class="col-12 col-md-3">
-                                <label for="adult-quantity">Adult Pass</label>
+                        <div class="form-row mb-4">
+                            <div class="col-12 col-md-6">
+                                <label for="adult-quantity">Adult Pass | €{{ resort.adult_price }} each</label>
                             </div>
-                            <div class="col-12 col-md-3">
-                                <p>€{{ resort.adult_price }} each</p>
-                            </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-8 col-md-4">
                                 <input class="form-control" type="number" id="adult-ticket" name="adult_quantity"
                                     min="0" value="0" data-item_id="{{ resort.id }}" id="">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-3">
-                                <label for="child-quantity">Child Pass</label>
+                        <hr>
+                        <div class="form-row mb-4">
+                            <div class="col-12 col-md-6">
+                                <label for="child-quantity">Child Pass | €{{ resort.child_price }} each</label>
                             </div>
-                            <div class="col-12 col-md-3">
-                                <p>€{{ resort.child_price }} each</p>
-                            </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-8 col-md-4">
                                 <input class="form-control" type="number" id="child-ticket" name="child_quantity"
                                     min="0" value="0" data-item_id="{{ resort.id }}" id="">
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="col-12 col-md-3">
-                                <label for="family-quantity">Family Pass <small>(2 Adults + 2 Children)</small></label>
+                        <hr>
+                        <div class="form-row mb-4">
+                            <div class="col-12 col-md-6">
+                                <label for="family-quantity">Family Pass | €{{ resort.family_price }} each</label>
                             </div>
-                            <div class="col-12 col-md-3">
-                                <p>€{{ resort.family_price }} each</p>
-                            </div>
-                            <div class="col-12 col-md-3">
+                            <div class="col-8 col-md-4">
                                 <input class="form-control" type="number" id="family-ticket" name="family_quantity"
                                     min="0" value="0" data-item_id="{{ resort.id }}" id="">
                             </div>
                         </div>
-                        <input type="submit" value="Add to bag">
+                        <hr>
+                        <input type="submit" class="btn btn-success" value="Add to bag">
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </form>
 
                 </div>
             </div>
         </div>
-        <div class="col-12 mb-5">
+        {% if resort.map_image %}
+        <div class="col-12 col-md-6 mb-3">
+            <h3 class="text-center mb-4">Ski Map</h3>
             <img src="../../../media/{{ resort.map_image }}" alt="{{ resort.map_image }}">
         </div>
-    </div>
+        {% endif %}
 
+    </div>
+    <hr>
 </section>
 
-<section class="last-section">
-    <div id="resort-map">
+<section class="last-section pt-2">
+    <h3 class="text-center mb-5">Where to find us</h3>
+    <div class="row">
+        <div class="col-12 col-md-3 offset-md-1 mb-4 mb-md-0">
+            <h5>Address/Contact</h5>
+            <p class="mb-0">{{ resort.street_address_1 }}</p>
+            {% if resort.street_address_2 %}
+            <p class="mb-0">{{ resort.street_address_2 }}</p>
+            {% endif %}
+            <p class="mb-0">{% if resort.postcode %}{{ resort.postcode }}{% endif %}
+                {% if resort.town_or_city %}{{ resort.town_or_city }}{% endif %}</p>
+            {% if resort.phone_number %}
+            <p class="mb-0">+{{ resort.phone_number }}</p>
+            {% endif %}
+            {% if resort.website %}
+            <a href="{{ resort.website }}" target="_blank" class="mb-0">Website</a>
+            {% endif %}
+            {% if resort.email %}
+            <p class="mb-0">Email: {{ resort.email }}</p>
+            {% endif %}
+        </div>
+        <div class="col-12 col-md-7">
+            <div id="resort-map">
 
+            </div>
+        </div>
     </div>
 </section>
 
@@ -123,7 +146,7 @@
 
         var marker = L.marker([xReference, yReference], {
             icon: skiIcon
-        }).addTo(map).bindPopup("");
+        }).addTo(map);
     });
 </script>
 {% endblock %}
