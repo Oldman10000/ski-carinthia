@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.db.models import Q
 from .models import Post
 from .forms import BlogPostForm
+from profiles.models import UserProfile
 
 
 def blogs(request):
@@ -13,6 +14,7 @@ def blogs(request):
 
     posts = Post.objects.filter(
         published_date__lte=timezone.now()).order_by('-published_date')
+    query = None
 
     if 'q' in request.GET:
         query = request.GET['q']
@@ -30,7 +32,7 @@ def blogs(request):
         'search_term': query,
     }
 
-    return render(request, "blogs.html", context)
+    return render(request, "blog/blogs.html", context)
 
 
 def post_detail(request, pk):
@@ -46,7 +48,7 @@ def post_detail(request, pk):
         'post': post,
     }
 
-    return render(request, "post-detail.html", context)
+    return render(request, "blog/post-detail.html", context)
 
 
 def create_or_edit_post(request, pk=None):
@@ -56,9 +58,12 @@ def create_or_edit_post(request, pk=None):
     """
 
     post = get_object_or_404(Post, pk=pk) if pk else None
+
     if request.method == "POST":
-        form = BlogPostForm(request.Post, request.FILES, instance=post)
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
+            user = UserProfile.objects.get(user=request.user)
+            form.instance.user_profile = user
             post = form.save()
             return redirect(post_detail, post.pk)
     else:
@@ -68,4 +73,4 @@ def create_or_edit_post(request, pk=None):
         'form': form,
     }
 
-    return render(request, 'blogpost-form.html', context)
+    return render(request, 'blog/blogpost-form.html', context)
