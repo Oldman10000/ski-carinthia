@@ -99,5 +99,40 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
+<script>
+
+    var resorts = {{ resorts|safe }}
+
+    var mapTileLayers = L.tileLayer(
+        "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+            attribution: "Powered by <a href='https://developers.arcgis.com/terms/attribution/' target='_blank' rel='noopener'>Esri</a>"
+        });
+
+    var map = L.map("index-map", {
+        layers: [mapTileLayers],
+        center: [23.5, 12],
+        zoom: 2
+    }).setView([46.79, 13.95], 9);
+
+    var skiIcon = new L.Icon({
+        iconUrl: "../../../media/ski-icon2.png",
+        iconSize: [25, 25],
+        iconAnchor: [10, 25]
+    });
+
+    resorts.forEach(resort => {
+
+        let xReference = resort.fields.x_map_reference;
+        let yReference = resort.fields.y_map_reference;
+
+        var marker = L.marker([xReference, yReference], {
+            icon: skiIcon
+        }).addTo(map).bindPopup(`
+            <p>${resort.fields.name}</p>
+        `);
+
+    });
+
+</script>
 <script src="{% static 'home/js/home.js' %}"></script>
 {% endblock %}

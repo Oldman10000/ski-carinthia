@@ -48,28 +48,4 @@ $(document).ready(function () {
         }, 'slow');
         return false;
     });
-
-    var mapTileLayers = L.tileLayer(
-        "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
-            attribution: "Powered by <a href='https://developers.arcgis.com/terms/attribution/' target='_blank' rel='noopener'>Esri</a>"
-        });
-
-    var map = L.map("index-map", {
-        layers: [mapTileLayers],
-        center: [23.5, 12],
-        zoom: 2
-    }).setView([46.79, 13.95], 9);
-
-    var skiIcon = new L.Icon({
-        iconUrl: "../../../media/ski-icon2.png",
-        iconSize: [25, 25],
-        iconAnchor: [10, 25]
-    })
-
-    var heiligenBlut = L.marker([47.04, 12.85], {
-        icon: skiIcon
-    }).addTo(map).bindPopup("Heiligenblut");
-    var moelltallerGletscher = L.marker([46.98, 13.05], {
-        icon: skiIcon
-    }).addTo(map);
 });
