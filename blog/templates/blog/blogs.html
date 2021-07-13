@@ -91,7 +91,7 @@
                         <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
                         <a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a>
                         {% if request.user.is_authenticated %}
-                        {% if request.user|lower == post.user_profile|lower %}
+                        {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
                         <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit Post</a>
                         <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete Post</a>
                         {% endif %}

@@ -9,13 +9,17 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                {% if new %}
                 <h2>New Post</h2>
+                {% else %}
+                <h2>Edit Post</h2>
+                {% endif %}
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-8">
-                <form action="{% url 'new_post' %}" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <input type="submit" class="btn btn-info" value="Save"></input>

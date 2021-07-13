@@ -87,6 +87,11 @@ def create_or_edit_post(request, pk=None):
 
     post = get_object_or_404(Post, pk=pk) if pk else None
 
+    if pk is None:
+        new = True
+    else:
+        new = False
+
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
@@ -99,6 +104,7 @@ def create_or_edit_post(request, pk=None):
 
     context = {
         'form': form,
+        'new': new,
     }
 
     return render(request, 'blog/blogpost-form.html', context)
