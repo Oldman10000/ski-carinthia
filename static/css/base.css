@@ -32,6 +32,10 @@ section, main {
     color: #3F68B8;
 }
 
+.border-blue {
+    border-color: #3F68B8;
+}
+
 #hero {
     background: url('/media/ski-background.jpg') no-repeat center center;
     background-size: cover;
@@ -53,16 +57,6 @@ section, main {
 
 .last-section {
     padding-bottom: 50px;
-}
-
-.card {
-    height: 400px;
-    width: auto;
-}
-
-.card-img-top {
-    height: 60%;
-    width: auto;
 }
 
 /* index map */

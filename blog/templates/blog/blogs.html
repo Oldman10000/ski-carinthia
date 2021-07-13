@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+{% endblock %}
+
 {% block content %}
 
 {% include '../headers/header.html' %}
@@ -14,26 +18,74 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <form method="GET" action="{% url 'blogs' %}">
+            <div class="col-12 mb-2">
+                <form method="GET" id="search" action="{% url 'blogs' %}">
                     <input type="text" class="form-control" name="q" placeholder="Find a blog">
                 </form>
             </div>
+            <div class="col-4">
+                <button type="submit" form="search" class="btn btn-success">
+                    Search
+                </button>
+                <a href="{% url 'blogs' %}" class="btn btn-info">Reset</a>
+            </div>
         </div>
         <div class="row">
-            {% for post in posts %}
-            <div class="col">
-                <div class="col-xs-9">
-                    <h5>{{ post.title }}</h5>
-                    <p>{{ post.user_profile }}</p>
-                    <p>{{ post.content|truncatewords:30 }}</p>
-                    <p><a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a></p>
-                    <p><span class="boldtext">Published on:</span> {{ post.published_date }}</p>
-                    <p><span class="boldtext">Views:</span> {{ post.views }}</p>
-                    <p><span class="boldtext">Tag:</span> {{ post.tag }}</p>
+            <div class="col-12">
+                <div class="pagination">
+                    <span class="step-links text-center">
+                        {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            {% if page_obj %}
+            <div class="col-12">
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row mt-4">
+            {% if page_obj %}
+            {% for post in page_obj %}
+            <div class="col-6">
+                <div class="card border-blue">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <hr>
+                        <h6 class="card-subitle text-muted mb-2">{{ post.user_profile }}</h6>
+                        <p>{{ post.content|truncatewords:10 }}</p>
+                        <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date }}</small></p>
+                        <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
+                        <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
+                        <a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
+            {% else %}
+            <div class="col">
+                <h5>:( No Posts Found{% if search_term %} for {{ search_term }}{% endif %}</h5>
+            </div>
+            {% endif %}
+        </div>
+        <div class="row mt-3">
+            {% if page_obj %}
+            <div class="col-12">
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+            </div>
+            {% endif %}
         </div>
     </div>
 </main>

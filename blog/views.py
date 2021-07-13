@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 from .models import Post
 from .forms import BlogPostForm
 from profiles.models import UserProfile
@@ -24,12 +26,18 @@ def blogs(request):
             return redirect(reverse('blogs'))
 
         queries = Q(
-            name__icontains=query) | Q(description__icontains=query)
+            title__icontains=query) | Q(
+                content__icontains=query) | Q(
+                    user_profile__user__username__icontains=query)
         posts = posts.filter(queries)
 
+    paginator = Paginator(posts, 2)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'posts': posts,
         'search_term': query,
+        'page_obj': page_obj,
     }
 
     return render(request, "blog/blogs.html", context)
