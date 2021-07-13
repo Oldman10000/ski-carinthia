@@ -48,13 +48,14 @@ def blogs(request):
                         )
             posts = posts.filter(queries)
 
-    paginator = Paginator(posts, 6)
+    paginator = Paginator(posts, 2)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     current_sorting = f'{sort}_{direction}'
 
     context = {
+        'posts': posts,
         'search_term': query,
         'page_obj': page_obj,
         'current_sorting': current_sorting,
@@ -95,8 +96,9 @@ def create_or_edit_post(request, pk=None):
     if request.method == "POST":
         form = BlogPostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            user = UserProfile.objects.get(user=request.user)
-            form.instance.user_profile = user
+            if new:
+                user = UserProfile.objects.get(user=request.user)
+                form.instance.user_profile = user
             post = form.save()
             return redirect(post_detail, post.pk)
     else:

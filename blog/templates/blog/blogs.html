@@ -53,28 +53,38 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-12">
-                <div class="pagination">
-                    <span class="step-links text-center">
-                        {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; First</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                        {% endif %}
-
-                        {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">Next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
-            </div>
             {% if page_obj %}
-            <div class="col-12">
+            <div class="col-12 text-center mb-2">
                 <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                 </span>
             </div>
             {% endif %}
+            <div class="col-12 text-center">
+                <p>
+                    <strong>Total posts: </strong>{{ posts|length }}
+                </p>
+            </div>
+            <div class="col-12">
+                <div class="pagination justify-content-center">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                        <a href="?page=1" class="btn btn-success">&laquo; First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-success">Previous</a>
+                        {% endif %}
+
+                        {% for page in page_obj.paginator %}
+                        <a href="?page={{ forloop.counter }}" class="btn btn-success">{{ forloop.counter }}</a>
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-success">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-success">Last &raquo;</a>
+                        {% endif %}
+
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="row mt-4">
             {% if page_obj %}
@@ -106,11 +116,11 @@
             </div>
             {% endif %}
         </div>
-        <div class="row mt-3">
+        <div class="row mt-2">
             {% if page_obj %}
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
                 </span>
             </div>
             {% endif %}
