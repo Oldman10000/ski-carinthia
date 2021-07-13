@@ -17,27 +17,47 @@ def blogs(request):
     posts = Post.objects.filter(
         published_date__lte=timezone.now()).order_by('-published_date')
     query = None
+    sort = None
+    direction = None
 
-    if 'q' in request.GET:
-        query = request.GET['q']
-        if not query:
-            messages.error(
-                request, "You didn't enter any search criteria!")
-            return redirect(reverse('blogs'))
+    if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'date':
+                sortkey = 'published_date'
 
-        queries = Q(
-            title__icontains=query) | Q(
-                content__icontains=query) | Q(
-                    user_profile__user__username__icontains=query)
-        posts = posts.filter(queries)
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            posts = posts.order_by(sortkey)
 
-    paginator = Paginator(posts, 2)
+        if 'q' in request.GET:
+            query = request.GET['q']
+            if not query:
+                messages.error(
+                    request, "You didn't enter any search criteria!")
+                return redirect(reverse('blogs'))
+
+            queries = Q(
+                title__icontains=query) | Q(
+                    content__icontains=query) | Q(
+                        user_profile__user__username__icontains=query) | Q(
+                            tag__icontains=query
+                        )
+            posts = posts.filter(queries)
+
+    paginator = Paginator(posts, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    current_sorting = f'{sort}_{direction}'
 
     context = {
         'search_term': query,
         'page_obj': page_obj,
+        'current_sorting': current_sorting,
     }
 
     return render(request, "blog/blogs.html", context)
