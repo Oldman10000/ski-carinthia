@@ -6,7 +6,7 @@ $(document).ready(function () {
         if (scroll >= 600) {
             $('header').removeClass('bg-transparent').addClass('bg-blue');
         } else {
-            $('header').addClass('bg-transparent').removeClass('bg-blue');
+            $('header').removeClass('bg-blue').addClass('bg-transparent');
         }
     }
 
@@ -28,8 +28,10 @@ $(document).ready(function () {
     function checkNav() {
         if ($(window).width() < 960) {
             $('header').removeClass('bg-transparent').addClass('bg-blue');
+            $('nav').removeClass('bg-transparent').addClass('bg-blue');
         } else {
             $('header').addClass('bg-transparent').removeClass('bg-blue');
+            $('nav').addClass('bg-transparent').removeClass('bg-blue');
         }
     }
 
