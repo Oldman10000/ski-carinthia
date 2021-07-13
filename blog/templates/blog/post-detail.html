@@ -10,19 +10,24 @@
         <div class="row">
             <div class="col">
                 <h2>{{ post.title }}</h2>
-                <p><span class="boldtext">Author:</span> {{ post.user_profile }}</p>
                 <hr>
+                <p><strong>Author:</strong> {{ post.user_profile }}</p>
             </div>
         </div>
         <div class="row">
             <div class="col">
                 <div class="col-xs-9">
-                    <p>{{ post.content }}</p>
-                    <p><span class="boldtext">Published on:</span> {{post.published_on }}</p>
-                    <p><span class="boldtext">Views:</span> {{post.views }}</p>
-                    <p><span class="boldtext">Tag:</span> {{post.tag }}</p>
-                    <a href="{% url 'blogs' %}" class="btn-btn-default">Back to Blog</a>
-                    <a href="{% url 'edit_post' post.id %}" class="btn-btn-default">Edit Post</a>
+                    <p class="w-75">{{ post.content }}</p>
+                    <p><strong>Published on:</strong> {{ post.published_date }}</p>
+                    <p><strong>Views:</strong> {{ post.views }}</p>
+                    <p><strong>Tag:</strong> {{ post.tag }}</p>
+                    <a href="{% url 'blogs' %}" class="btn btn-info">Back to Blog</a>
+                    {% if request.user.is_authenticated %}
+                    {% if request.user|lower == post.user_profile|lower %}
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit Post</a>
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete Post</a>
+                    {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -48,7 +48,7 @@ def blogs(request):
                         )
             posts = posts.filter(queries)
 
-    paginator = Paginator(posts, 5)
+    paginator = Paginator(posts, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -102,3 +102,18 @@ def create_or_edit_post(request, pk=None):
     }
 
     return render(request, 'blog/blogpost-form.html', context)
+
+
+def delete_post(request, pk):
+    """
+    create a view that allows user to delete their post
+    """
+
+    post = get_object_or_404(Post, pk=pk)
+
+    post.delete()
+
+    messages.success(
+                    request, "Post deleted!")
+
+    return redirect(reverse('blogs'))

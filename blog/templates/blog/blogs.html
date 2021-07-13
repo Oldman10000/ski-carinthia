@@ -37,11 +37,16 @@
                     <select name="" class="custom-select" id="sort-selector">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
                         </option>
-                        <option value="title_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>A-Z</option>
-                        <option value="title_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Z-A</option>
-                        <option value="date_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Oldest</option>
-                        <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Newest</option>
-                        <option value="views_desc" {% if current_sorting == 'views_desc' %}selected{% endif %}>Most Viewed</option>
+                        <option value="title_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>A-Z
+                        </option>
+                        <option value="title_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Z-A
+                        </option>
+                        <option value="date_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Oldest
+                        </option>
+                        <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Newest
+                        </option>
+                        <option value="views_desc" {% if current_sorting == 'views_desc' %}selected{% endif %}>Most
+                            Viewed</option>
                         </option>
                     </select>
                 </div>
@@ -85,6 +90,12 @@
                         <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
                         <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
                         <a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a>
+                        {% if request.user.is_authenticated %}
+                        {% if request.user|lower == post.user_profile|lower %}
+                        <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit Post</a>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete Post</a>
+                        {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
