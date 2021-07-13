@@ -6,55 +6,54 @@
 {% include '../headers/header.html' %}
 
 <main>
-    <section id="sort-section">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <form method="GET" action="{% url 'resorts' %}">
-                        <input type="text" class="form-control" name="q" placeholder="Find a mountain">
-                    </form>
-                </div>
+    <section id="sort-section" class="container">
+        <div class="row">
+            <div class="col">
+                <form method="GET" action="{% url 'resorts' %}">
+                    <input type="text" class="form-control" name="q" placeholder="Find a mountain">
+                </form>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="sort-select-wrapper w-50">
-                        <select name="" id="sort-selector">
-                            <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
-                            </option>
-                            <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Adult
-                                Price
-                                (low to high)</option>
-                            <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Adult
-                                Price (high to low)</option>
-                            <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>A-Z
-                            </option>
-                            <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Z-A
-                            </option>
-                        </select>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
+                <div class="sort-select-wrapper w-50">
+                    <select name="" id="sort-selector">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
+                        </option>
+                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Adult
+                            Price
+                            (low to high)</option>
+                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Adult
+                            Price (high to low)</option>
+                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>A-Z
+                        </option>
+                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Z-A
+                        </option>
+                    </select>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="resorts-section">
-        <div class="container">
-            <div class="row">
-                {% for resort in resorts %}
-                <div class="col-12 col-md-6 mt-5">
-                    <a href="{% url 'resort_detail' resort.id %}" class="card">
-                        <img src="../../../media/{{ resort.image }}" class="card-img-top" alt="{{ resort.image }}">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                {{ resort.name }}
-                            </h5>
-                            <p class="card-text">{{ resort.description }}</p>
-                        </div>
-                    </a>
-                </div>
-                {% endfor %}
+    <section id="resorts-section" class="container">
+
+        <div class="row">
+            {% for resort in resorts %}
+            <div class="col-12 col-md-6 mt-5">
+                <a href="{% url 'resort_detail' resort.id %}" class="card">
+                    <img src="{{ resort.image.url }}" class="card-img-top"
+                        alt="{{ resort.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{ resort.name }}
+                        </h5>
+                        <p class="card-text">{{ resort.description }}</p>
+                    </div>
+                </a>
             </div>
+            {% endfor %}
         </div>
+
     </section>
 </main>
 {% endblock %}

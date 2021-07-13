@@ -11,12 +11,18 @@
 
 {% include '../headers/header.html' %}
 
-<div class="resort-hero">
-    <img src="../../../media/{{ resort.image }}" alt="{{ resort.image }}">
-</div>
+<figure class="resort-hero">
+    <img src="{{ resort.image.url }}" alt="{{ resort.name }}">
+    <figcaption>{{ resort.image_credit }}</figcaption>
+</figure>
 
-<section class="resort-section pt-4">
-    <h2 class="text-center">{{ resort.name }}</h2>
+<section class="resort-section pt-4 container">
+
+    <div class="row">
+        <div class="col">
+            <h2 class="text-center">{{ resort.name }}</h2>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-10 col-md-8 offset-1 offset-md-2 text-center pt-2 mb-4">
@@ -77,7 +83,7 @@
         {% if resort.map_image %}
         <div class="col-12 col-md-6 mb-3">
             <h3 class="text-center mb-4">Ski Map</h3>
-            <img src="../../../media/{{ resort.map_image }}" alt="{{ resort.map_image }}">
+            <img src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
         </div>
         {% endif %}
 
@@ -85,8 +91,12 @@
     <hr>
 </section>
 
-<section class="last-section pt-2">
-    <h3 class="text-center mb-5">Where to find us</h3>
+<section class="last-section pt-2 container">
+    <div class="row">
+        <div class="col">
+            <h3 class="text-center mb-5">Where to find us</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-md-3 offset-md-1 mb-4 mb-md-0">
             <h5>Address/Contact</h5>
@@ -112,6 +122,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 {% endblock %}
