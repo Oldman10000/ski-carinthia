@@ -1,3 +1,5 @@
+// sort selector
+
 $('#sort-selector').change(function () {
     var selector = $(this);
     var currentUrl = new URL(window.location);

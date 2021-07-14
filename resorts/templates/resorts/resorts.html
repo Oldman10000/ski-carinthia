@@ -54,7 +54,7 @@
         <div class="row">
             {% for resort in resorts %}
             <div class="col-12 col-md-6 mt-5">
-                <a href="{% url 'resort_detail' resort.id %}" class="card">
+                <a href="{% url 'resort_detail' resort.id %}" class="card resort-card">
                     <img src="{{ resort.image.url }}" class="card-img-top"
                         alt="{{ resort.name }}">
                     <div class="card-body">

@@ -18,116 +18,147 @@
     <figcaption>{{ resort.image_credit }}</figcaption>
 </figure>
 
-<section class="resort-section pt-4 container">
+<main>
+    <section class="resort-section container-fluid">
 
-    <div class="row">
-        <div class="col">
-            <h2 class="text-center">{{ resort.name }}</h2>
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center">{{ resort.name }}</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-10 col-md-8 offset-1 offset-md-2 text-center pt-2 mb-4">
-            <p>{{ resort.description }}</p>
-            <hr>
+        <div class="row">
+            <div class="col-10 col-md-8 offset-1 offset-md-2 text-center pt-2 mb-4">
+                <p>{{ resort.description }}</p>
+                <hr>
+            </div>
+            <div class="col-12 col-md-6 order-md-last">
+                <h3 class="mb-4">More Info</h3>
+                <div class="row">
+                    <div class="col-12">
+                        <p>{{ resort.extra_info }}</p>
+                    </div>
+                    <div class="col-10 mb-2">
+                        <h4>Weather Info</h4>
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-2 details">
+                                    <img src="" alt="">
+                                    <div>Weather Condition</div>
+                                    <div><span>temp</span><span>&deg;C</span></div>
+                                </div>
+                                <div class="col-2 details">
+                                    <img src="" alt="">
+                                    <div>Weather Condition</div>
+                                    <div><span>temp</span><span>&deg;C</span></div>
+                                </div>
+                                <div class="col-2 details">
+                                    <img src="" alt="">
+                                    <div>Weather Condition</div>
+                                    <div><span>temp</span><span>&deg;C</span></div>
+                                </div>
+                                <div class="col-2 details">
+                                    <img src="" alt="">
+                                    <div>Weather Condition</div>
+                                    <div><span>temp</span><span>&deg;C</span></div>
+                                </div>
+                                <div class="col-2 details">
+                                    <img src="" alt="">
+                                    <div>Weather Condition</div>
+                                    <div><span>temp</span><span>&deg;C</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
+
+                        <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-row mb-4">
+                                <div class="col-12 col-md-6">
+                                    <label for="adult-quantity">Adult Pass | €{{ resort.adult_price }} each</label>
+                                </div>
+                                <div class="col-8 col-md-4">
+                                    <input class="form-control" type="number" id="adult-ticket" name="adult_quantity"
+                                        min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-row mb-4">
+                                <div class="col-12 col-md-6">
+                                    <label for="child-quantity">Child Pass | €{{ resort.child_price }} each</label>
+                                </div>
+                                <div class="col-8 col-md-4">
+                                    <input class="form-control" type="number" id="child-ticket" name="child_quantity"
+                                        min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-row mb-4">
+                                <div class="col-12 col-md-6">
+                                    <label for="family-quantity">Family Pass | €{{ resort.family_price }} each</label>
+                                </div>
+                                <div class="col-8 col-md-4">
+                                    <input class="form-control" type="number" id="family-ticket" name="family_quantity"
+                                        min="0" value="0" data-item_id="{{ resort.id }}" id="">
+                                </div>
+                            </div>
+                            <hr>
+                            <input type="submit" class="btn btn-success" value="Add to bag">
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            {% if resort.map_image %}
+            <div class="col-12 col-md-6 mb-3">
+                <h3 class="text-center mb-4">Ski Map</h3>
+                <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map" src="{{ resort.map_image.url }}"
+                    alt="{{ resort.map_image }}">
+
+            </div>
+            {% endif %}
+
         </div>
-        <div class="col-12 col-md-6 order-md-last">
-            <h3 class="mb-4">More Info</h3>
-            <div class="row">
-                <div class="col-12">
-                    <p>{{ resort.extra_info }}</p>
-                </div>
-                <div class="col-12">
-                    <p>Weather Info Here</p>
-                </div>
-                <div class="col-10">
-                    <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
+        <hr>
+    </section>
 
-                    <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
-                        {% csrf_token %}
-                        <div class="form-row mb-4">
-                            <div class="col-12 col-md-6">
-                                <label for="adult-quantity">Adult Pass | €{{ resort.adult_price }} each</label>
-                            </div>
-                            <div class="col-8 col-md-4">
-                                <input class="form-control" type="number" id="adult-ticket" name="adult_quantity"
-                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-row mb-4">
-                            <div class="col-12 col-md-6">
-                                <label for="child-quantity">Child Pass | €{{ resort.child_price }} each</label>
-                            </div>
-                            <div class="col-8 col-md-4">
-                                <input class="form-control" type="number" id="child-ticket" name="child_quantity"
-                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="form-row mb-4">
-                            <div class="col-12 col-md-6">
-                                <label for="family-quantity">Family Pass | €{{ resort.family_price }} each</label>
-                            </div>
-                            <div class="col-8 col-md-4">
-                                <input class="form-control" type="number" id="family-ticket" name="family_quantity"
-                                    min="0" value="0" data-item_id="{{ resort.id }}" id="">
-                            </div>
-                        </div>
-                        <hr>
-                        <input type="submit" class="btn btn-success" value="Add to bag">
-                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </form>
+    <section class="last-section pt-2 container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3 class="text-center mb-5">Where to find us</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-3 offset-md-1 mb-4 mb-md-0">
+                <h5>Address/Contact</h5>
+                <p class="mb-0">{{ resort.street_address_1 }}</p>
+                {% if resort.street_address_2 %}
+                <p class="mb-0">{{ resort.street_address_2 }}</p>
+                {% endif %}
+                <p class="mb-0">{% if resort.postcode %}{{ resort.postcode }}{% endif %}
+                    {% if resort.town_or_city %}{{ resort.town_or_city }}{% endif %}</p>
+                {% if resort.phone_number %}
+                <p class="mb-0">+{{ resort.phone_number }}</p>
+                {% endif %}
+                {% if resort.website %}
+                <a href="{{ resort.website }}" target="_blank" class="mb-0">Website</a>
+                {% endif %}
+                {% if resort.email %}
+                <p class="mb-0">Email: {{ resort.email }}</p>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-7">
+                <div id="resort-map">
 
                 </div>
             </div>
         </div>
-        {% if resort.map_image %}
-        <div class="col-12 col-md-6 mb-3">
-            <h3 class="text-center mb-4">Ski Map</h3>
-            <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map" src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
 
-        </div>
-        {% endif %}
-
-    </div>
-    <hr>
-</section>
-
-<section class="last-section pt-2 container">
-    <div class="row">
-        <div class="col">
-            <h3 class="text-center mb-5">Where to find us</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-md-3 offset-md-1 mb-4 mb-md-0">
-            <h5>Address/Contact</h5>
-            <p class="mb-0">{{ resort.street_address_1 }}</p>
-            {% if resort.street_address_2 %}
-            <p class="mb-0">{{ resort.street_address_2 }}</p>
-            {% endif %}
-            <p class="mb-0">{% if resort.postcode %}{{ resort.postcode }}{% endif %}
-                {% if resort.town_or_city %}{{ resort.town_or_city }}{% endif %}</p>
-            {% if resort.phone_number %}
-            <p class="mb-0">+{{ resort.phone_number }}</p>
-            {% endif %}
-            {% if resort.website %}
-            <a href="{{ resort.website }}" target="_blank" class="mb-0">Website</a>
-            {% endif %}
-            {% if resort.email %}
-            <p class="mb-0">Email: {{ resort.email }}</p>
-            {% endif %}
-        </div>
-        <div class="col-12 col-md-7">
-            <div id="resort-map">
-
-            </div>
-        </div>
-    </div>
-
-</section>
-
+    </section>
+</main>
 {% endblock %}
 
 {% block postloadjs %}
@@ -139,29 +170,99 @@
 <!-- script to get the map markers for the resort -->
 <script>
     $(document).ready(function () {
-        var mapTileLayers = L.tileLayer(
+
+        let mapTileLayers = L.tileLayer(
             "http://services.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
                 attribution: "Powered by <a href='https://developers.arcgis.com/terms/attribution/' target='_blank' rel='noopener'>Esri</a>"
             });
 
-        let xReference = JSON.parse("{{ resort.x_map_reference|escapejs }}");
-        let yReference = JSON.parse("{{ resort.y_map_reference|escapejs }}");
+        let lat = JSON.parse("{{ resort.x_map_reference|escapejs }}");
+        let lon = JSON.parse("{{ resort.y_map_reference|escapejs }}");
 
-        var map = L.map("resort-map", {
+        const map = L.map("resort-map", {
             layers: [mapTileLayers],
-            center: [xReference, yReference],
+            center: [lat, lon],
             zoom: 2
-        }).setView([xReference, yReference], 11);
+        }).setView([lat, lon], 11);
 
-        var skiIcon = new L.Icon({
+        const skiIcon = new L.Icon({
             iconUrl: "../../../media/ski-icon2.png",
             iconSize: [25, 25],
             iconAnchor: [10, 25]
         });
 
-        var marker = L.marker([xReference, yReference], {
+        let marker = L.marker([lat, lon], {
             icon: skiIcon
         }).addTo(map);
+
+        // weather api
+
+        const key = 'tMYDWqoy9MYbcCD3eeoQJxBY4MFUwXA4';
+
+        // get weather information
+        const getWeather = async (id) => {
+
+            const base = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/';
+            const query = `${id}?apikey=${key}&details=true&metric=true`;
+
+            const response = await fetch(base + query);
+            const data = await response.json();
+
+            return data;
+
+        }
+
+        // get location information
+        const getLocation = async (lat, lon) => {
+
+            const base = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
+            const query = `?apikey=${key}&q=${lat},${lon}`;
+
+            const response = await fetch(base + query);
+            const data = await response.json();
+
+            return data;
+        }
+
+        const getWeatherData = async (lat, lon) => {
+            const location = await getLocation(lat, lon);
+            const weather = await getWeather(location.Key);
+
+            return {
+                location,
+                weather
+            };
+        };
+
+        const updateUI = (data) => {
+            const location = data.location;
+            const weather = data.weather;
+
+            days = [];
+
+            weather.DailyForecasts.forEach(day => {
+                days.push(day);
+            });
+
+            console.log(days);
+
+            details = document.querySelectorAll('.details');
+
+            details.forEach(detail => {
+                day = days[0];
+                detail.innerHTML = `
+                    <img src="" alt="">
+                    <div>${day.Day.ShortPhrase}</div>
+                    <div><span>temp</span><span>${day.Temperature.Maximum.Value}&deg;C</span></div>
+                `
+                days = days.slice(1);
+            });
+        };
+
+        getWeatherData(lat, lon)
+            .then(data => updateUI(data))
+            .catch(err => console.log(err));
+
     });
 </script>
 {% endblock %}
