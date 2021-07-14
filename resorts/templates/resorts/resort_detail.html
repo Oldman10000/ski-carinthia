@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin="" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+<link rel="stylesheet" href="{% static 'resorts/css/resorts.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -83,7 +85,8 @@
         {% if resort.map_image %}
         <div class="col-12 col-md-6 mb-3">
             <h3 class="text-center mb-4">Ski Map</h3>
-            <img src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
+            <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map" src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
+
         </div>
         {% endif %}
 
@@ -129,6 +132,7 @@
 
 {% block postloadjs %}
 {{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
