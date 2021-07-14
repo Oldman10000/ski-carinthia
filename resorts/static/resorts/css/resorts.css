@@ -1,0 +1,15 @@
+.card {
+    height: 500px;
+    width: auto;
+    color: #2E2F2F;
+}
+
+.card:hover {
+    text-decoration: none;
+    color: #2e2f2fc7;
+}
+
+.card-img-top {
+    height: 60%;
+    width: auto;
+}

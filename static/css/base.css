@@ -16,6 +16,10 @@ main {
     padding-top: 75px;
 }
 
+section {
+    padding-top: 1.5rem;
+}
+
 .bg-blue {
     background: #3F68B8;
 }
