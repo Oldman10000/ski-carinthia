@@ -14,6 +14,11 @@
     width: auto;
 }
 
+.ski-map {
+    max-width: 600px;
+    margin: auto;
+}
+
 .icon {
     height: 100px;
     width: 100px;
@@ -26,6 +31,66 @@
     height: 100%;
     width: auto;
     filter: invert(93%) sepia(12%) saturate(213%) hue-rotate(201deg) brightness(103%) contrast(95%);
+}
+
+.resort-hero {
+    position: relative;
+    overflow: hidden;
+}
+
+main {
+    padding-top: 0;
+}
+
+/* figcaption animation code copied and adapted from https://codepen.io/jhermansen/pen/YqEReZ */
+
+.resort-hero figcaption {
+    position: absolute;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 5px;
+    z-index: 100;
+    max-height: 100%;
+    overflow: hidden;
+    top: 50%;
+    left: 0;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    border-radius: 0 2px 0 0;
+}
+
+.resort-hero img {
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.resort-hero figcaption {
+    top: 100%;
+    -moz-transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+.resort-hero:hover figcaption {
+    -moz-transform: translate3d(0, -100%, 0);
+    /* move caption up vertically to fully reveal caption */
+    -webkit-transform: translate3d(0, -100%, 0);
+    background: #F4F4F9;
+    -webkit-box-shadow: 1px -1px 1px 1px rgba(33, 33, 33, 0.7);
+    -moz-box-shadow: 1px -1px 1px 1px rgba(33, 33, 33, 0.7);
+    box-shadow: 1px -1px 1px 1px rgba(33, 33, 33, 0.7);
+    transform: translate3d(0, -100%, 0);
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
 }
 
 /* fancybox css copied from fancyapps showcase https://fancyapps.com/playground/gd */

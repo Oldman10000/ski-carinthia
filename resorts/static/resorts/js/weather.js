@@ -58,6 +58,9 @@ $(document).ready(function () {
             <div>
                 <p><strong>${new Date(day.Date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})}</strong></p>
             </div>
+            <div>
+                <p>${day.Temperature.Minimum.Value} - ${day.Temperature.Maximum.Value}&deg;C<p>
+            </div>
             <div class="icon">
                 <img src="../../../media/icons/${day.Day.Icon}.svg" alt="">
             </div>
@@ -67,10 +70,6 @@ $(document).ready(function () {
             <div>
                 <p>${day.Day.Snow.Value}cm Snow</p>
             </div>
-            <div>
-                <p>Temp ${day.Temperature.Minimum.Value} - ${day.Temperature.Maximum.Value}&deg;C<p>
-            </div>
-
         `;
             days = days.slice(1);
         });

@@ -15,7 +15,7 @@
 
 <figure class="resort-hero">
     <img src="{{ resort.image.url }}" alt="{{ resort.name }}">
-    <figcaption>{{ resort.image_credit }}</figcaption>
+    <figcaption><strong>Image Credit: {{ resort.image_credit }}</strong></figcaption>
 </figure>
 
 <main>
@@ -27,18 +27,20 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-10 col-md-8 offset-1 offset-md-2 text-center pt-2 mb-4">
                 <p>{{ resort.description }}</p>
                 <hr>
             </div>
-            <div class="col-12 col-md-6 order-md-last">
-                <h3 class="mb-4">More Info</h3>
-                <div class="row">
+            <div class="col-10 offset-1 col-md-8 offset-md-2 offset-lg-0 col-lg-6 order-lg-last mb-4 mb-lg-0">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h3 class="mb-3">More Info</h3>
+                    </div>
                     <div class="col-12">
                         <p>{{ resort.extra_info }}</p>
                     </div>
-                    <div class="col-10">
+                    <div class="col-12">
                         <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
                         <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
                             {% csrf_token %}
@@ -78,14 +80,19 @@
                     </div>
                 </div>
             </div>
-            {% if resort.map_image %}
-            <div class="col-12 col-md-6 mb-3">
-                <h3 class="text-center mb-4">Ski Map</h3>
-                <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map" src="{{ resort.map_image.url }}"
-                    alt="{{ resort.map_image }}">
 
+            <div class="col-12 col-lg-6 mb-3">
+                <h3 class="text-center mb-4">Ski Map <small>(click to enlarge)</small></h3>
+                {% if resort.map_image %}
+                <figure class="ski-map">
+                    <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map"
+                        src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
+                </figure>
+                {% else %}
+                <p>No map data exists</p>
+                {% endif %}
             </div>
-            {% endif %}
+
 
         </div>
         <div class="row">
