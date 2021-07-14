@@ -38,41 +38,8 @@
                     <div class="col-12">
                         <p>{{ resort.extra_info }}</p>
                     </div>
-                    <div class="col-10 mb-2">
-                        <h4>Weather Info</h4>
-                        <div class="card">
-                            <div class="row">
-                                <div class="col-2 details">
-                                    <img src="" alt="">
-                                    <div>Weather Condition</div>
-                                    <div><span>temp</span><span>&deg;C</span></div>
-                                </div>
-                                <div class="col-2 details">
-                                    <img src="" alt="">
-                                    <div>Weather Condition</div>
-                                    <div><span>temp</span><span>&deg;C</span></div>
-                                </div>
-                                <div class="col-2 details">
-                                    <img src="" alt="">
-                                    <div>Weather Condition</div>
-                                    <div><span>temp</span><span>&deg;C</span></div>
-                                </div>
-                                <div class="col-2 details">
-                                    <img src="" alt="">
-                                    <div>Weather Condition</div>
-                                    <div><span>temp</span><span>&deg;C</span></div>
-                                </div>
-                                <div class="col-2 details">
-                                    <img src="" alt="">
-                                    <div>Weather Condition</div>
-                                    <div><span>temp</span><span>&deg;C</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-10">
                         <h5 class="mb-3">Buy Ski Passes (valid for any date the resort is open)</h5>
-
                         <form class="form" action="{% url 'add_to_bag' resort.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-row mb-4">
@@ -108,7 +75,6 @@
                             <input type="submit" class="btn btn-success" value="Add to bag">
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -121,6 +87,57 @@
             </div>
             {% endif %}
 
+        </div>
+        <div class="row">
+            <div class="col-10 offset-1">
+                <h3 class="text-center mb-2">5 Day Forecast</h4>
+                    <hr>
+            </div>
+            <div class="col-12 mb-2">
+                <div class="row">
+                    <div class="col-10 col-lg-2 mb-1 offset-1">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details card-body"></div>
+                        </div>
+                    </div>
+                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
+                        <div class="card">
+                            <div class="icon">
+                                <img src="" alt="">
+                            </div>
+                            <div class="details card-body"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <hr>
     </section>
@@ -197,7 +214,7 @@
 
         // weather api
 
-        const key = 'tMYDWqoy9MYbcCD3eeoQJxBY4MFUwXA4';
+        const key = 'LotdkzXJjnLh5l3hbwUfEQittwSEmy0f';
 
         // get weather information
         const getWeather = async (id) => {
@@ -210,7 +227,7 @@
 
             return data;
 
-        }
+        };
 
         // get location information
         const getLocation = async (lat, lon) => {
@@ -222,7 +239,7 @@
             const data = await response.json();
 
             return data;
-        }
+        };
 
         const getWeatherData = async (lat, lon) => {
             const location = await getLocation(lat, lon);
@@ -235,26 +252,46 @@
         };
 
         const updateUI = (data) => {
-            const location = data.location;
+
             const weather = data.weather;
 
             days = [];
 
-            weather.DailyForecasts.forEach(day => {
-                days.push(day);
-            });
+            const populateDays = (days) => {
+                weather.DailyForecasts.forEach(day => {
+                    days.push(day);
+                });
+            };
 
             console.log(days);
 
             details = document.querySelectorAll('.details');
 
+            populateDays(days);
+
             details.forEach(detail => {
                 day = days[0];
                 detail.innerHTML = `
-                    <img src="" alt="">
-                    <div>${day.Day.ShortPhrase}</div>
-                    <div><span>temp</span><span>${day.Temperature.Maximum.Value}&deg;C</span></div>
-                `
+                    <div>
+                        <p>${new Date(day.Date).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"})}</p>
+                    </div>
+                    <div>
+                        <p>${day.Day.ShortPhrase}</p>
+                    </div>
+                    <div>
+                        <p>max-temp ${day.Temperature.Maximum.Value}&deg;C<p>
+                    </div>
+                `;
+                days = days.slice(1);
+            });
+
+            icons = document.querySelectorAll('.icon img');
+
+            populateDays(days);
+
+            icons.forEach(icon => {
+                day = days[0];
+                icon.setAttribute('src', `../../../media/icons/${day.Day.Icon}.svg`);
                 days = days.slice(1);
             });
         };
