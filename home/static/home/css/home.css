@@ -1,6 +1,12 @@
 .card {
     height: 400px;
     width: auto;
+    color: #2E2F2F;
+}
+
+.card:hover {
+    text-decoration: none;
+    color: #2e2f2fc7;
 }
 
 .card-img-top {
@@ -11,4 +17,20 @@
 #index-map {
     height: 70vh;
     width: 100%;
+}
+
+.hero-text {
+    text-shadow: 0 0 3px #000;
+}
+
+p.hero-text {
+    font-size: 1.1em;
+}
+
+#hero h1 {
+    font-size: 3rem;
+}
+
+.titles {
+    padding-top: 10vh;
 }

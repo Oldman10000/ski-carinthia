@@ -1,6 +1,7 @@
 body {
     background: #F4F4F9;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -49,10 +50,6 @@ section {
     background-size: cover;
     height: 100vh;
     position: relative;
-}
-
-.titles {
-    padding-top: 20%;
 }
 
 .scroll-down {

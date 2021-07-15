@@ -16,11 +16,11 @@
 <section id="hero">
     <div class="container">
         <div class="row text-center titles">
-            <div class="col-12 mb-5">
-                <h1 class="light-text">Ski Carinthia</h1>
+            <div class="col-12 mb-4">
+                <h1 class="light-text hero-text">Ski Carinthia</h1>
             </div>
-            <div class="col-12 mt-5 mb-5">
-                <p class="dark-text">Get excited by the finest mountains in the eastern alps.</p>
+            <div class="col-12">
+                <p class="light-text hero-text">Hit the best slopes in the Alps</p>
             </div>
         </div>
     </div>
@@ -84,7 +84,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3>Resorts Map</h3>
+                <h3 class="text-center">Resorts Map</h3>
             </div>
         </div>
         <hr>
@@ -139,7 +139,8 @@
             <p class="m-0">${resort.fields.street_address_1}</p>
             <p class="m-0">${resort.fields.street_address_2}</p>
             <p class="m-0">${resort.fields.postcode} ${resort.fields.town_or_city}</p>
-            <p class="mt-0">${resort.fields.phone_number}</p>
+            <p class="m-0">+${resort.fields.phone_number}</p>
+            <a href="${resort.fields.website}" target="_blank">Website</a>
             `);
 
     });
