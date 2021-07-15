@@ -67,10 +67,56 @@ section {
     padding-bottom: 50px;
 }
 
-/* index map */
+input.form-control,
+select.custom-select {
+    border: 1px solid #3F68B8;
+}
 
-#resort-map {
-    height: 500px;
+.form-control:focus,
+.custom-select:focus {
+    color: #495057;
+    background-color: #fff;
+    border: 2px solid #3F68B8;
+    outline: 0;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+/* buttons */
+
+.btn-blue {
+    border: 1px solid #3F68B8;
+    color: #3F68B8;
+}
+
+.btn-blue:hover,
+.btn-blue:active,
+.btn-blue:focus {
+    color: #3F68B8;
+}
+
+.btn-red {
+    border: 1px solid #f95738;
+    color: #f95738;
+}
+
+.btn-red:hover,
+.btn-red:active,
+.btn-red:focus {
+    color: #f95738;
+}
+
+.btn {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+    font-weight: bold;
+    background: #fff;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.3);
 }
 
 /* footer */

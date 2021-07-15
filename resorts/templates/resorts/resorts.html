@@ -24,10 +24,10 @@
                 </form>
             </div>
             <div class="col-12 col-lg-6 mb-2">
-                <button type="submit" form="search" class="btn btn-success">
+                <button type="submit" form="search" class="btn btn-blue">
                     Search
                 </button>
-                <a href="{% url 'resorts' %}" class="btn btn-info">Reset</a>
+                <a href="{% url 'resorts' %}" class="btn btn-blue">Reset</a>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="sort-select-wrapper">
@@ -54,7 +54,7 @@
         <div class="row">
             {% for resort in resorts %}
             <div class="col-12 col-md-6 mt-5">
-                <a href="{% url 'resort_detail' resort.id %}" class="card resort-card">
+                <a href="{% url 'resort_detail' resort.id %}" class="card resort-card border-blue shadow">
                     <img src="{{ resort.image.url }}" class="card-img-top"
                         alt="{{ resort.name }}">
                     <div class="card-body">

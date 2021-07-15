@@ -118,13 +118,13 @@
                     </fieldset>
 
                     <div class="submit-button text-right mt-5 mb-2">
-                        <a href="{% url 'view_bag' %}" class="btn btn-info">
+                        <a href="{% url 'view_bag' %}" class="btn btn-blue">
                             Adjust Bag
                         </a>
-                        <button class="btn btn-success">
+                        <button class="btn btn-blue">
                             Complete Order
                         </button>
-                        <p class="small text-danger my-0">
+                        <p class="small text-danger mt-2 my-0">
                             Your card will be charged <strong>€{{ total|floatformat:2 }}</strong>
                         </p>
                     </div>

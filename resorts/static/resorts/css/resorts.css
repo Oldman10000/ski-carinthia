@@ -4,6 +4,14 @@
     color: #2E2F2F;
 }
 
+.resort-hero {
+    margin-top: 60px;
+}
+
+#resort-map {
+    height: 500px;
+}
+
 .resort-card:hover {
     text-decoration: none;
     color: #2e2f2fc7;
@@ -36,10 +44,6 @@
 .resort-hero {
     position: relative;
     overflow: hidden;
-}
-
-main {
-    padding-top: 0;
 }
 
 /* figcaption animation code copied and adapted from https://codepen.io/jhermansen/pen/YqEReZ */

@@ -3,8 +3,8 @@
   box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
-  border: 1px solid transparent;
-  border-radius: 0px;
+  border: 1px solid #3F68B8;
+  border-radius: 2px;
   background-color: white;
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
@@ -15,6 +15,7 @@
 .stripe-style-input:focus,
 .stripe-style-input:active {
   box-shadow: 0 1px 3px 0 #cfd7df;
+  border: 2px solid #3F68B8;
 }
 
 .StripeElement--webkit-autofill {

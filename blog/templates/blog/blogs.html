@@ -24,12 +24,12 @@
                 </form>
             </div>
             <div class="col-12 col-lg-6 mb-2">
-                <button type="submit" form="search" class="btn btn-success">
+                <button type="submit" form="search" class="btn btn-blue">
                     Search
                 </button>
-                <a href="{% url 'blogs' %}" class="btn btn-info">Reset</a>
+                <a href="{% url 'blogs' %}" class="btn btn-blue">Reset</a>
                 {% if request.user.is_authenticated %}
-                <a href="{% url 'new_post' %}" class="btn btn-info">Add Blog Post</a>
+                <a href="{% url 'new_post' %}" class="btn btn-blue">Add Blog Post</a>
                 {% endif %}
             </div>
             <div class="col-12 col-lg-6">
@@ -53,44 +53,44 @@
             </div>
         </div>
         <div class="row mt-5">
-            {% if page_obj %}
-            <div class="col-12 text-center mb-2">
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-            </div>
-            {% endif %}
-            <div class="col-12 text-center">
-                <p>
-                    <strong>Total posts: </strong>{{ posts|length }}
-                </p>
-            </div>
             <div class="col-12">
                 <div class="pagination justify-content-center">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
-                        <a href="?page=1" class="btn btn-success">&laquo; First</a>
-                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-success">Previous</a>
+                        <a href="?page=1" class="btn btn-blue">&laquo; First</a>
+                        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue">Previous</a>
                         {% endif %}
 
                         {% for page in page_obj.paginator %}
-                        <a href="?page={{ forloop.counter }}" class="btn btn-success">{{ forloop.counter }}</a>
+                        <a href="?page={{ forloop.counter }}" class="btn btn-blue">{{ forloop.counter }}</a>
                         {% endfor %}
 
                         {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-success">Next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-success">Last &raquo;</a>
+                        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue">Next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-blue">Last &raquo;</a>
                         {% endif %}
 
                     </span>
                 </div>
             </div>
+            <div class="col-12 text-center mt-3">
+                <p class="m-0">
+                    <strong>Total posts: </strong>{{ posts|length }}
+                </p>
+            </div>
+            {% if page_obj %}
+            <div class="col-12 text-center mt-2">
+                <span class="current">
+                    Page <strong>{{ page_obj.number }}</strong> of {{ page_obj.paginator.num_pages }}
+                </span>
+            </div>
+            {% endif %}
         </div>
         <div class="row mt-4">
             {% if page_obj %}
             {% for post in page_obj %}
             <div class="col-12 col-md-6 mb-3">
-                <div class="card border-blue">
+                <div class="card shadow border-blue">
                     <div class="card-body">
                         <h5 class="card-title">{{ post.title }}</h5>
                         <hr>
@@ -99,11 +99,11 @@
                         <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date }}</small></p>
                         <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
                         <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
-                        <a href="{% url 'post_detail' post.id %}" class="btn btn-info">Read More</a>
+                        <a href="{% url 'post_detail' post.id %}" class="btn btn-blue">Read More</a>
                         {% if request.user.is_authenticated %}
                         {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
-                        <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit Post</a>
-                        <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete Post</a>
+                        <a href="{% url 'edit_post' post.id %}" class="btn btn-blue">Edit Post</a>
+                        <a href="{% url 'delete_post' post.id %}" class="btn btn-red">Delete Post</a>
                         {% endif %}
                         {% endif %}
                     </div>
@@ -120,7 +120,7 @@
             {% if page_obj %}
             <div class="col-12 text-center">
                 <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    Page <strong>{{ page_obj.number }}</strong> of {{ page_obj.paginator.num_pages }}
                 </span>
             </div>
             {% endif %}

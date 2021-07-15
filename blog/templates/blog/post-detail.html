@@ -21,11 +21,11 @@
                     <p><strong>Published on:</strong> {{ post.published_date }}</p>
                     <p><strong>Views:</strong> {{ post.views }}</p>
                     <p><strong>Tag:</strong> {{ post.tag }}</p>
-                    <a href="{% url 'blogs' %}" class="btn btn-info">Back to Blog</a>
+                    <a href="{% url 'blogs' %}" class="btn btn-blue">Back to Blog</a>
                     {% if request.user.is_authenticated %}
                     {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-info">Edit Post</a>
-                    <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Delete Post</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-blue">Edit Post</a>
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-red">Delete Post</a>
                     {% endif %}
                     {% endif %}
                 </div>
