@@ -2,12 +2,16 @@
 {% load static %}
 {% load bag_tools %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
+{% endblock %}
+
 {% block content %}
 
 {% include '../headers/header.html' %}
 
 <main>
-    <section class="container h-100">
+    <section class="container">
         <div class="row">
             <div class="col">
                 <h2>{% if request.user.is_authenticated %}{{ request.user }}'s{% else %}My{% endif %} Bag</h2>
@@ -18,7 +22,7 @@
             <div class="col">
                 {% if bag_items %}
 
-                <div class="table-responsive">
+                <div class="table">
                     <table class="table-borderless">
                         <thead>
                             <tr>
@@ -41,16 +45,16 @@
                                 <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}"
                                     method="POST">
                                     {% csrf_token %}
-                                    <input class="form-control form-control-sm" type="number" id="adult-ticket"
+                                    <input class="form-control form-control-sm mb-1" type="number" id="adult-ticket"
                                         name="adult_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
-                                <a class="update-link">Update</a>
-                                <a class="remove-item" id="remove_{{ item.item_id }}"
-                                    data-type="adult_quantity">Remove</a>
+                                <a class="update-link btn btn-green btn-sm mb-1">Update <i class="fas fa-wrench"></i></a>
+                                <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
+                                    data-type="adult_quantity">Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
-                            <td>
-                                <p>€{{ item.product.adult_price }}</p>
+                            <td class="text-right">
+                                <p>€{{ item.product.adult_price | calc_subtotal:item.quantity }}</p>
                             </td>
                         </tr>
                         {% elif item.child_ticket %}
@@ -65,16 +69,16 @@
                                 <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}"
                                     method="POST">
                                     {% csrf_token %}
-                                    <input class="form-control form-control-sm" type="number" id="child-ticket"
+                                    <input class="form-control form-control-sm mb-1" type="number" id="child-ticket"
                                         name="child_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
-                                <a class="update-link">Update</a>
-                                <a class="remove-item" id="remove_{{ item.item_id }}"
-                                    data-type="child_quantity">Remove</a>
+                                <a class="update-link btn btn-green btn-sm mb-1">Update <i class="fas fa-wrench"></i></a>
+                                <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
+                                    data-type="child_quantity">Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
-                            <td>
-                                <p>€{{ item.product.child_price }}</p>
+                            <td class="text-right">
+                                <p>€{{ item.product.child_price | calc_subtotal:item.quantity }}</p>
                             </td>
                         </tr>
                         {% elif item.family_ticket %}
@@ -89,27 +93,32 @@
                                 <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}"
                                     method="POST">
                                     {% csrf_token %}
-                                    <input class="form-control form-control-sm" type="number" id="family-ticket"
+                                    <input class="form-control form-control-sm mb-1" type="number" id="family-ticket"
                                         name="family_quantity" min="0" value="{{ item.quantity }}"
                                         data-item_id="{{ item.item_id }}" id="">
                                 </form>
-                                <a class="update-link">Update</a>
-                                <a class="remove-item" id="remove_{{ item.item_id }}"
-                                    data-type="family_quantity">Remove</a>
+                                <a class="update-link btn btn-green btn-sm mb-1">Update<i class="fas fa-wrench"></i></a>
+                                <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
+                                    data-type="family_quantity">Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
-                            <td>
-                                <p>€{{ item.product.family_price }}</p>
+                            <td class="text-right">
+                                <p>€{{ item.product.family_price | calc_subtotal:item.quantity }}</p>
                             </td>
                         </tr>
                         {% endif %}
                         {% endfor %}
                         <tr>
                             <td colspan="5" class="text-right">
-                                <a href="{% url 'resorts' %}" class="btn btn-blue">
-                                    Keep Shopping
+                                Total: <strong>€{{ total }}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-right">
+                                <a href="{% url 'resorts' %}" class="btn btn-blue mb-1">
+                                    &laquo; Back To Resorts <i class="fas fa-mountain"></i>
                                 </a>
-                                <a href="{% url 'checkout' %}" class="btn btn-blue">
-                                    Secure Checkout
+                                <a href="{% url 'checkout' %}" class="btn btn-green mb-1">
+                                    Secure Checkout <i class="fas fa-key"></i>
                                 </a>
                             </td>
                         </tr>
@@ -117,7 +126,9 @@
                 </div>
                 {% else %}
                 <p>No items in your bag</p>
-                <a href="{% url 'resorts' %}">Back to all resorts</a>
+                <a href="{% url 'resorts' %}" class="btn btn-blue">
+                    &laquo; Back To Resorts <i class="fas fa-mountain"></i>
+                </a>
                 {% endif %}
             </div>
         </div>
@@ -128,5 +139,30 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<script src="{% static 'bag/js/bag.js' %}"></script>
+<script>
+    $(document).ready(function () {
+    // update quantity on click
+    $('.update-link').click(function (e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    });
+
+    // remove item
+    $('.remove-item').click(function (e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var type = $(this).data('type');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {
+            'csrfmiddlewaretoken': csrfToken,
+            'type': type
+        };
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
+    });
+});
+</script>
 {% endblock %}

@@ -85,6 +85,17 @@ select.custom-select {
 
 /* buttons */
 
+.btn-green {
+    border: 1px solid #008100;
+    color: #008100;
+}
+
+.btn-green:hover,
+.btn-green:active,
+.btn-green:focus {
+    color: #008100;
+}
+
 .btn-blue {
     border: 1px solid #3F68B8;
     color: #3F68B8;
@@ -123,6 +134,7 @@ select.custom-select {
 
 footer {
     height: 80px;
+    width: 100%;
     background: #3F68B8;
     color: #F4F4F9;
     margin-top: auto;
