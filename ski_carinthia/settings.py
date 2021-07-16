@@ -114,7 +114,7 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 
-WSGI_APPLICATION = 'ski_carinthia.wsgi.application'
+WSGI_APPLICATION = 'ski-carinthia.wsgi.application'
 
 
 # Database
