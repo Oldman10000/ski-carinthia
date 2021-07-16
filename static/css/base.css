@@ -45,13 +45,6 @@ section {
     background-color: #ececec;
 }
 
-#hero {
-    background: url('/media/ski-background.jpg') no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    position: relative;
-}
-
 .scroll-down {
     position: absolute;
     bottom: 5%;
