@@ -188,7 +188,6 @@
     let lat = JSON.parse("{{ resort.x_map_reference|escapejs }}");
     let lon = JSON.parse("{{ resort.y_map_reference|escapejs }}");
 </script>
-<script src="{% static 'resorts/js/weather.js' %}"></script>
 <script>
     let BasemapAT_basemap = L.tileLayer(
         'https://maps{s}.wien.gv.at/basemap/geolandbasemap/{type}/google3857/{z}/{y}/{x}.{format}', {
