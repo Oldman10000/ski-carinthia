@@ -1,0 +1,1 @@
+web: gunicorn ski-carinthia.wsgi:application
