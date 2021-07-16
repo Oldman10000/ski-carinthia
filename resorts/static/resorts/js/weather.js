@@ -1,7 +1,7 @@
 $(document).ready(function () {
     // weather api
 
-    const key = 'N4YFvou1AsgASRUQzPm1IAgGh49MB617';
+    const key = 'BdUE59jEeNtsgd3EToluoxuztd6EctjH';
 
     // get weather information
     const getWeather = async (id) => {

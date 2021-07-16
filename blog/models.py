@@ -16,7 +16,6 @@ class Post(models.Model):
     published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
     views = models.IntegerField(default=0)
     tag = models.CharField(max_length=30, blank=True, null=True)
-    image = models.ImageField(upload_to="img", blank=True, null=True)
 
     def __str__(self):
         return self.title
