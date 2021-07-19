@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django import template
 
 from .models import Order, OrderLineItem
 from resorts.models import Resort
@@ -29,10 +30,9 @@ class StripeWH_Handler:
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order}
         )
-        body = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
-        )
+        plaintext = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.html')
+        body = plaintext.render({'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        print(body)
 
         send_mail(
             subject,

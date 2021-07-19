@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+</head>
+
+<body>
+    <h1>Hello {{ order.full_name }}</h1>
+
+    <p>This is a confirmation of your order at Ski Carinthia. Your order information is below:</p>
+
+    <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+    <p><strong>Order Date:</strong> {{ order.date }}</p>
+
+    {% for item in order.lineitems.all %}
+    <p>{{ item.resort.name }} {{ item.ticket_type }} {{ item.quantity }} pass{% if item.quantity > 1 %}es{% endif %} @
+        €{{ item.ticket_price }} each</p>
+    {% endfor %}
+    <h2>Order Total: €{{ order.order_total }}</h2>
+
+    <p>This email serves as your ticket.</p>
+
+    <div id="qrcode" style="width:160px; height:160px; margin-top:15px;"></div>
+
+    <p>If you have any questions, feel free to contact us at {{ contact_email }}</p>
+
+    <p>Thank you for your order!</p>
+
+    <p>Sincerely,</p>
+
+    <p>Ski Carinthia</p>
+
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"),
+            'https://ski-carinthia.herokuapp.com/checkout/checkout_success/{{ order.order_number }}');
+    </script>
+</body>
+
+</html>
