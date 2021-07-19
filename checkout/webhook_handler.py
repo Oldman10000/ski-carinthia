@@ -39,15 +39,12 @@ class StripeWH_Handler:
         text_content = plaintext.render(c)
         html_content = htmltemp.render(c)
 
-        body = EmailMultiAlternatives(text_content)
-        body.attach_alternative(html_content, "text/html")
+        msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [cust_email])
+        msg.attach_alternative(html_content, "text/html")
 
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
-        )
+        print(msg)
+
+        msg.send()
 
     def handle_event(self, event):
         """
