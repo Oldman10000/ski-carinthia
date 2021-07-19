@@ -46,6 +46,10 @@
     overflow: hidden;
 }
 
+.weather {
+    height: 375px;
+}
+
 /* figcaption animation code copied and adapted from https://codepen.io/jhermansen/pen/YqEReZ */
 
 .resort-hero figcaption {

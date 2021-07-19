@@ -18,7 +18,7 @@
     <figcaption><strong>Image Credit: {{ resort.image_credit }}</strong></figcaption>
 </figure>
 
-<main>
+<main style="padding-top: 0">
     <section class="resort-section container-fluid">
 
         <div class="row">
@@ -108,29 +108,29 @@
                     <hr>
             </div>
             <div class="col-12 mb-2">
-                <div class="row">
-                    <div class="col-10 col-lg-2 mb-1 offset-1">
-                        <div class="card border-blue shadow">
+                <div class="row mt-3">
+                    <div class="col-8 col-lg-2 mb-3 offset-2 offset-lg-1">
+                        <div class="card border-blue shadow weather">
                             <div class="details card-body text-center"></div>
                         </div>
                     </div>
-                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
-                        <div class="card border-blue shadow">
+                    <div class="col-8 col-lg-2 mb-3 offset-2 offset-lg-0">
+                        <div class="card border-blue shadow weather">
                             <div class="details card-body text-center"></div>
                         </div>
                     </div>
-                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
-                        <div class="card border-blue shadow">
+                    <div class="col-8 col-lg-2 mb-3 offset-2 offset-lg-0">
+                        <div class="card border-blue shadow weather">
                             <div class="details card-body text-center"></div>
                         </div>
                     </div>
-                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
-                        <div class="card border-blue shadow">
+                    <div class="col-8 col-lg-2 mb-3 offset-2 offset-lg-0">
+                        <div class="card border-blue shadow weather">
                             <div class="details card-body text-center"></div>
                         </div>
                     </div>
-                    <div class="col-10 col-lg-2 mb-1 offset-1 offset-lg-0">
-                        <div class="card border-blue shadow">
+                    <div class="col-8 col-lg-2 mb-3 offset-2 offset-lg-0">
+                        <div class="card border-blue shadow weather">
                             <div class="details card-body text-center"></div>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
     $(document).ready(function () {
         // weather api
 
-        const key = 'BdUE59jEeNtsgd3EToluoxuztd6EctjH';
+        const key = 'Lw1JN6Ug100suJAtqvTMJpeM1FlooHl3';
 
         // get weather information
         const getWeather = async (id) => {
