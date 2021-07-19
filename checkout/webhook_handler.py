@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from django import template
@@ -30,9 +30,17 @@ class StripeWH_Handler:
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order}
         )
-        plaintext = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.html')
-        body = plaintext.render({'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        print(body)
+        plaintext = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.txt')
+        htmltemp = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.html')
+        c = {
+            'order': order,
+            'contact_email': settings.DEFAULT_FROM_EMAIL,
+        }
+        text_content = plaintext.render(c)
+        html_content = htmltemp.render(c)
+
+        body = EmailMultiAlternatives(text_content)
+        body.attach_alternative(html_content, "text/html")
 
         send_mail(
             subject,
