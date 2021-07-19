@@ -9,66 +9,102 @@
 
 {% include '../headers/header.html' %}
 
-<main>
-    <section id="sort-section" class="container">
-        <div class="row">
-            <div class="col">
-                <h2>Our Ski Resorts</h2>
+<main class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Our Ski Resorts</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12 mb-2">
+            <form method="GET" id="search" action="{% url 'resorts' %}">
+                <input type="text" class="form-control" name="q" placeholder="Find a mountain">
+            </form>
+        </div>
+        <div class="col-12 col-lg-6 mb-2">
+            <button type="submit" form="search" class="btn btn-green">
+                Search <i class="fas fa-search"></i>
+            </button>
+            <a href="{% url 'resorts' %}" class="btn btn-blue">Reset</a>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="sort-select-wrapper">
+                <select name="" id="sort-selector" class="custom-select">
+                    <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
+                    </option>
+                    <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Adult
+                        Price
+                        (low to high)</option>
+                    <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Adult
+                        Price (high to low)</option>
+                    <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>A-Z
+                    </option>
+                    <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Z-A
+                    </option>
+                </select>
             </div>
         </div>
-        <hr>
-        <div class="row">
-            <div class="col-12 mb-2">
-                <form method="GET" id="search" action="{% url 'resorts' %}">
-                    <input type="text" class="form-control" name="q" placeholder="Find a mountain">
-                </form>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="pagination justify-content-center">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-blue">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue"><i
+                            class="fas fa-arrow-left"></i></a>
+                    {% endif %}
+
+                    {% for page in page_obj.paginator %}
+                    <a href="?page={{ forloop.counter }}" class="btn btn-blue">{{ forloop.counter }}</a>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue"><i
+                            class="fas fa-arrow-right"></i></a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-blue">Last &raquo;</a>
+                    {% endif %}
+
+                </span>
             </div>
-            <div class="col-12 col-lg-6 mb-2">
-                <button type="submit" form="search" class="btn btn-green">
-                    Search <i class="fas fa-search"></i>
-                </button>
-                <a href="{% url 'resorts' %}" class="btn btn-blue">Reset</a>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="sort-select-wrapper">
-                    <select name="" id="sort-selector" class="custom-select">
-                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
-                        </option>
-                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Adult
-                            Price
-                            (low to high)</option>
-                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Adult
-                            Price (high to low)</option>
-                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>A-Z
-                        </option>
-                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Z-A
-                        </option>
-                    </select>
+        </div>
+        <div class="col-12 text-center mt-3">
+            <p class="m-0">
+                <strong>Total resorts: </strong>{{ resorts|length }}
+            </p>
+        </div>
+        {% if page_obj %}
+        <div class="col-12 text-center mt-2">
+            <span class="current">
+                Page <strong>{{ page_obj.number }}</strong> of {{ page_obj.paginator.num_pages }}
+            </span>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        {% if page_obj %}
+        {% for resort in page_obj %}
+        <div class="col-12 col-md-6 mt-5">
+            <a href="{% url 'resort_detail' resort.id %}" class="card resort-card border-blue shadow">
+                <img src="{{ resort.image.url }}" class="card-img-top" alt="{{ resort.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ resort.name }}
+                    </h5>
+                    <p class="card-text">{{ resort.description }}</p>
                 </div>
-            </div>
+            </a>
         </div>
-    </section>
-
-    <section id="resorts-section" class="container last-section">
-
-        <div class="row">
-            {% for resort in resorts %}
-            <div class="col-12 col-md-6 mt-5">
-                <a href="{% url 'resort_detail' resort.id %}" class="card resort-card border-blue shadow">
-                    <img src="{{ resort.image.url }}" class="card-img-top"
-                        alt="{{ resort.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {{ resort.name }}
-                        </h5>
-                        <p class="card-text">{{ resort.description }}</p>
-                    </div>
-                </a>
-            </div>
-            {% endfor %}
+        {% endfor %}
+        {% else %}
+        <div class="col">
+            <h5>:( No Resorts Found{% if search_term %} for {{ search_term }}{% endif %}</h5>
         </div>
-
-    </section>
+        {% endif %}
+    </div>
 </main>
 {% endblock %}
 

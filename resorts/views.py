@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Resort
+from django.core.paginator import Paginator
 
 
 def all_resorts(request):
@@ -47,11 +48,15 @@ def all_resorts(request):
                 name__icontains=query) | Q(description__icontains=query)
             resorts = resorts.filter(queries)
 
+    paginator = Paginator(resorts, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     current_sorting = f'{sort}_{direction}'
-    print(current_sorting)
 
     context = {
         'resorts': resorts,
+        'page_obj': page_obj,
         'search_term': query,
         'current_sorting': current_sorting,
     }
