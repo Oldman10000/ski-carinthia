@@ -27,7 +27,7 @@ def add_to_bag(request, item_id):
     bag = request.session.get('bag', {})
 
     def add_quantity(
-            quantity, ticket_type, item_id, bag, resort, friendly_ticket):
+            quantity, ticket_type, item_id, bag):
         """
         adds quantity of specific pass ticket_type to bag
         """
@@ -35,41 +35,39 @@ def add_to_bag(request, item_id):
             if item_id in list(bag.keys()):
                 if f'{ticket_type}' in bag[item_id]:
                     bag[item_id][f'{ticket_type}'] += quantity
-                    messages.success(
-                        request, f'Added {quantity} {resort}, {friendly_ticket}\
-                             to your bag')
                 else:
                     bag[item_id][f'{ticket_type}'] = quantity
-                    messages.success(
-                        request, f'Added {quantity} {resort}, {friendly_ticket}\
-                             to your bag')
             else:
                 bag[item_id] = {f'{ticket_type}': quantity}
-                messages.success(
-                    request, f'Added {quantity} {resort}, {friendly_ticket}\
-                         to your bag')
 
-    add_quantity(
-        adult_quantity,
-        'adult_quantity',
-        item_id,
-        bag,
-        resort.name,
-        'adult pass')
-    add_quantity(
-        child_quantity,
-        'child_quantity',
-        item_id,
-        bag,
-        resort.name,
-        'child pass')
-    add_quantity(
-        family_quantity,
-        'family_quantity',
-        item_id,
-        bag,
-        resort.name,
-        'child pass')
+    if adult_quantity or child_quantity or family_quantity:
+
+        if adult_quantity:
+            add_quantity(
+                adult_quantity,
+                'adult_quantity',
+                item_id,
+                bag,)
+
+        if child_quantity:
+            add_quantity(
+                child_quantity,
+                'child_quantity',
+                item_id,
+                bag,)
+
+        if family_quantity:
+            add_quantity(
+                family_quantity,
+                'family_quantity',
+                item_id,
+                bag,)
+
+        messages.success(
+            request, 'Added items to your bag')
+    else:
+        messages.error(
+                    request, 'Nothing selected!!')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
