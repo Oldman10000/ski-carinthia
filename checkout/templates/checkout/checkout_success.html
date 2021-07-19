@@ -14,7 +14,7 @@
         <div class="col">
             <h2 class="logo-font mb-4">Thank you for your order</h2>
             <hr>
-            <p class="text-black">Your order information is below. Your passes will be emailed to
+            <p class="text-black">Your order information is below. Your confirmation has been sent to
                 <strong>{{ order.email }}</strong>.</p>
             {% if from_profile %}
             <a href="{% url 'profile' %}">Return to profile</a>
@@ -148,9 +148,23 @@
 
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col">
+                        <p>Please present the below code at the counter to redeem your ski passes.</p>
+                        <div id="qrcode" style="width:160px; height:160px; margin-top:15px;"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block postloadjs %}
+<script src="{% static 'checkout/js/qrcode.min.js' %}"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"),
+        'https://ski-carinthia.herokuapp.com/checkout/checkout_success/{{ order.order_number }}');
+    console.log('hello world')
+</script>
 {% endblock %}

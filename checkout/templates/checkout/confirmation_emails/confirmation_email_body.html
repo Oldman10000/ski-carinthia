@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Template</title>
+    <script src="{% static 'checkout/js/qrcode.min.js' %}"></script>
 </head>
 
 <body>
@@ -22,9 +25,7 @@
     {% endfor %}
     <h2>Order Total: €{{ order.order_total }}</h2>
 
-    <p>This email serves as your ticket.</p>
-
-    <div id="qrcode" style="width:160px; height:160px; margin-top:15px;"></div>
+    <p>Get your ticket QR code <a href="https://ski-carinthia.herokuapp.com/checkout/checkout_success/{{ order.order_number }}">Here</a></p>
 
     <p>If you have any questions, feel free to contact us at {{ contact_email }}</p>
 
@@ -34,10 +35,8 @@
 
     <p>Ski Carinthia</p>
 
-    <script type="text/javascript">
-        new QRCode(document.getElementById("qrcode"),
-            'https://ski-carinthia.herokuapp.com/checkout/checkout_success/{{ order.order_number }}');
-    </script>
+    <div id="new"></div>
+
 </body>
 
 </html>
