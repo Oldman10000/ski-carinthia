@@ -25,32 +25,12 @@ section {
     background: #3F68B8;
 }
 
-.light-text {
-    color: #F4F4F9;
-}
-
-.light-text:hover {
-    color: #F4F4F9;
-}
-
-.blue-text {
-    color: #3F68B8;
-}
-
 .border-blue {
     border-color: #3F68B8;
 }
 
 .nav-input {
     background-color: #ececec;
-}
-
-.scroll-down {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 3.5rem;
 }
 
 .last-section {

@@ -21,7 +21,7 @@
                     <a class="nav-link" href="{% url 'blogs' %}">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'view_bag' %}">Bag</a>
+                    <a class="nav-link" href="{% url 'view_bag' %}">Bag {% if total %}(€{{ total }}){% endif %}</a>
                 </li>
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">
