@@ -15,6 +15,7 @@ header {
 
 main {
     padding-top: 75px;
+    padding-bottom: 50px;
 }
 
 section {
@@ -154,7 +155,6 @@ img {
 /* allauth forms */
 
 .allauth-form-inner-content {
-    margin-top: 1.5rem;
     color: #343a40;
 }
 

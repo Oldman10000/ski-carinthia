@@ -26,7 +26,8 @@
         </div>
         <div class="row text-center">
             <div class="col mt-5">
-                <a href="{% url 'resorts' %}" class="btn btn-white">Discover All Resorts! <i class="fas fa-tram"></i></a>
+                <a href="{% url 'resorts' %}" class="btn btn-white">Discover All Resorts! <i
+                        class="fas fa-tram"></i></a>
             </div>
         </div>
     </div>
@@ -36,67 +37,60 @@
 </section>
 
 <!-- main section in index page -->
-<section id="index-main" class="pt-5">
-    <div class="container">
-        <div class="row text-center mb-5">
-            <div class="col-12 mt-5">
-                <h2>Where To Go?</h2>
-            </div>
-            <div class="col-12 mt-5">
-                <p>Carinthia has a wide range of mountains to suit every need. Find anything from family friendly
-                    resorts to the
-                    toughest mountains that even the most seasoned skiier will be challenged by.</p>
-            </div>
+<main class="container">
+    <div class="row text-center mb-5">
+        <div class="col-12 mt-5">
+            <h2>Where To Go?</h2>
         </div>
-        <div class="row text-center mt-5">
-            <div class="col-12 col-md-4 mt-3 mt-md-0">
-                <a href="{% url 'resorts' %}?family_friendly" class="card">
-                    <img src="{{ MEDIA_URL }}family-ski.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Best for Families
-                        </h5>
-                        <p class="card-text">View all of the most family friendly ski resorts in Carinthia!</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mt-md-0">
-                <a href="{% url 'resorts' %}?scenic" class="card">
-                    <img src="{{ MEDIA_URL }}view-ski.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Show me those views!
-                        </h5>
-                        <p class="card-text">View the carinthian resorts with the most beautiful landscapes!</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-4 mt-3 mt-md-0">
-                <a href="{% url 'resorts' %}?large" class="card">
-                    <img src="{{ MEDIA_URL }}hard-ski.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            I want only the biggest mountains!
-                        </h5>
-                        <p class="card-text">View only the largest resorts in carinthia for the biggest excitement!</p>
-                    </div>
-                </a>
-            </div>
+        <div class="col-12 mt-5">
+            <p>Carinthia has a wide range of mountains to suit every need. Find anything from family friendly
+                resorts to the
+                toughest mountains that even the most seasoned skiier will be challenged by.</p>
         </div>
     </div>
-</section>
-
-<section class="last-section">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3 class="text-center">Resorts Map</h3>
-            </div>
+    <div class="row text-center mt-5">
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            <a href="{% url 'resorts' %}?family_friendly" class="card">
+                <img src="{{ MEDIA_URL }}family-ski.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Best for Families
+                    </h5>
+                    <p class="card-text">View all of the most family friendly ski resorts in Carinthia!</p>
+                </div>
+            </a>
         </div>
-        <hr>
-        <div id="index-map"></div>
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            <a href="{% url 'resorts' %}?scenic" class="card">
+                <img src="{{ MEDIA_URL }}view-ski.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Show me those views!
+                    </h5>
+                    <p class="card-text">View the carinthian resorts with the most beautiful landscapes!</p>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 col-md-4 mt-3 mt-md-0">
+            <a href="{% url 'resorts' %}?large" class="card">
+                <img src="{{ MEDIA_URL }}hard-ski.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        I want only the biggest mountains!
+                    </h5>
+                    <p class="card-text">View only the largest resorts in carinthia for the biggest excitement!</p>
+                </div>
+            </a>
+        </div>
     </div>
-</section>
+    <div class="row mt-5">
+        <div class="col">
+            <h3 class="text-center">Resorts Map</h3>
+        </div>
+    </div>
+    <hr>
+    <div id="index-map"></div>
+</main>
 
 {% endblock %}
 

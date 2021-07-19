@@ -46,7 +46,7 @@ $(document).ready(function () {
     // button to scroll to next section
     $('.scroll-down').click(function () {
         $('html, body').animate({
-            scrollTop: $('#index-main').offset().top
+            scrollTop: $('main').offset().top
         }, 'slow');
         return false;
     });

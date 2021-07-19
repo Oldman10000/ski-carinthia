@@ -3,134 +3,132 @@
 {% load bag_tools %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 {% block content %}
 
 {% include '../headers/header.html' %}
 
-<main>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h2>Checkout</h2>
-                    <hr>
+<main class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Checkout</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-6 order-lg-last mb-5">
+            <div class="row">
+                <div class="col-7 offset-2">
+                    <h5 class="mb-1 mt-0 small text-muted">Order Contents</h5>
+                </div>
+            </div>
+            {% for item in bag_items %}
+            {% if item.adult_ticket %}
+            <div class="row mb-2">
+                <div class="col-2 mb-1">
+                    <a href="{ url 'product_detal' item.product.id %}"></a>
+                </div>
+                <div class="col-7">
+                    <p class="my-0"><strong>{{ item.quantity }} Adult Pass{% if item.quantity > 1 %}es{% endif %}
+                            for {{ item.product.name }}</strong></p>
+                    <p class="my-0 small">Price: €{{ item.product.adult_price }} each</p>
+                    <p class="my-0 small text-muted">Subtotal:
+                        <strong>€{{ item.product.adult_price | calc_subtotal:item.quantity }}</strong></p>
+                </div>
+            </div>
+            {% endif %}
+            {% if item.child_ticket %}
+            <div class="row mb-2">
+                <div class="col-2 mb-1">
+                    <a href="{ url 'product_detal' item.product.id %}"></a>
+                </div>
+                <div class="col-7">
+                    <p class="my-0"><strong>{{ item.quantity }} Child Pass{% if item.quantity > 1 %}es{% endif %}
+                            for {{ item.product.name }}</strong></p>
+                    <p class="my-0 small">Price: €{{ item.product.child_price }} each</p>
+                    <p class="my-0 small text-muted">Subtotal:
+                        <strong>€{{ item.product.child_price | calc_subtotal:item.quantity }}</strong></p>
+                </div>
+            </div>
+            {% endif %}
+            {% if item.family_ticket %}
+            <div class="row mb-2">
+                <div class="col-2 mb-1">
+                    <a href="{ url 'product_detal' item.product.id %}"></a>
+                </div>
+                <div class="col-7">
+                    <p class="my-0"><strong>{{ item.quantity }} Family Pass{% if item.quantity > 1 %}es{% endif %}
+                            for {{ item.product.name }}</strong></p>
+                    <p class="my-0 small">Price: €{{ item.product.family_price }} each</p>
+                    <p class="my-0 small text-muted">Subtotal:
+                        <strong>€{{ item.product.family_price | calc_subtotal:item.quantity }}</strong></p>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <hr>
+            <div class="row">
+                <div class="col-7 offset-2">
+                    <p class="my-0">Order Total</p>
+                </div>
+                <div class="col-3">
+                    <p class="my-0">€{{ total | floatformat:2 }}</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-lg-6 order-lg-last mb-5">
-                <div class="row">
-                    <div class="col-7 offset-2">
-                        <h5 class="mb-1 mt-0 small text-muted">Order Contents</h5>
+        <div class="col-12 col-lg-6">
+            <p class="text-muted">Please fill out the form below to complete your order</p>
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <fieldset class="px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.phone_number | as_crispy_field }}
+                </fieldset>
+                <fieldset class="px-3 mb-5">
+                    <legend class="fieldset-label small text-black px-2 w-auto">Billing</legend>
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.county | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                    <div class="form-check form-check-inline float-right mr-0">
+                        {% if user.is_authenticated %}
+                        <label for="id-save-info" class="form-check-label">Save details to my profile</label>
+                        <input type="checkbox" id="id-save-info" name="save-info" class="form-check-input ml-2 mr-0"
+                            checked>
+                        {% else %}
+                        <label for="id-save-info" class="form-check-label">
+                            <a href="{% url 'account_signup' %}" class="text-info">Create an account</a> or
+                            <a href="{% url 'account_login' %}" class="text-info">Log in</a>
+                        </label>
+                        {% endif %}
                     </div>
-                </div>
-                {% for item in bag_items %}
-                {% if item.adult_ticket %}
-                <div class="row mb-2">
-                    <div class="col-2 mb-1">
-                        <a href="{ url 'product_detal' item.product.id %}"></a>
-                    </div>
-                    <div class="col-7">
-                        <p class="my-0"><strong>{{ item.quantity }} Adult Pass{% if item.quantity > 1 %}es{% endif %}
-                                for {{ item.product.name }}</strong></p>
-                        <p class="my-0 small">Price: €{{ item.product.adult_price }} each</p>
-                        <p class="my-0 small text-muted">Subtotal:
-                            <strong>€{{ item.product.adult_price | calc_subtotal:item.quantity }}</strong></p>
-                    </div>
-                </div>
-                {% endif %}
-                {% if item.child_ticket %}
-                <div class="row mb-2">
-                    <div class="col-2 mb-1">
-                        <a href="{ url 'product_detal' item.product.id %}"></a>
-                    </div>
-                    <div class="col-7">
-                        <p class="my-0"><strong>{{ item.quantity }} Child Pass{% if item.quantity > 1 %}es{% endif %}
-                                for {{ item.product.name }}</strong></p>
-                        <p class="my-0 small">Price: €{{ item.product.child_price }} each</p>
-                        <p class="my-0 small text-muted">Subtotal:
-                            <strong>€{{ item.product.child_price | calc_subtotal:item.quantity }}</strong></p>
-                    </div>
-                </div>
-                {% endif %}
-                {% if item.family_ticket %}
-                <div class="row mb-2">
-                    <div class="col-2 mb-1">
-                        <a href="{ url 'product_detal' item.product.id %}"></a>
-                    </div>
-                    <div class="col-7">
-                        <p class="my-0"><strong>{{ item.quantity }} Family Pass{% if item.quantity > 1 %}es{% endif %}
-                                for {{ item.product.name }}</strong></p>
-                        <p class="my-0 small">Price: €{{ item.product.family_price }} each</p>
-                        <p class="my-0 small text-muted">Subtotal:
-                            <strong>€{{ item.product.family_price | calc_subtotal:item.quantity }}</strong></p>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <hr>
-                <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="my-0">Order Total</p>
-                    </div>
-                    <div class="col-3">
-                        <p class="my-0">€{{ total | floatformat:2 }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <p class="text-muted">Please fill out the form below to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                    {% csrf_token %}
-                    <fieldset class="px-3 mb-5">
-                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
-                        {{ order_form.phone_number | as_crispy_field }}
-                    </fieldset>
-                    <fieldset class="px-3 mb-5">
-                        <legend class="fieldset-label small text-black px-2 w-auto">Billing</legend>
-                        {{ order_form.street_address1 | as_crispy_field }}
-                        {{ order_form.street_address2 | as_crispy_field }}
-                        {{ order_form.postcode | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.county | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                        <div class="form-check form-check-inline float-right mr-0">
-                            {% if user.is_authenticated %}
-                            <label for="id-save-info" class="form-check-label">Save details to my profile</label>
-                            <input type="checkbox" id="id-save-info" name="save-info" class="form-check-input ml-2 mr-0"
-                                checked>
-                            {% else %}
-                            <label for="id-save-info" class="form-check-label">
-                                <a href="{% url 'account_signup' %}" class="text-info">Create an account</a> or
-                                <a href="{% url 'account_login' %}" class="text-info">Log in</a>
-                            </label>
-                            {% endif %}
-                        </div>
-                    </fieldset>
-                    <fieldset class="px-3">
-                        <legend class="fieldset-label small px-2 w-auto">Payment</legend>
-                        <div class="mb-3" id="card-element"></div>
-                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                    </fieldset>
+                </fieldset>
+                <fieldset class="px-3">
+                    <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                    <div class="mb-3" id="card-element"></div>
+                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                </fieldset>
 
-                    <div class="submit-button text-right mt-5 mb-2">
-                        <a href="{% url 'view_bag' %}" class="btn btn-blue">
-                            Adjust Bag <i class="fas fa-shopping-bag"></i>
-                        </a>
-                        <button class="btn btn-green">
-                            Secure Payment <i class="fas fa-key"></i>
-                        </button>
-                        <p class="small text-danger mt-2 my-0">
-                            Your card will be charged <strong>€{{ total|floatformat:2 }}</strong>
-                        </p>
-                    </div>
+                <div class="submit-button text-right mt-5 mb-2">
+                    <a href="{% url 'view_bag' %}" class="btn btn-blue">
+                        Adjust Bag <i class="fas fa-shopping-bag"></i>
+                    </a>
+                    <button class="btn btn-green">
+                        Secure Payment <i class="fas fa-key"></i>
+                    </button>
+                    <p class="small text-danger mt-2 my-0">
+                        Your card will be charged <strong>€{{ total|floatformat:2 }}</strong>
+                    </p>
+                </div>
 
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </main>
