@@ -17,6 +17,11 @@
     </div>
     <hr>
     <div class="row">
+        <div class="col-12">
+            <p>Share your experiences of skiing in Carinthia!</p>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 mb-2">
             <form method="GET" id="search" action="{% url 'blogs' %}">
                 <input type="text" class="form-control" name="q" placeholder="Find a blog">
@@ -36,6 +41,9 @@
                 <select name="" class="custom-select" id="sort-selector">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
                     </option>
+                    <option value="views_desc" {% if current_sorting == 'views_desc' %}selected{% endif %}>Most
+                        Viewed
+                    </option>
                     <option value="title_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>A-Z
                     </option>
                     <option value="title_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Z-A
@@ -44,8 +52,7 @@
                     </option>
                     <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Newest
                     </option>
-                    <option value="views_desc" {% if current_sorting == 'views_desc' %}selected{% endif %}>Most
-                        Viewed</option>
+                    <option value="profile_asc" {% if current_sorting == 'profile_asc' %}selected{% endif %}>Author
                     </option>
                 </select>
             </div>

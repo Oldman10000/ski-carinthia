@@ -26,7 +26,8 @@ def blogs(request):
             sort = sortkey
             if sortkey == 'date':
                 sortkey = 'published_date'
-
+            if sortkey == 'profile':
+                sortkey = 'user_profile'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
