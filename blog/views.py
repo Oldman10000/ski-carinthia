@@ -4,8 +4,8 @@ from django.contrib import messages
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-from .models import Post
-from .forms import BlogPostForm
+from .models import Post, PostComment
+from .forms import BlogPostForm, PostCommentForm
 from profiles.models import UserProfile
 
 
@@ -74,11 +74,65 @@ def post_detail(request, pk):
     post.views += 1
     post.save()
 
+    comments = PostComment.objects.filter(post=post)
+
+    if request.method == "POST":
+        form = PostCommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = UserProfile.objects.get(user=request.user)
+            form.instance.author = user
+            form.instance.post = post
+            form.save()
+            return redirect(post_detail, post.pk)
+    else:
+        form = PostCommentForm()
+
     context = {
         'post': post,
+        'comments': comments,
+        'form': form,
     }
 
     return render(request, "blog/post-detail.html", context)
+
+
+def add_point(request, pk, postpk):
+    """
+    Adds a point to blog comment
+    """
+
+    post = get_object_or_404(Post, pk=postpk)
+
+    comment = get_object_or_404(PostComment, pk=pk)
+
+    if request.user.is_authenticated:
+        print(request.user)
+        comment.points += 1
+        comment.save()
+    else:
+        messages.error(
+                    request, "You need to be logged in to add a point!")
+
+    return redirect(post_detail, post.pk)
+
+
+def delete_point(request, pk, postpk):
+    """
+    Deletes a point from blog comment
+    """
+
+    post = get_object_or_404(Post, pk=postpk)
+
+    comment = get_object_or_404(PostComment, pk=pk)
+
+    if request.user.is_authenticated:
+        comment.points -= 1
+        comment.save()
+    else:
+        messages.error(
+                    request, "You need to be logged in to remove a point!")
+
+    return redirect(post_detail, post.pk)
 
 
 def create_or_edit_post(request, pk=None):
