@@ -1,3 +1,4 @@
+// sort selector function
 $('#sort-selector').change(function () {
     var selector = $(this);
     var currentUrl = new URL(window.location);
@@ -18,3 +19,26 @@ $('#sort-selector').change(function () {
         window.location.replace(currentUrl);
     }
 });
+
+// hover effects for point up/down buttons
+$(".point-up").hover(
+    function () {
+        $(this).removeClass("grey");
+        $(this).addClass("green");
+    },
+    function () {
+        $(this).removeClass("green");
+        $(this).addClass("grey");
+    }
+);
+
+$(".point-down").hover(
+    function () {
+        $(this).removeClass("grey");
+        $(this).addClass("red");
+    },
+    function () {
+        $(this).removeClass("red");
+        $(this).addClass("grey");
+    }
+);

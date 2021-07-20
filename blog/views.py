@@ -75,6 +75,21 @@ def post_detail(request, pk):
     post.save()
 
     comments = PostComment.objects.filter(post=post)
+    sort = None
+    direction = None
+
+    if 'sort' in request.GET:
+        sortkey = request.GET['sort']
+        sort = sortkey
+        if sortkey == 'date':
+            sortkey = 'published_date'
+        if sortkey == 'profile':
+            sortkey = 'author'
+        if 'direction' in request.GET:
+            direction = request.GET['direction']
+            if direction == 'desc':
+                sortkey = f'-{sortkey}'
+        comments = comments.order_by(sortkey)
 
     if request.method == "POST":
         form = PostCommentForm(request.POST, request.FILES)
@@ -87,10 +102,13 @@ def post_detail(request, pk):
     else:
         form = PostCommentForm()
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'post': post,
         'comments': comments,
         'form': form,
+        'current_sorting': current_sorting,
     }
 
     return render(request, "blog/post-detail.html", context)
@@ -131,6 +149,23 @@ def delete_point(request, pk, postpk):
     else:
         messages.error(
                     request, "You need to be logged in to remove a point!")
+
+    return redirect(post_detail, post.pk)
+
+
+def delete_comment(request, pk, postpk):
+    """
+    create a view that allows user to delete their comment
+    """
+
+    post = get_object_or_404(Post, pk=postpk)
+
+    comment = get_object_or_404(PostComment, pk=pk)
+
+    comment.delete()
+
+    messages.success(
+                    request, "Comment deleted!")
 
     return redirect(post_detail, post.pk)
 

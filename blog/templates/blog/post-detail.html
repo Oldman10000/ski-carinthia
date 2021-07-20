@@ -25,11 +25,13 @@
                     <p><strong>Published on:</strong> {{ post.published_date }}</p>
                     <p><strong>Views:</strong> {{ post.views }}</p>
                     <p><strong>Tag:</strong> {{ post.tag }}</p>
-                    <a href="{% url 'blogs' %}" class="btn btn-blue">Back to Blog</a>
+                    <a href="{% url 'blogs' %}" class="btn btn-blue mt-2">&laquo; Back to All Blogs</a>
                     {% if request.user.is_authenticated %}
                     {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-blue">Edit Post</a>
-                    <a href="{% url 'delete_post' post.id %}" class="btn btn-red">Delete Post</a>
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-blue mt-2">Edit Post <i
+                        class="fas fa-wrench"></i></a>
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-red mt-2">Delete Post <i
+                        class="fas fa-trash-alt"></i></a>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -41,28 +43,57 @@
                 <h4>Comments</h4>
             </div>
         </div>
+        {% if comments %}
         <div class="row mt-2">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-xl-10 mb-4">
+                <div class="sort-select-wrapper">
+                    <select name="" class="custom-select" id="sort-selector">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
+                        </option>
+                        <option value="points_desc" {% if current_sorting == 'points_desc' %}selected{% endif %}>Top Rated
+                        </option>
+                        <option value="points_asc" {% if current_sorting == 'points_asc' %}selected{% endif %}>Lowest Rated
+                        </option>
+                        <option value="date_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Oldest
+                        </option>
+                        <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Newest
+                        </option>
+                        <option value="profile_asc" {% if current_sorting == 'profile_asc' %}selected{% endif %}>Author A-Z
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-xl-10">
                 <div class="row">
                     {% for comment in comments %}
                     <div class="col-12 mb-3">
                         <div class="card shadow border-blue">
                             <div class="card-body">
                                 <h6 class="card-subitle text-muted mb-2">{{ comment.author }}</h6>
-                                <p>{{ comment.content }}</p>
+                                <p><small>{{ comment.content }}</small></p>
                                 <p class="mb-2">
                                     {% if request.user.is_authenticated %}
+                                    {% if request.user|lower != comment.author|lower %}
                                     <a href="{% url 'delete_point' post.id comment.id %}"><i
-                                            class="fas fa-arrow-down points-button"></i></a>
+                                            class="fas fa-mountain point-down grey points-button"></i></a>
+                                    {% endif %}
                                     {% endif %}
                                     <small><strong>Points:</strong> {{ comment.points }}</small>
                                     {% if request.user.is_authenticated %}
+                                    {% if request.user|lower != comment.author|lower %}
                                     <a href="{% url 'add_point' post.id comment.id %}"><i
-                                            class="fas fa-arrow-up points-button"></i></a>
+                                            class="fas fa-mountain point-up grey points-button"></i></a>
+                                    {% endif %}
                                     {% endif %}
                                 </p>
-                                <p class="mb-0"><small><strong>Published on:</strong>
+                                <p class="mb-0"><small><strong>Posted on:</strong>
                                         {{ comment.published_date }}</small></p>
+                                {% if request.user.is_authenticated %}
+                                {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
+                                <a href="{% url 'delete_comment' post.id comment.id %}" class="btn btn-red mt-2"><i
+                                        class="fas fa-trash-alt"></i></a>
+                                {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -71,10 +102,14 @@
                 <hr>
             </div>
         </div>
+        {% else %}
+        <p class="mt-4">No comments yet</p>
+        {% endif %}
 
         <div class="row mt-4">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-xl-10">
                 {% if request.user.is_authenticated %}
+                <p>Add your comment below:</p>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
@@ -88,4 +123,9 @@
     </section>
 </main>
 
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'blog/js/blog.js' %}"></script>
 {% endblock %}

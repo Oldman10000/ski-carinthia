@@ -1,11 +1,19 @@
-.fa-arrow-up {
+.green {
     color: #008100;
 }
 
-.fa-arrow-down {
+.red {
     color: #F95738;
 }
 
-.points-button:hover {
-    text-shadow: 0 1px 2px #000;
+.grey {
+    color: grey;
+}
+
+.point-down {
+    transform: rotate(180deg);
+}
+
+.points-button {
+    transition: 0.2s;
 }

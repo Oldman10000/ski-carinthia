@@ -107,12 +107,12 @@
                     <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date }}</small></p>
                     <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
                     <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
-                    <a href="{% url 'post_detail' post.id %}" class="btn btn-green">Read More</a>
+                    <a href="{% url 'post_detail' post.id %}" class="btn btn-green mt-2">Read More</a>
                     {% if request.user.is_authenticated %}
                     {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
-                    <a href="{% url 'edit_post' post.id %}" class="btn btn-blue">Edit Post <i
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-blue mt-2">Edit Post <i
                             class="fas fa-wrench"></i></a>
-                    <a href="{% url 'delete_post' post.id %}" class="btn btn-red">Delete Post <i
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-red mt-2">Delete Post <i
                             class="fas fa-trash-alt"></i></a>
                     {% endif %}
                     {% endif %}
