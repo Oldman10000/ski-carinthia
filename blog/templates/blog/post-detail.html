@@ -22,16 +22,17 @@
             <div class="col">
                 <div class="col-xs-9">
                     <p class="w-75">{{ post.content }}</p>
-                    <p><strong>Published on:</strong> {{ post.published_date }}</p>
+                    <p><strong>Published on:</strong> {{ post.published_date|date:"d M Y" }} @
+                        {{ post.published_date|time:"TIME_FORMAT" }}</p>
                     <p><strong>Views:</strong> {{ post.views }}</p>
                     <p><strong>Tag:</strong> {{ post.tag }}</p>
                     <a href="{% url 'blogs' %}" class="btn btn-blue mt-2">&laquo; Back to All Blogs</a>
                     {% if request.user.is_authenticated %}
                     {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
                     <a href="{% url 'edit_post' post.id %}" class="btn btn-blue mt-2">Edit Post <i
-                        class="fas fa-wrench"></i></a>
+                            class="fas fa-wrench"></i></a>
                     <a href="{% url 'delete_post' post.id %}" class="btn btn-red mt-2">Delete Post <i
-                        class="fas fa-trash-alt"></i></a>
+                            class="fas fa-trash-alt"></i></a>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -50,15 +51,18 @@
                     <select name="" class="custom-select" id="sort-selector">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
                         </option>
-                        <option value="points_desc" {% if current_sorting == 'points_desc' %}selected{% endif %}>Top Rated
+                        <option value="points_desc" {% if current_sorting == 'points_desc' %}selected{% endif %}>Top
+                            Rated
                         </option>
-                        <option value="points_asc" {% if current_sorting == 'points_asc' %}selected{% endif %}>Lowest Rated
+                        <option value="points_asc" {% if current_sorting == 'points_asc' %}selected{% endif %}>Lowest
+                            Rated
                         </option>
                         <option value="date_asc" {% if current_sorting == 'date_asc' %}selected{% endif %}>Oldest
                         </option>
                         <option value="date_desc" {% if current_sorting == 'date_desc' %}selected{% endif %}>Newest
                         </option>
-                        <option value="profile_asc" {% if current_sorting == 'profile_asc' %}selected{% endif %}>Author A-Z
+                        <option value="profile_asc" {% if current_sorting == 'profile_asc' %}selected{% endif %}>Author
+                            A-Z
                         </option>
                     </select>
                 </div>
@@ -87,7 +91,8 @@
                                     {% endif %}
                                 </p>
                                 <p class="mb-0"><small><strong>Posted on:</strong>
-                                        {{ comment.published_date }}</small></p>
+                                        {{ comment.published_date|date:"d M Y" }} @
+                                        {{ comment.published_date|time:"TIME_FORMAT" }}</small></p>
                                 {% if request.user.is_authenticated %}
                                 {% if request.user|lower == post.user_profile|lower or request.user.is_superuser %}
                                 <a href="{% url 'delete_comment' post.id comment.id %}" class="btn btn-red mt-2"><i

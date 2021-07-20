@@ -104,7 +104,7 @@
                     <hr>
                     <h6 class="card-subitle text-muted mb-2">{{ post.user_profile }}</h6>
                     <p>{{ post.content|truncatewords:10 }}</p>
-                    <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date }}</small></p>
+                    <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date|date:"d M Y" }} @ {{ post.published_date|time:"TIME_FORMAT" }}</small></p>
                     <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
                     <p class="mb-2"><small><strong>Tag:</strong> {{ post.tag }}</small></p>
                     <a href="{% url 'post_detail' post.id %}" class="btn btn-green mt-2">Read More</a>
