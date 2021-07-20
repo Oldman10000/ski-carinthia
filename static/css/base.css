@@ -39,7 +39,8 @@ section {
 }
 
 input.form-control,
-select.custom-select {
+select.custom-select,
+textarea.form-control {
     border: 1px solid #3F68B8;
 }
 

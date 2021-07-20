@@ -25,9 +25,11 @@
                     {{ form|crispy }}
                     <button class="btn btn-blue">Update Info <i class="fas fa-wrench"></i></button>
                 </form>
+                <hr>
             </div>
             <div class="col-12 col-lg-6">
                 <h5>Order History</h5>
+                {% if orders %}
                 <div class="order-history table-responsive">
                     <table class="table table-sm table-borderless">
                         <thead>
@@ -60,6 +62,41 @@
                         </tbody>
                     </table>
                 </div>
+                {% else %}
+                <p>Order history empty, check out our resorts <a href="{% url 'resorts' %}">here</a>!</p>
+                {% endif %}
+                <hr>
+            </div>
+            <div class="col-12 col-lg-6 mt-4">
+                <h5>Blog History</h5>
+                {% if blogs %}
+                <div class="order-history table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Blog</th>
+                                <th>Date</th>
+                                <th>Content</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for post in blogs %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'post_detail' post.id %}" title="{{ post.id }}">{{ post.title }}</a>
+                                    </td>
+                                    <td>{{ post.published_date }}</td>
+                                    <td>
+                                        <p>{{ post.content|truncatewords:10 }}</p>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>Blog history empty, add a blog post <a href="{% url 'new_post' %}">here</a>!</p>
+                {% endif %}
             </div>
         </div>
     </section>
