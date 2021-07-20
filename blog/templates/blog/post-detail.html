@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blog/css/blog.css' %}">
+{% endblock %}
+
 {% block content %}
 
 {% include '../headers/header.html' %}
@@ -29,6 +33,56 @@
                     {% endif %}
                     {% endif %}
                 </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <h4>Comments</h4>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    {% for comment in comments %}
+                    <div class="col-12 mb-3">
+                        <div class="card shadow border-blue">
+                            <div class="card-body">
+                                <h6 class="card-subitle text-muted mb-2">{{ comment.author }}</h6>
+                                <p>{{ comment.content }}</p>
+                                <p class="mb-2">
+                                    {% if request.user.is_authenticated %}
+                                    <a href="{% url 'delete_point' post.id comment.id %}"><i
+                                            class="fas fa-arrow-down points-button"></i></a>
+                                    {% endif %}
+                                    <small><strong>Points:</strong> {{ comment.points }}</small>
+                                    {% if request.user.is_authenticated %}
+                                    <a href="{% url 'add_point' post.id comment.id %}"><i
+                                            class="fas fa-arrow-up points-button"></i></a>
+                                    {% endif %}
+                                </p>
+                                <p class="mb-0"><small><strong>Published on:</strong>
+                                        {{ comment.published_date }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 col-md-6">
+                {% if request.user.is_authenticated %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <input type="submit" class="btn btn-green" value="Save Comment"></input>
+                </form>
+                {% else %}
+                <p>You must be <a href="{% url 'account_login' %}">logged in</a> to add a comment</p>
+                {% endif %}
             </div>
         </div>
     </section>

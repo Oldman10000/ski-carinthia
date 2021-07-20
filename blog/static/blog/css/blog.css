@@ -1,0 +1,11 @@
+.fa-arrow-up {
+    color: #008100;
+}
+
+.fa-arrow-down {
+    color: #F95738;
+}
+
+.points-button:hover {
+    text-shadow: 0 1px 2px #000;
+}
