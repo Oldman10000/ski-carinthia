@@ -27,6 +27,17 @@
                 Search <i class="fas fa-search"></i>
             </button>
             <a href="{% url 'resorts' %}" class="btn btn-blue">Reset</a>
+            <div class="dropdown d-inline">
+                <button class="btn btn-blue dropdown-toggle" type="button" id="sizedropdown" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Size
+                </button>
+                <div class="dropdown-menu" aria-labelledby="sizedropdown">
+                    <a class="dropdown-item" href="{% url 'resorts' %}?small">Small</a>
+                    <a class="dropdown-item" href="{% url 'resorts' %}?medium">Medium</a>
+                    <a class="dropdown-item" href="{% url 'resorts' %}?large">Large</a>
+                </div>
+            </div>
         </div>
         <div class="col-12 col-lg-6">
             <div class="sort-select-wrapper">
