@@ -36,10 +36,10 @@ def all_resorts(request):
 
         if 'large' in request.GET:
             resorts = resorts.filter(size='large')
-        
+
         if 'medium' in request.GET:
             resorts = resorts.filter(size='medium')
-        
+
         if 'small' in request.GET:
             resorts = resorts.filter(size='small')
 

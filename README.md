@@ -81,3 +81,130 @@ I picked a very simple palette for this project. The standout scheme is a blue n
 * #F95738 'Orange Soda' - used for 'negative' buttons
 
 ![Colour Pallette](documentation/ski-carinthia_palette.png)
+
+## Database Model
+
+This project uses the PostgreSQL relational database. There is a total of 6 models.
+
+### **Models**
+
+#### **Resorts**
+
+This model concerns all resorts.
+
+---
+
+Name              |Field Type  |Validation                                             
+------------------|------------|-------------------------------------------------------
+name              |CharField   |max\_length=36                                         
+description       |TextField   |null=True, blank=True                                  
+extra\_info       |TextField   |null=True, blank=True                                  
+size              |CharField   |max\_length=6                                          
+street\_address\_1|CharField   |max\_length=80, null=False, blank=False                
+street\_address\_2|CharField   |max\_length=80, null=False, blank=False                
+postcode          |CharField   |max\_length=20, null=True, blank=True                  
+town\_or\_city    |CharField   |max\_length=20, null=True, blank=True                  
+phone\_number     |CharField   |max\_length=20, null=True, blank=True                  
+website           |URLField    |null=True, blank=True                                  
+email             |EmailField  |null=True, blank=True                                  
+scenic            |BooleanField|default=false, null=True, blank=True                   
+family\_friendly  |BooleanField|default=false, null=True, blank=True                   
+adult\_price      |DecimalField|max\_digits=6, decimal\_places=2, null=True, blank=True
+child\_price      |DecimalField|max\_digits=6, decimal\_places=2, null=True, blank=True
+family\_price     |DecimalField|max\_digits=6, decimal\_places=2, null=True, blank=True
+x\_map\_reference |DecimalField|max\_digits=6, decimal\_places=4, null=True, blank=True
+y\_map\_reference |DecimalField|max\_digits=6, decimal\_places=4, null=True, blank=True
+image             |ImageField  |null=True, blank=True                                  
+image\_credit     |CharField   |max\_length=64, null=False, blank=False                
+map\_image        |ImageField  |null=True, blank=True                                  
+
+#### **UserProfile**
+
+This model concerns the user profile as created by the user.
+
+---
+
+Name                     |Field Type   |Validation                                   
+-------------------------|-------------|---------------------------------------------
+user                     |OneToOneField|User, on\_delete=models.CASCADE              
+default\_phone\_number   |CharField    |max\_length=20, null=True, blank=True        
+default\_street\_address1|CharField    |max\_length=80, null=True, blank=True        
+default\_street\_address2|CharField    |max\_length=80, null=True, blank=True        
+default\_postcode        |CharField    |max\_length=20, null=True, blank=True        
+default\_town\_or\_city  |CharField    |max\_length=40, null=True, blank=True        
+county                   |CharField    |max\_length=80, null=True, blank=True        
+country                  |CountryField |blank\_label='Country', null=True, blank=True
+
+#### **Order**
+
+This model concerns all orders. It is populated when a user reaches the checkout.
+
+---
+
+Name            |Field Type   |Validation                                                                            
+----------------|-------------|--------------------------------------------------------------------------------------
+order\_number   |CharField    |max\_length=32, null=False, editable=False                                            
+user\_profile   |ForeignKey   |userprofile, on\_delete=models.SET\_NUL, null=True, blank=True, related\_name='orders'
+full\_name      |CharField    |max\_length=50, null=True, blank=True                                                 
+email           |CharField    |max\_length=254, null=True, blank=True                                                
+phone\_number   |CharField    |max\_length=20, null=False, blank=False                                               
+country         |CountryField |blank\_label='Country \*', null=True, blank=True                                      
+postcode        |CharField    |max\_length=20, null=False, blank=False                                               
+town\_or\_city  |CharField    |max\_length=40, null=True, blank=True                                                 
+street\_address1|CharField    |max\_length=80, null=False, blank=False                                               
+street\_address2|CharField    |max\_length=80, null=True, blank=True                                                 
+county          |CharField    |max\_length=80, null=True, blank=True                                                 
+date            |DateTimeField|auto\_now\_add=True                                                                   
+order\_total    |DecimalField |max\_digits=10, decimal\_places=2, null=False, default=0                              
+original\_bag   |TextField    |null=False, blank=False, default=''                                                   
+stripe\_pid     |CharField    |max\_length=254, null=False, blank=False, default=' '                                 
+
+#### **OrderLineItem**
+
+This model concerns each item as entered into the shopping bag. This is also populated at the checkout.
+
+---
+
+Name           |Field Type  |Validation                                                                          
+---------------|------------|------------------------------------------------------------------------------------
+order          |ForeignKey  |order, null=False, blank=False, on\_delete=models.CASCADE, related\_name='lineitems'
+resort         |ForeignKey  |Resort, null=False, blank=False, on\_delete=models.CASCADE                          
+ticket\_type   |CharField   |max\_length=12, null=False, blank=False                                             
+ticket\_price  |DecimalField|max\_digits=6, decimal\_places=2, null=True, blank=True                             
+quantity       |IntegerField|null=False, blank=False, default=0                                                  
+lineitem\_total|DecimalField|max\_digits=6, decimal\_places=2, null=False, blank=False           
+
+#### **Post**
+
+This model concerns blog posts as created by users.
+
+---
+
+Name           |Field Type   |Validation                                                                            
+---------------|-------------|--------------------------------------------------------------------------------------
+user\_profile  |ForeignKey   |userprofile, on\_delete=models.SET\_NULL, null=True, blank=True, related\_name='blogs'
+title          |CharField    |max\_length=200                                                                       
+content        |TextField    |                                                                                      
+created\_date  |DateTimeField|auto\_now\_add=True                                                                   
+published\_date|DateTimeField|blank=True, null=True, default=timezone.now                                           
+views          |IntegerField |default=0                                                                             
+tag            |charfield    |max\_length=30, blank=True, null=True                                                 
+
+#### **PostComment**
+
+This model concerns comments on blog posts as created by users.
+
+---
+
+author         |ForeignKey   |userprofile, on\_delete=models.SET\_NULL, null=True, blank=True
+---------------|-------------|---------------------------------------------------------------
+post           |ForeignKey   |Post, on\_delete=models.CASCADE, related\_name='comments       
+content        |TextField    |                                                               
+published\_date|DateTimeField|blank=True, null=True, default=timezone.now                    
+points         |IntegerField |default=0                                                      
+
+### **Database Schema**
+
+The relationship between the models can be seen in the ER diagram below, created using [lucidchart.com](https://www.lucidchart.com/)
+
+![Database Schema](documentation/ski-carinthia_er.png)
