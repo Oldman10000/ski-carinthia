@@ -19,3 +19,18 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PostComment(models.Model):
+    """
+    allows user to add comment to blog
+    """
+    author = models.ForeignKey(
+        UserProfile, on_delete=models.SET_NULL, null=True, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    content = models.TextField()
+    published_date = models.DateTimeField(blank=True, null=True, default=timezone.now)
+    points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.content
