@@ -41,6 +41,12 @@ p.hero-text {
     border-color: #3F68B8;
 }
 
+.btn-white:hover,
+.btn-white:active,
+.btn-white:focus {
+    color: #3F68B8;
+}
+
 .light-text {
     color: #F4F4F9;
 }
@@ -50,19 +56,14 @@ p.hero-text {
 }
 
 #hero-icon {
-    height: 35px;
-    width: 35px;
     border-radius: .2rem;
-    border: 1px solid #3F68B8;
-    background-color: white;
     position: absolute;
-    bottom: 5%;
+    bottom: 12.5%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
@@ -75,5 +76,4 @@ p.hero-text {
 #hero-icon:focus,
 #hero-icon:active {
     text-decoration: none;
-    box-shadow: 0 6px 12px 0 rgb(0 0 0 / 30%);
 }
