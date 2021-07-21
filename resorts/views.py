@@ -14,6 +14,7 @@ def all_resorts(request):
     query = None
     sort = None
     direction = None
+    filter_list = None
 
     if request.GET:
         if 'sort' in request.GET:
@@ -37,11 +38,18 @@ def all_resorts(request):
         if 'large' in request.GET:
             resorts = resorts.filter(size='large')
 
-        if 'medium' in request.GET:
-            resorts = resorts.filter(size='medium')
-
-        if 'small' in request.GET:
-            resorts = resorts.filter(size='small')
+        if 'filters' in request.GET:
+            filter_list = request.GET['filters']
+            if 'large' in filter_list:
+                resorts = resorts.filter(Q(size='large'))
+            if 'medium' in filter_list:
+                resorts = resorts.filter(Q(size='medium'))
+            if 'small' in filter_list:
+                resorts = resorts.filter(Q(size='small'))
+            if 'scenic' in filter_list:
+                resorts = resorts.filter(scenic=True)
+            if 'family' in filter_list:
+                resorts = resorts.filter(family_friendly=True)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -54,6 +62,8 @@ def all_resorts(request):
                 name__icontains=query) | Q(description__icontains=query)
             resorts = resorts.filter(queries)
 
+    print(resorts)
+
     paginator = Paginator(resorts, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -61,6 +71,7 @@ def all_resorts(request):
     current_sorting = f'{sort}_{direction}'
 
     context = {
+        'filters': filter_list,
         'resorts': resorts,
         'page_obj': page_obj,
         'search_term': query,
