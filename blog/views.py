@@ -98,6 +98,8 @@ def post_detail(request, pk):
             form.instance.author = user
             form.instance.post = post
             form.save()
+            post.views -= 1
+            post.save()
             return redirect(post_detail, post.pk)
     else:
         form = PostCommentForm()
@@ -127,6 +129,8 @@ def add_point(request, pk, postpk):
         print(request.user)
         comment.points += 1
         comment.save()
+        post.views -= 1
+        post.save()
     else:
         messages.error(
                     request, "You need to be logged in to add a point!")
@@ -146,6 +150,8 @@ def delete_point(request, pk, postpk):
     if request.user.is_authenticated:
         comment.points -= 1
         comment.save()
+        post.views -= 1
+        post.save()
     else:
         messages.error(
                     request, "You need to be logged in to remove a point!")
