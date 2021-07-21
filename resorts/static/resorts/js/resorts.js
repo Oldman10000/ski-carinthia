@@ -38,8 +38,11 @@ $('#filter-form').submit(function (e) {
         }
     });
 
-    currentUrl.searchParams.set("filters", filters);
-
-    window.location.replace(currentUrl);
-
+    if (filters && filters != 'every+') {
+        currentUrl.searchParams.set("filters", filters);
+        window.location.replace(currentUrl);
+    } else {
+        currentUrl.searchParams.delete("filters");
+        window.location.replace(currentUrl);
+    }
 });
