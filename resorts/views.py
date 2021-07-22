@@ -59,10 +59,13 @@ def all_resorts(request):
                 return redirect(reverse('resorts'))
 
             queries = Q(
-                name__icontains=query) | Q(description__icontains=query)
-            resorts = resorts.filter(queries)
+                name__icontains=query) | Q(
+                    description__icontains=query) | Q(
+                        extra_info__icontains=query) | Q(
+                            size__icontains=query) | Q(
+                                town_or_city__icontains=query)
 
-    print(resorts)
+            resorts = resorts.filter(queries)
 
     paginator = Paginator(resorts, 8)
     page_number = request.GET.get('page')
