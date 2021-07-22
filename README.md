@@ -16,16 +16,16 @@ I want any user to instantly recognise the purpose of the site, and to feel at e
 
 User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 --------------|-----------|----------------------|---------------|-
-1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|:heavy_check_mark:
+1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|[Done](#home-page) :heavy_check_mark:
 2|general visitor|easily navigate the site on any device|easily use and navigate the site
-3|general visitor|view a list of ski resorts|find which resort I would like to visit|:heavy_check_mark:
-4|general visitor|view individual ski resort details|identify which resort is best for my purposes|:heavy_check_mark:
-5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|:heavy_check_mark:
+3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Done](#resorts) :heavy_check_mark:
+4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[done](#resort-detail):heavy_check_mark:
+5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[done](#resort-detail):heavy_check_mark:
 6|general visitor|easily register an account|make purchases/contribute to blog
 7|logged in user|easily login/out|access my personal account
 8|logged in user|reset password|access my personal account if I have forgotten my password
 9|logged in user|have personal profile|view/update personal details and access ski pass
-10|shopper|add items to shopping bag|prepare items for purchase |:heavy_check_mark:
+10|shopper|add items to shopping bag|prepare items for purchase |[done](#resort-detail):heavy_check_mark:
 11|shopper|see total of shopping bag|identify how much I will pay
 12|shopper|modify shopping bag contents|make changes to bag if needed
 13|shopper|checkout using credit/debit card|purchase ski passes
@@ -33,11 +33,11 @@ User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 15|shopper|be notified if a purchase is successful|be sure that my purchase was successful
 16|shopper|view order details|review my purchase
 17|shopper|receive email confirmation of order|keep formal confirmation of my successful purchase
-18|general visitor|view blogs|see blogs to get an idea of people's experiences
-19|logged in user|add blog post|add personal post to website
-20|general visitor|search for ski resort by name|find a particular resort|:heavy_check_mark:
-21|general visitor|use a map to see ski resort locations|find resort well located for me|:heavy_check_mark:
-22|general visitor|sort ski resorts|find resort suitable for me|:heavy_check_mark:
+18|general visitor|view blogs|see blogs to get an idea of people's experiences|[done](#blog-detail):heavy_check_mark:
+19|logged in user|add blog post|add personal post to website|[done](#add-blog-post):heavy_check_mark:
+20|general visitor|search for ski resort by name|find a particular resort|[Done](#resorts) :heavy_check_mark:
+21|general visitor|use a map to see ski resort locations|find resort well located for me|[Done](#home-page) :heavy_check_mark:
+22|general visitor|sort ski resorts|find resort suitable for me|[Done](#resorts) :heavy_check_mark:
 23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content
 24|admin/superuser|have crud power over all ski resorts|amend information if necessary
 
@@ -212,7 +212,7 @@ The relationship between the models can be seen in the ER diagram below, created
 
 I will list and briefly outline the main features of the site page by page below. I will also use the user stories as defined [here](#user-stories) as points of reference.
 
-### Home/Index
+### Home Page
 
 Upon entering the home page of the website, the user sees a large hero image, which displays a ski slope. The user is also prompted to 'Discover all Resorts' or to 'Check out our Blogs' as call to action buttons. There is also a 'down arrow' button towards the bottom which prompts a user to either scroll down or select the button to be taken to the next section of the page.
 
@@ -284,3 +284,29 @@ This fulfills user story 5 :heavy_check_mark:
 The final section of this page shows the user the address and contact details for the resort. A map is also displayed with the resort location shown.
 
 ![resort-detail2](documentation/resort-detail2.jpg)
+
+### Blog
+
+The structure of the blog page is similar to the resorts page. There is a search bar at the top, with a sort selector underneath. Users can search for a blog by title, author or tag. Sorting can be done in several ways, the default option is most recent first.
+
+![blog1](documentation/blog1.jpg)
+
+Just like in the resorts page, each blog is shown in card form. The list is paginated with maximum 8 blogs shown per page. There are buttons which appear on the card, which differ depending on who is using the website. An anonymous user will only see the 'read more' button, while the author of a post will have buttons providing options to either delete or edit that post. A superuser account will see the delete and edit buttons for all posts. The screenshot below demonstrates the appearance for the 'admin' superuser account. As can be seen, the post was published by user 'Patrick', but the superuser has full CRUD functionality.
+
+![blog-card](documentation/blog-card.jpg)
+
+### Add Blog Post
+
+If a user selects the 'add blog post' button from the blog page, they are taken to the 'new blog' page. This button and page is only accessible for authenticated users. The page contains a simple form, allowing a user to add a short blog post. The title and content fields are mandatory. The database automatically stores the current time and the authenticated user (author) upon form submission.
+
+This page fulfills user story 19 :heavy_check_mark:
+
+![blog-card](documentation/new-post.jpg)
+
+### Blog Detail
+
+As with resort detail pages, any user can access the blog detail page for any existing blog post. Once again, the author or superuser can access the edit/delete options from this page. The page shows the full blog content, date of publication, post views and tags.
+
+This page fulfills user story 18 :heavy_check_mark:
+
+![blog-detail](documentation/blog-detail.jpg)
