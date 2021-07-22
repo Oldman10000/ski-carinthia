@@ -15,17 +15,17 @@ I want any user to instantly recognise the purpose of the site, and to feel at e
 #### User Stories
 
 User Story ID | As a user | I want to be able to | So that I can | Fulfilled
---------------|-----------|----------------------|---------------|-------------
-1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|::heavy_check_mark:
+--------------|-----------|----------------------|---------------|-
+1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|:heavy_check_mark:
 2|general visitor|easily navigate the site on any device|easily use and navigate the site
 3|general visitor|view a list of ski resorts|find which resort I would like to visit|:heavy_check_mark:
-4|general visitor|view individual ski resort details|identify which resort is best for my purposes
-5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day
+4|general visitor|view individual ski resort details|identify which resort is best for my purposes|:heavy_check_mark:
+5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|:heavy_check_mark:
 6|general visitor|easily register an account|make purchases/contribute to blog
 7|logged in user|easily login/out|access my personal account
 8|logged in user|reset password|access my personal account if I have forgotten my password
 9|logged in user|have personal profile|view/update personal details and access ski pass
-10|shopper|add items to shopping bag|prepare items for purchase 
+10|shopper|add items to shopping bag|prepare items for purchase |:heavy_check_mark:
 11|shopper|see total of shopping bag|identify how much I will pay
 12|shopper|modify shopping bag contents|make changes to bag if needed
 13|shopper|checkout using credit/debit card|purchase ski passes
@@ -235,7 +235,9 @@ This fulfills user story 21 :heavy_check_mark:
 The resorts page of the website displays a list of all of the resorts. A user can search for a resort by name, description term, extra info or town. This is probably most useful for a user to search for a specific resort or town that they are to some extent familiar with. For a first time user, it is perhaps more useful to be able to filter or sort the results to find the most suitable resort.
 
 The function of this page fulfills user story 3 :heavy_check_mark:
+
 The search bar fulfills user story 20 :heavy_check_mark:
+
 The sort and filter options fulfull user story 22 :heavy_check_mark:
 
 ![resorts-base](documentation/resorts-base.jpg)
@@ -247,4 +249,38 @@ The list of resorts is displayed as a paginated list, with at most 8 resorts bei
 
 Each resort is listed in a 'card' format, showing an image of the resort followed by the name and a short description. Selecting the card will take the user to a more detailed view of the resort which I shall describe in the next section.
 
-![resorts-card](documentation/resorts-card.jpg)
+![resorts-card](documentation/resort-card.jpg)
+
+### Resort Detail
+
+The resort detail page contains all the info a user needs about a resort, as well as allowing them to add ski passes to their shopping bag.
+
+The general function of the page fulfills user story 4 :heavy_check_mark:
+
+A large hero image of the resort is displayed at the top of the page, followed by the description and some extra information, generally pertaining to the size of resort and number of lifts. Hovering over the image with the mouse displays the image credit in the bottom right corner.
+
+![resort-detail1](documentation/resort-detail1.jpg)
+
+Below this, an image of the ski map for the resort is shown. A user can select this to enlarge the image for a more detailed view.
+
+* Ski map unenlarged
+![ski-map1](documentation/ski-map1.jpg)
+
+* Ski map enlarged
+![ski-map2](documentation/ski-map2.jpg)
+
+The next section allows a user to add ski passes to their shopping bag. There are three types of ticket available for each resort - adult, child and family passes. All of these vary in price and are 'valid for any date'. A future feature that could be implemented is for a user to buy tickets for a specific date as well.
+
+This function fulfills user story 10 :heavy_check_mark:
+
+![add-to-bag](documentation/add-to-bag.jpg)
+
+Below, the 5 day weather forecast is shown for the resort. This is useful if a user is in the area and wishes to see the conditions for the upcoming days. Information displayed is the dates, temperature ranges, a weather description and the level of snow, which is especially important for a skiing resort. At the time of writing it is mid summer, so the displayed snow units are at 0cm, however during skiing season these numbers will 'hopefully' be higher.
+
+This fulfills user story 5 :heavy_check_mark:
+
+![forecast](documentation/forecast.jpg)
+
+The final section of this page shows the user the address and contact details for the resort. A map is also displayed with the resort location shown.
+
+![resort-detail2](documentation/resort-detail2.jpg)
