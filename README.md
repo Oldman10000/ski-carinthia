@@ -21,10 +21,10 @@ User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Complete](#resorts-page) :heavy_check_mark:
 4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[Complete](#resort-detail) :heavy_check_mark:
 5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[Complete](#resort-detail) :heavy_check_mark:
-6|general visitor|easily register an account|make purchases/contribute to blog
-7|logged in user|easily login/out|access my personal account
-8|logged in user|reset password|access my personal account if I have forgotten my password
-9|logged in user|have personal profile|view/update personal details and access ski pass
+6|general visitor|easily register an account|make purchases/contribute to blog|[Complete](#register) :heavy_check_mark:
+7|logged in user|easily login/out|access my personal account|[Complete](#sign-in) :heavy_check_mark:
+8|logged in user|reset password|access my personal account if I have forgotten my password|[Complete](#sign-in) :heavy_check_mark:
+9|logged in user|have personal profile|view/update personal details and access ski pass|[Complete](#profile-page) :heavy_check_mark:
 10|shopper|add items to shopping bag|prepare items for purchase |[Complete](#resort-detail) :heavy_check_mark:
 11|shopper|see total of shopping bag|identify how much I will pay|[Complete](#bag-page) :heavy_check_mark:
 12|shopper|modify shopping bag contents|make changes to bag if needed|[Complete](#bag-page) :heavy_check_mark:
@@ -39,7 +39,7 @@ User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 21|general visitor|use a map to see ski resort locations|find resort well located for me|[Complete](#home-page) :heavy_check_mark:
 22|general visitor|sort ski resorts|find resort suitable for me|[Complete](#resorts-page) :heavy_check_mark:
 23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content|[Complete](#blog-detail) :heavy_check_mark:
-24|admin/superuser|have crud power over all ski resorts|amend information if necessary
+24|admin/superuser|have crud power over all ski resorts|amend information if necessary|[Complete](#admin) :heavy_check_mark:
 
 ### Structure
 
@@ -351,3 +351,41 @@ The user also receives email confirmation of the purchase along with a link to r
 This fulfills user story 17 :heavy_check_mark:
 
 ![email](documentation/email.jpg)
+
+### Register
+
+A user can register from the 'register' page. All user registration/login etc is handled by the 'django-allauth' module.
+
+This fulfills user story 6 :heavy_check_mark:
+
+The layout is simple. The inputs prompt the user to enter and confirm their email address, provide a username, and enter and confirm a password.
+
+![register](documentation/register.jpg)
+
+If a user enters invalid data (i.e. username already taken/passwords do not match etc) then the form will not submit and the errors will be displayed in the relevant location on screen.
+
+![register-error](documentation/register-error.jpg)
+
+### Sign In
+
+A registered user can sign in from the sign in page. A user can enter either their username or email along with the password.
+
+This page fulfills user story 7 :heavy_check_mark:
+
+![sign-in](documentation/sign-in.jpg)
+
+If a user has forgotten their password, they can reset it from this page by selecting the 'forgot password?' link. This takes the user to a page where they enter the email address linked to their account. They then receive a link by email to reset the password.
+
+### Profile Page
+
+An authenticated user can access their profile page. This page displays their address details, these are saved so that a user can more quickly checkout without having to enter their details each time. They can also access previous orders and blog posts from this page
+
+This page fulfills user story 8 :heavy_check_mark:
+
+![profile](documentation/profile.jpg)
+
+### Admin
+
+Django allows the superuser to access the admin page. From here, the superuser can change the resort details for any resort.
+
+This fulfills user story 24 :heavy_check_mark:
