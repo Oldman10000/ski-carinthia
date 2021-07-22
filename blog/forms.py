@@ -21,6 +21,7 @@ class PostCommentForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
 
+
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = Post

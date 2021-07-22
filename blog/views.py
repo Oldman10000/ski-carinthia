@@ -74,7 +74,10 @@ def post_detail(request, pk):
     post.views += 1
     post.save()
 
-    comments = PostComment.objects.filter(post=post)
+    if PostComment.objects.filter(post=post):
+        comments = PostComment.objects.filter(post=post)
+    else:
+        comments = None
     sort = None
     direction = None
 
