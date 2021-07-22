@@ -15,30 +15,30 @@ I want any user to instantly recognise the purpose of the site, and to feel at e
 #### User Stories
 
 User Story ID | As a user | I want to be able to | So that I can | Fulfilled
---------------|-----------|----------------------|---------------|-
-1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|[Done](#home-page) :heavy_check_mark:
+--------------|-----------|----------------------|---------------|--------------
+1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|[Complete](#home-page) :heavy_check_mark:
 2|general visitor|easily navigate the site on any device|easily use and navigate the site
-3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Done](#resorts) :heavy_check_mark:
-4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[done](#resort-detail):heavy_check_mark:
-5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[done](#resort-detail):heavy_check_mark:
+3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Complete](#resorts-page) :heavy_check_mark:
+4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[Complete](#resort-detail) :heavy_check_mark:
+5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[Complete](#resort-detail) :heavy_check_mark:
 6|general visitor|easily register an account|make purchases/contribute to blog
 7|logged in user|easily login/out|access my personal account
 8|logged in user|reset password|access my personal account if I have forgotten my password
 9|logged in user|have personal profile|view/update personal details and access ski pass
-10|shopper|add items to shopping bag|prepare items for purchase |[done](#resort-detail):heavy_check_mark:
-11|shopper|see total of shopping bag|identify how much I will pay
-12|shopper|modify shopping bag contents|make changes to bag if needed
-13|shopper|checkout using credit/debit card|purchase ski passes
-14|shopper|be notified if my card info is invalid and why|make necessary changes to card info
-15|shopper|be notified if a purchase is successful|be sure that my purchase was successful
-16|shopper|view order details|review my purchase
-17|shopper|receive email confirmation of order|keep formal confirmation of my successful purchase
-18|general visitor|view blogs|see blogs to get an idea of people's experiences|[done](#blog-detail):heavy_check_mark:
-19|logged in user|add blog post|add personal post to website|[done](#add-blog-post):heavy_check_mark:
-20|general visitor|search for ski resort by name|find a particular resort|[Done](#resorts) :heavy_check_mark:
-21|general visitor|use a map to see ski resort locations|find resort well located for me|[Done](#home-page) :heavy_check_mark:
-22|general visitor|sort ski resorts|find resort suitable for me|[Done](#resorts) :heavy_check_mark:
-23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content
+10|shopper|add items to shopping bag|prepare items for purchase |[Complete](#resort-detail) :heavy_check_mark:
+11|shopper|see total of shopping bag|identify how much I will pay|[Complete](#bag-page) :heavy_check_mark:
+12|shopper|modify shopping bag contents|make changes to bag if needed|[Complete](#bag-page) :heavy_check_mark:
+13|shopper|checkout using credit/debit card|purchase ski passes|[Complete](#checkout-page) :heavy_check_mark:
+14|shopper|be notified if my card info is invalid and why|make necessary changes to card info|[Complete](#checkout-page) :heavy_check_mark:
+15|shopper|be notified if a purchase is successful|be sure that my purchase was successful|[Complete](#checkout-success) :heavy_check_mark:
+16|shopper|view order details|review my purchase|[Complete](#checkout-success) :heavy_check_mark:
+17|shopper|receive email confirmation of order|keep formal confirmation of my successful purchase|[Complete](#checkout-success) :heavy_check_mark:
+18|general visitor|view blogs|see blogs to get an idea of people's experiences|[Complete](#blog-detail) :heavy_check_mark:
+19|logged in user|add blog post|add personal post to website|[Complete](#add-blog-post) :heavy_check_mark:
+20|general visitor|search for ski resort by name|find a particular resort|[Complete](#resorts-page) :heavy_check_mark:
+21|general visitor|use a map to see ski resort locations|find resort well located for me|[Complete](#home-page) :heavy_check_mark:
+22|general visitor|sort ski resorts|find resort suitable for me|[Complete](#resorts-page) :heavy_check_mark:
+23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content|[Complete](#blog-detail) :heavy_check_mark:
 24|admin/superuser|have crud power over all ski resorts|amend information if necessary
 
 ### Structure
@@ -230,7 +230,7 @@ This fulfills user story 21 :heavy_check_mark:
 
 ![index-3](documentation/index-3.jpg)
 
-### Resorts
+### Resorts Page
 
 The resorts page of the website displays a list of all of the resorts. A user can search for a resort by name, description term, extra info or town. This is probably most useful for a user to search for a specific resort or town that they are to some extent familiar with. For a first time user, it is perhaps more useful to be able to filter or sort the results to find the most suitable resort.
 
@@ -308,5 +308,46 @@ This page fulfills user story 19 :heavy_check_mark:
 As with resort detail pages, any user can access the blog detail page for any existing blog post. Once again, the author or superuser can access the edit/delete options from this page. The page shows the full blog content, date of publication, post views and tags.
 
 This page fulfills user story 18 :heavy_check_mark:
+Superuser has full admin control, which fulfills user story 23, this can also be done from the Django admin page :heavy_check_mark:
 
 ![blog-detail](documentation/blog-detail.jpg)
+
+I added an extra feature to this page that hadn't been originally planned, which was the comments section. Each blog has a comment section where an authenticated user can leave their feedback on a blog. Any user can see blog comments, but only authenticated users can post them. The author of a comment or the superuser has the authority to delete a comment. On top of this, any authenticated user can either 'upvote' or 'downvote' a comment, similar to online forums like Reddit. However, a user is able to up or down-vote a comment as many times as they like - a useful future feature would be to allow a user to only leave one vote per comment. Comments can be sorted, the default option is newest first.
+
+![comments](documentation/comments.jpg)
+
+### Bag Page
+
+The shopping bag page displays the current contents of the user's shopping bag as well as the total cost. A user can change item quantities as well as delete items from the bag from this page. Any user can add items to the shopping bag to make purchases.
+
+This page fulfills user stories 11 and 12 :heavy_check_mark:
+
+![bag](documentation/bag.jpg)
+
+### Checkout Page
+
+The checkout page follows a simple layout. The user is displayed their order contents and full price. They then need to fill in their personal and billing details for the order, including card details. The project uses [Stripe](https://stripe.com/gb) for payment authentication. The project currently only uses test stripe api keys, which means that the card data must be one of the preset Stripe test card details. During testing I have used the basic 4242 4242 4242 4242 test card number.
+
+The function of this page fulfills user story 13 :heavy_check_mark
+
+![checkout](documentation/checkout.jpg)
+
+If a user enters an invalid card number, the page displays the standard Stripe error messages below the card input.
+
+This fulfills user story 14 :heavy_check_mark:
+
+![checkout](documentation/checkout2.jpg)
+
+### Checkout Success
+
+Once an order is successfully completed, the user is redirected to the checkout success page. The page shows the full order details for the customer as well as a QR code at the bottom of the page which the user 'can redeem' to get their ski passes at the counter. In fact, the QR code simply redirects to the same page as this is not an official website.
+
+This fulfills user stories 15 and 16 :heavy_check_mark:
+
+![checkout-success](documentation/checkout-success.jpg)
+
+The user also receives email confirmation of the purchase along with a link to return to the checkout-success page.
+
+This fulfills user story 17 :heavy_check_mark:
+
+![email](documentation/email.jpg)
