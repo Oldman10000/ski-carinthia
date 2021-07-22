@@ -5,8 +5,8 @@
 
 {% include '../headers/header.html' %}
 
-<main>
-    <section class="container">
+<main class="container">
+        {% if request.user.is_authenticated %}
         <div class="row">
             <div class="col">
                 {% if new %}
@@ -26,6 +26,12 @@
                 </form>
             </div>
         </div>
-    </section>
+        {% else %}
+        <div class="div">
+            <div class="col">
+                <h2>Please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">log in</a> to add a blog post.</h2>
+            </div>
+        </div>
+        {% endif %}
 </main>
 {% endblock %}
