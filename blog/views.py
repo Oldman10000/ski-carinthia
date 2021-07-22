@@ -43,13 +43,12 @@ def blogs(request):
 
             queries = Q(
                 title__icontains=query) | Q(
-                    content__icontains=query) | Q(
-                        user_profile__user__username__icontains=query) | Q(
-                            tag__icontains=query
-                        )
+                    user_profile__user__username__icontains=query) | Q(
+                        tag__icontains=query
+                    )
             posts = posts.filter(queries)
 
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
