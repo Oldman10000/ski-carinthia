@@ -41,19 +41,17 @@ User Story ID | As a user | I want to be able to | So that I can
 23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content
 24|admin/superuser|have crud power over all ski resorts|amend information if necessary
 
-### Scope
-
-The website is built as a minumum viable product. 
-
 ### Structure
 
 The site has a simple layout, heavily influenced by the Bootstrap framework.
 
 The navbar always sits at the top of each page, taking the user to all the site sections they can access. Only the pages relevant to the user are displayed e.g. a logged in user will not see a link to the 'login' page as they are logged in. Equally a logged out user will not see a link to the 'logout' page as they are alerady logged out. If a user tries to manually enter an invalid page url, they will be redirected automatically to the homepage. There is also a search bar on the navbar, prompting a user to search for a 'mountain' or resort.
 
+As an example, I will outline a few features as included in the home page that are beneficial to the general user experrience below. I will expand on the rest of the website in further detail in the 'Features' section of this readme.
+
 The home page features call to action buttons for a user to immediately either view resorts or to view the blogs. There is also a button with a downward arrow at the bottom of the image which indicates to a user they can continue scrolling. The rest of the homepage contains links to filtered results of the resorts page. These are commonly desired ski resort 'types' such as family friendly resorts, or large, expansive resorts for example. The final section of the home page shows a map, displaying all of the resorts as tacks. Clicking on each tack opens up a tooltip with extra information to the resort and a link to the relevant detailed page.
 
-Links and interactive elements are clearly signposted. Buttons have a colour scheme where 'positive' feedback buttons have green text, 'neutral' buttons have blue text and 'negative' buttons have red text. This is in line with the Bootstrap colour library (success, info and danger) but with the colours amended to suit the colour scheme for this project. 
+Links and interactive elements are clearly signposted. Buttons have a colour scheme where 'positive' feedback buttons have green text, 'neutral' buttons have blue text and 'negative' buttons have red text. This is in line with the Bootstrap colour library (success, info and danger) but with the colours amended to suit the colour scheme for this project.
 
 ### Skeleton
 
@@ -80,6 +78,8 @@ I picked a very simple palette for this project. The standout scheme is a blue n
 * #008100 'Ao English' - used for 'positive' buttons
 * #F95738 'Orange Soda' - used for 'negative' buttons
 
+There were a few images and icons used for the project, all within the 'skiing' theme. 
+
 ![Colour Pallette](documentation/ski-carinthia_palette.png)
 
 ## Database Model
@@ -93,7 +93,6 @@ This project uses the PostgreSQL relational database. There is a total of 6 mode
 This model concerns all resorts.
 
 ---
-
 Name              |Field Type  |Validation                                             
 ------------------|------------|-------------------------------------------------------
 name              |CharField   |max\_length=36                                         
@@ -208,3 +207,17 @@ points         |IntegerField |default=0
 The relationship between the models can be seen in the ER diagram below, created using [lucidchart.com](https://www.lucidchart.com/)
 
 ![Database Schema](documentation/ski-carinthia_er.png)
+
+## Features
+
+I will list and briefly outline the main features of the site page by page below. I will also use the user stories as defined [here](#user-stories) as points of reference.
+
+### Home/Index
+
+Upon entering the home page of the website, the user sees a large hero image, which displays a ski slope. The user is also prompted to 'Discover all Resorts' or to 'Check out our Blogs' as call to action buttons. There is also a 'down arrow' button towards the bottom which prompts a user to either scroll down or select the button to be taken to the next section of the page.
+
+This fulfills user story 1 :heavy_check_mark:
+
+![index-hero](documentation/index-hero.jpg)
+
+Scrolling down/selecting the 'down arrow' button takes the user to the 'Where to Go?' section of the page. The page feature
