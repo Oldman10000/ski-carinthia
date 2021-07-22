@@ -14,11 +14,11 @@ I want any user to instantly recognise the purpose of the site, and to feel at e
 
 #### User Stories
 
-User Story ID | As a user | I want to be able to | So that I can
---------------|-----------|----------------------|--------------
-1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site
+User Story ID | As a user | I want to be able to | So that I can | Fulfilled
+--------------|-----------|----------------------|---------------|-------------
+1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|::heavy_check_mark:
 2|general visitor|easily navigate the site on any device|easily use and navigate the site
-3|general visitor|view a list of ski resorts|find which resort I would like to visit
+3|general visitor|view a list of ski resorts|find which resort I would like to visit|:heavy_check_mark:
 4|general visitor|view individual ski resort details|identify which resort is best for my purposes
 5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day
 6|general visitor|easily register an account|make purchases/contribute to blog
@@ -35,9 +35,9 @@ User Story ID | As a user | I want to be able to | So that I can
 17|shopper|receive email confirmation of order|keep formal confirmation of my successful purchase
 18|general visitor|view blogs|see blogs to get an idea of people's experiences
 19|logged in user|add blog post|add personal post to website
-20|general visitor|search for ski resort by name|find a particular resort
-21|general visitor|use a map to see ski resort locations|find resort well located for me
-22|general visitor|sort ski resorts|find resort suitable for me
+20|general visitor|search for ski resort by name|find a particular resort|:heavy_check_mark:
+21|general visitor|use a map to see ski resort locations|find resort well located for me|:heavy_check_mark:
+22|general visitor|sort ski resorts|find resort suitable for me|:heavy_check_mark:
 23|admin/superuser|admin power to edit/delete blog posts entered by users|amend irrelevant or inappropriate content
 24|admin/superuser|have crud power over all ski resorts|amend information if necessary
 
@@ -220,4 +220,31 @@ This fulfills user story 1 :heavy_check_mark:
 
 ![index-hero](documentation/index-hero.jpg)
 
-Scrolling down/selecting the 'down arrow' button takes the user to the 'Where to Go?' section of the page. The page feature
+Scrolling down/selecting the 'down arrow' button takes the user to the 'Where to Go?' section of the page. The page features a brief text with info for the user and links to 3 common/popular types of resort (Family, Spectacular Views, Large Resort).
+
+![index-2](documentation/index-2.jpg)
+
+The final part of the home page shows the user a map of all of Carinthia. Map markers are placed on each resort, with extra info and a link to each resort displayed on a tooltip that appears when selecting a marker.
+
+This fulfills user story 21 :heavy_check_mark:
+
+![index-3](documentation/index-3.jpg)
+
+### Resorts
+
+The resorts page of the website displays a list of all of the resorts. A user can search for a resort by name, description term, extra info or town. This is probably most useful for a user to search for a specific resort or town that they are to some extent familiar with. For a first time user, it is perhaps more useful to be able to filter or sort the results to find the most suitable resort.
+
+The function of this page fulfills user story 3 :heavy_check_mark:
+The search bar fulfills user story 20 :heavy_check_mark:
+The sort and filter options fulfull user story 22 :heavy_check_mark:
+
+![resorts-base](documentation/resorts-base.jpg)
+
+* Resorts filters detail
+![resorts-filters](documentation/resorts-filters.jpg)
+
+The list of resorts is displayed as a paginated list, with at most 8 resorts being displayed on the page at once. This is to reduce scrolling, especially on smaller devices and lends a more pleasant user experience. The total number of results is displayed along with the current page.
+
+Each resort is listed in a 'card' format, showing an image of the resort followed by the name and a short description. Selecting the card will take the user to a more detailed view of the resort which I shall describe in the next section.
+
+![resorts-card](documentation/resorts-card.jpg)
