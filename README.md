@@ -4,7 +4,7 @@
 
 This is my fourth and final Milestone Project for the Full Stack Software Development Diploma with Code Institute. This project requires all elements of software development I have learned so far. It uses HTML, CSS and JavaScript for the front end and makes use of Python and the Django framework for the backend, which also uses the PostgreSQL relational database system.
 
-This project is a website for skiers visiting Carinthia, Austria. It allows visitors to view ski areas/resorts/mountains, purchase tickets using the Stripe Authentication software as well as contribute to a form/blog on the website.
+This project is a website for skiers visiting Carinthia, Austria. It allows visitors to view ski areas/resorts/mountains, purchase tickets using the Stripe Authentication software as well as contribute to a form/blog on the website. Users must be logged in and authenticated in order to make a purchase and view their orders.
 
 ## UXD
 
@@ -46,6 +46,10 @@ User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 The site has a simple layout, heavily influenced by the Bootstrap framework.
 
 The navbar always sits at the top of each page, taking the user to all the site sections they can access. Only the pages relevant to the user are displayed e.g. a logged in user will not see a link to the 'login' page as they are logged in. Equally a logged out user will not see a link to the 'logout' page as they are alerady logged out. If a user tries to manually enter an invalid page url, they will be redirected automatically to the homepage. There is also a search bar on the navbar, prompting a user to search for a 'mountain' or resort.
+
+Similarly, an unauthenticated user cannot access certain parts of the website such as the 'bag' and 'checkout' pages as only an authenticated user can make purchases.
+
+If a user tries to access a 'forbidden' page, they will be either automatically redirected with an error message toast appearing, or asked to log in/register as required.
 
 As an example, I will outline a few features as included in the home page that are beneficial to the general user experrience below. I will expand on the rest of the website in further detail in the 'Features' section of this readme.
 
@@ -269,7 +273,7 @@ Below this, an image of the ski map for the resort is shown. A user can select t
 * Ski map enlarged
 ![ski-map2](documentation/ski-map2.jpg)
 
-The next section allows a user to add ski passes to their shopping bag. There are three types of ticket available for each resort - adult, child and family passes. All of these vary in price and are 'valid for any date'. A future feature that could be implemented is for a user to buy tickets for a specific date as well.
+The next section allows a user to add ski passes to their shopping bag. There are three types of ticket available for each resort - adult, child and family passes. All of these vary in price and are 'valid for any date'. A future feature that could be implemented is for a user to buy tickets for a specific date as well. This section is only visible for authenticated users, unauthenticated users are prompted to either log in or register in order to place an order.
 
 This function fulfills user story 10 :heavy_check_mark:
 
@@ -324,6 +328,8 @@ This page fulfills user stories 11 and 12 :heavy_check_mark:
 
 ![bag](documentation/bag.jpg)
 
+If an unauthenticated user attempts to access this page, they are automatically redirected to the home page with an error toast informing them of the problem.
+
 ### Checkout Page
 
 The checkout page follows a simple layout. The user is displayed their order contents and full price. They then need to fill in their personal and billing details for the order, including card details. The project uses [Stripe](https://stripe.com/gb) for payment authentication. The project currently only uses test stripe api keys, which means that the card data must be one of the preset Stripe test card details. During testing I have used the basic 4242 4242 4242 4242 test card number.
@@ -338,6 +344,8 @@ This fulfills user story 14 :heavy_check_mark:
 
 ![checkout](documentation/checkout2.jpg)
 
+If an unauthenticated user attempts to access this page, they are automatically redirected to the home page with an error toast informing them of the problem.
+
 ### Checkout Success
 
 Once an order is successfully completed, the user is redirected to the checkout success page. The page shows the full order details for the customer as well as a QR code at the bottom of the page which the user 'can redeem' to get their ski passes at the counter. In fact, the QR code simply redirects to the same page as this is not an official website.
@@ -351,6 +359,8 @@ The user also receives email confirmation of the purchase along with a link to r
 This fulfills user story 17 :heavy_check_mark:
 
 ![email](documentation/email.jpg)
+
+Only the purchaser of an order may access the contents of this page. Anyone else will be informed that only the purchaser may access the order.
 
 ### Register
 
@@ -378,7 +388,7 @@ If a user has forgotten their password, they can reset it from this page by sele
 
 ### Profile Page
 
-An authenticated user can access their profile page. This page displays their address details, these are saved so that a user can more quickly checkout without having to enter their details each time. They can also access previous orders and blog posts from this page
+An authenticated user can access their profile page. This page displays their address details, these are saved so that a user can more quickly checkout without having to enter their details each time. They can also access previous orders and blog posts from this page.
 
 This page fulfills user story 8 :heavy_check_mark:
 
