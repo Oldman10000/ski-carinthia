@@ -17,7 +17,7 @@ I want any user to instantly recognise the purpose of the site, and to feel at e
 User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 --------------|-----------|----------------------|---------------|--------------
 1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|[Complete](#home-page) :heavy_check_mark:
-2|general visitor|easily navigate the site on any device|easily use and navigate the site
+2|general visitor|easily navigate the site on any device|easily use and navigate the site|[Complete](#navigation-and-responsiveness)
 3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Complete](#resorts-page) :heavy_check_mark:
 4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[Complete](#resort-detail) :heavy_check_mark:
 5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[Complete](#resort-detail) :heavy_check_mark:
@@ -389,3 +389,21 @@ This page fulfills user story 8 :heavy_check_mark:
 Django allows the superuser to access the admin page. From here, the superuser can change the resort details for any resort.
 
 This fulfills user story 24 :heavy_check_mark:
+
+### Navigation and Responsiveness
+
+The site uses a simple Bootstrap responsive navbar. All sections of the site can be reached from here - the resorts, blog, bag sections for everyone. Profile + logout for an authenticated user, and register/sign in for an unauthenticated user. The navbar menu items can be found within the standard 'hamburger' menu icon on smaller devices.
+
+If a user is authenticated, their username is displayed on the navbar on the link to their personal profile. If they have added items to their bag, the bag total is also displayed on the link to the bag page.
+
+![navbar](documentation/navbar.jpg)
+
+All pages are designed with a mobile first approach using the Bootstrap responsive flexbox grid. For example the cards on the index page are displayed horizontally inline on a large device as in the image below.
+
+![index-2](documentation/index-2.jpg)
+
+On smaller/narrower devices the cards are displayed vertically aligned.
+
+![index-4](documentation/index-4.jpg)
+
+These fulfil user story 2 :heavy_check_mark:
