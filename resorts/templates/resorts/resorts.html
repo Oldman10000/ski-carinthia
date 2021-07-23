@@ -44,7 +44,7 @@
                         </div>
                         <div class="modal-body">
                             <form method="GET" id="filter-form">
-                                <div class="form-group">
+                                <fieldset class="form-group">
                                     <legend>Resort Size</legend>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input filter-checkbox" name="size" type="radio" id="radio-small" value="small" {% if 'small' in filters %}checked{% endif %}>
@@ -62,18 +62,18 @@
                                         <input class="form-check-input filter-checkbox" name="size" type="radio" id="radio-all" value="every" {% if filters == Null %}checked{% endif %}>
                                         <label class="form-check-label" for="radio-all">All Sizes</label>
                                       </div>
-                                </div>
-                                <div class="form-group">
+                                    </fieldset>
+                                <fieldset class="form-group">
                                     <legend>Extra Filters</legend>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input filter-checkbox" type="checkbox" id="checkbox-scenic" value="scenic" {% if 'scenic' in filters %}checked{% endif %}>
-                                        <label class="form-check-label" for="inlineCheckbox1">Most Scenic Only</label>
+                                        <label class="form-check-label" for="checkbox-scenic">Most Scenic Only</label>
                                       </div>
                                       <div class="form-check form-check-inline">
                                         <input class="form-check-input filter-checkbox" type="checkbox" id="checkbox-family" value="family" {% if 'family' in filters %}checked{% endif %}>
-                                        <label class="form-check-label" for="inlineCheckbox2">Family Friendly Only</label>
+                                        <label class="form-check-label" for="checkbox-family">Family Friendly Only</label>
                                       </div>
-                                </div>
+                                    </fieldset>
                             </form>
                             <button type="submit" form="filter-form" class="btn btn-green">
                                 Apply Filters
@@ -86,7 +86,7 @@
         </div>
         <div class="col-12 col-lg-6">
             <div class="sort-select-wrapper">
-                <select name="" id="sort-selector" class="custom-select">
+                <select id="sort-selector" class="custom-select">
                     <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort By...
                     </option>
                     <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Adult

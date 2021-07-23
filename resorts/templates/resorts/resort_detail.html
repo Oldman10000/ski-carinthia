@@ -97,7 +97,7 @@
                 <h3 class="text-center mb-4">Ski Map <small>(click to enlarge)</small></h3>
                 {% if resort.map_image %}
                 <figure class="ski-map shadow">
-                    <img data-fancybox href="{{ resort.map_image.url }}" data-caption="map"
+                    <img data-fancybox data-caption="map"
                         src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
                 </figure>
                 {% else %}
@@ -109,7 +109,7 @@
         </div>
         <div class="row">
             <div class="col-10 offset-1">
-                <h3 class="text-center mb-2">5 Day Forecast</h4>
+                <h3 class="text-center mb-2">5 Day Forecast</h3>
                     <hr>
             </div>
             <div class="col-12 mb-2">
