@@ -451,3 +451,5 @@ This bug was fixed by adding a 'hidePostalCode' property to the Stripe input ele
 On the home page, there is a map of carinthia with pins for each resort as described above. On each popup, I wanted to add a link to the resort detail page itself. For the data on each popup I used a JavaScript function which first took the whole 'resorts' queryset from the database, then loops through each one to add the relevant data. For plaintext this worked well, as well as for the map coordinates for each pin. However for some reason Django did not accept the resort primary key as an anchor tag, giving me a 'NoReverseMatch at /' error as it did not recognise the url.
 
 ![url-bug](documentation/url-bug.jpg)
+
+The fix was to use a JavaScript replace method. First I needed to define the 'url' variable, using a random set of numbers as the url argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
