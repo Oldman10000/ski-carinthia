@@ -38,6 +38,7 @@
                     <div class="col-12">
                         <h3 class="mb-4">Buy Ski Passes (valid for any date the resort is open)</h3>
                     </div>
+                    {% if request.user.is_authenticated %}
                     <div class="col-10">
                         <div class="card border-blue shadow-sm">
                             <div class="card-body">
@@ -85,7 +86,11 @@
                             </div>
                         </div>
                     </div>
+                    {% else %}
+                    <p>Please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">login</a> to buy ski passes</p>
+                    {% endif %}
                 </div>
+
             </div>
 
             <div class="col-12 col-lg-6 mb-3">

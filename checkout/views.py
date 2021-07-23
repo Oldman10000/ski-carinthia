@@ -28,7 +28,7 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'SOrry, your payment cannot be \
+        messages.error(request, 'Sorry, your payment cannot be \
             processed right now. Please try again later.')
         return HttpResponse(content=e, status=400)
 
@@ -107,8 +107,13 @@ def checkout(request):
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "Your bag is empty")
-            return redirect(reverse('resorts'))
+            if request.user.is_authenticated:
+                messages.error(request, "Your bag is empty")
+                return redirect(reverse('resorts'))
+            else:
+                messages.error(
+                    request, "You must be logged in to access checkout")
+                return redirect(reverse('home'))
 
         current_bag = bag_contents(request)
         total = current_bag['total']

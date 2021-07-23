@@ -9,9 +9,12 @@ def view_bag(request):
     """
     returns bag page
     """
-    bag = request.session.get('bag', {})
-    print(bag)
-    return render(request, 'bag/bag.html')
+    if request.user.is_authenticated:
+        return render(request, 'bag/bag.html')
+    else:
+        messages.error(
+                    request, 'You must be logged in to access your bag')
+        return redirect(reverse('home'))
 
 
 def add_to_bag(request, item_id):
@@ -19,7 +22,6 @@ def add_to_bag(request, item_id):
     add items to bag
     """
 
-    resort = get_object_or_404(Resort, pk=item_id)
     adult_quantity = int(request.POST.get('adult_quantity'))
     child_quantity = int(request.POST.get('child_quantity'))
     family_quantity = int(request.POST.get('family_quantity'))
