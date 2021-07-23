@@ -7,7 +7,7 @@
     color: #aab7c4;
 }
 
-.order-history {
-    max-height: 416px;
+.history {
+    max-height: 484px;
     overflow-y: auto;
 }
