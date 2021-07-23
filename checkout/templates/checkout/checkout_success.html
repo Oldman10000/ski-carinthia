@@ -10,8 +10,6 @@
 {% include '../headers/header.html' %}
 
 <main class="container">
-    {% if request.user.is_authenticated %}
-    {% if request.user|lower == order.user_profile|lower or request.user.is_superuser %}
     <div class="row">
         <div class="col">
             <h2 class="logo-font mb-4">Thank you for your order</h2>
@@ -159,20 +157,6 @@
             </div>
         </div>
     </div>
-    {% else %}
-    <div class="row">
-        <div class="col">
-            <h2>You must be logged in as '{{ order.user_profile }}' to access this order</h2>
-        </div>
-    </div>
-    {% endif %}
-    {% else %}
-    <div class="row">
-        <div class="col">
-            <h2>You must be logged in as '{{ order.user_profile }}' to access this order</h2>
-        </div>
-    </div>
-    {% endif %}
 </main>
 {% endblock %}
 
