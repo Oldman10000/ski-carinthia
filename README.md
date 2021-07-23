@@ -474,3 +474,36 @@ On the home page, there is a map of carinthia with pins for each resort as descr
 ![url-bug](documentation/url-bug.png)
 
 The fix was to use a JavaScript replace method. First I needed to define the 'url' variable, using a random set of numbers as the url argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
+
+## Technologies Used
+
+### Languages Used
+
+* HTML5
+* CSS3
+* JavaScript
+* Python 3
+
+### Frameworks, Libraries and Programs Used
+
+* [Bootstrap 4.6](https://getbootstrap.com/) - Used for responsive layout, flexbox and several components e.g. cards, navbar, form elements.
+* [jQuery](https://jquery.com/) - Used for interactive elements on the DOM and to simplify JavaScript use
+* [Fontawesome](https://fontawesome.com/) - This was used for all icons on the page
+* [Google Fonts](https://fonts.google.com/) - I used the font Quicksand
+* [Git](https://git-scm.com/) - Used for version control
+* [Gitpod](https://gitpod.io/) - Text editor used to write all code
+* [Github](https://github.com/) - GitHub is used to store the project's code after being pushed from Git
+* [Heroku](https://id.heroku.com/) - Used to deploy website
+* [Balsamiq](https://balsamiq.com/) - Used to create the wireframe
+* [Coolors](https://coolors.co) Used to create the colour scheme
+* [Compressjpeg](https://compressjpeg.com/) - Used to compress images
+* [W3C Validator](https://validator.w3.org/) - Used to validate HTML file
+* [W3C Validator](https://jigsaw.w3.org/css-validator/) - Used to validate CSS file
+* [JS Hint](https://jshint.com/) - Used to check JavaScript code
+* [LeafletJS](https://leafletjs.com/) - Used to generate maps
+* [AccuWeather](https://developer.accuweather.com/) - Used to get weather conditions
+* [csv2json](https://csvjson.com/csv2json )) - Used to convert my csv resorts fixtures file to json format
+* [tabletomarkdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/ ) - Used to convert spreadsheet tables to markdown for use in this readme
+* [lucidchart.com](https://www.lucidchart.com/) - Used to create ER chart for database schema
+* [WPS Office](https://www.wps.com/) - Used to create spreadsheets of models and user stories in advance of starting the project
+* [FancyApps FancyBox](https://fancyapps.com/docs/ui/fancybox/) - Used to create zoomed in overlay of resort map images
