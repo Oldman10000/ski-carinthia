@@ -27,7 +27,7 @@
     margin: auto;
 }
 
-.icon {
+.weather-icon {
     height: 100px;
     width: 100px;
     border-radius: 50%;
@@ -35,7 +35,7 @@
     margin: 20px auto;
 }
 
-.icon img {
+.weather-icon img {
     height: 100%;
     width: auto;
     filter: invert(93%) sepia(12%) saturate(213%) hue-rotate(201deg) brightness(103%) contrast(95%);
