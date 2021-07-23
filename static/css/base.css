@@ -24,6 +24,34 @@ section {
     padding-top: 1.5rem;
 }
 
+/* footer */
+
+footer {
+    height: 80px;
+    width: 100%;
+    background: #3F68B8;
+    color: #F4F4F9;
+    margin-top: auto;
+}
+
+footer a {
+    color: #F4F4F9;
+}
+
+footer a:hover,
+footer a:focus,
+footer a:active {
+    color: #F4F4F9;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* colours */
+
 .bg-blue {
     background: #3F68B8;
 }
@@ -39,6 +67,8 @@ section {
 .last-section {
     padding-bottom: 50px;
 }
+
+/* inputs */
 
 input.form-control,
 select.custom-select,
@@ -102,40 +132,6 @@ textarea.form-control {
 .btn:active,
 .btn:focus {
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* footer */
-
-footer {
-    height: 80px;
-    width: 100%;
-    background: #3F68B8;
-    color: #F4F4F9;
-    margin-top: auto;
-}
-
-footer a {
-    color: #F4F4F9;
-}
-
-footer a:hover,
-footer a:focus,
-footer a:active {
-    color: #F4F4F9;
-}
-
-/* Resort detail */
-
-.resort-hero {
-    margin-top: 60px;
-    width: 100%;
-    height: auto;
-}
-
-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
 }
 
 /* toasts */

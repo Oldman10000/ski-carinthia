@@ -8,9 +8,12 @@
 
         <div class="collapse navbar-collapse" id="topnav">
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <form class="form-inline" method="GET" action="{% url 'resorts' %}">
-                    <input type="text" class="form-control m-2 my-sm-0 nav-input" name="q" placeholder="Find a mountain">
-                </form>
+                <li>
+                    <form class="form-inline" method="GET" action="{% url 'resorts' %}">
+                        <input type="text" class="form-control m-2 my-sm-0 nav-input" name="q"
+                            placeholder="Find a mountain">
+                    </form>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -25,7 +28,7 @@
                     <a class="nav-link" href="{% url 'view_bag' %}">Bag {% if total %}(€{{ total }}){% endif %}</a>
                 </li>
                 <li class=" nav-item">
-                        <a class="nav-link" href="{% url 'profile' %}">{{ request.user }} Profile</a>
+                    <a class="nav-link" href="{% url 'profile' %}">{{ request.user }} Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>

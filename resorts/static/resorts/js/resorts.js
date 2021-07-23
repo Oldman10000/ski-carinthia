@@ -28,13 +28,13 @@ $('#filter-form').submit(function (e) {
 
     let currentUrl = new URL(window.location);
 
-    let filters = ''
+    let filters = '';
 
     $('.filter-checkbox').each(function() {
         if ($(this).prop('checked')) {
-            filters += $(this).val()
-            filters += '+'
-            console.log($(this).val())
+            filters += $(this).val();
+            filters += '+';
+            console.log($(this).val());
         }
     });
 

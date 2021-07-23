@@ -50,6 +50,12 @@
     height: 375px;
 }
 
+.resort-hero {
+    margin-top: 60px;
+    width: 100%;
+    height: auto;
+}
+
 /* figcaption animation code copied and adapted from https://codepen.io/jhermansen/pen/YqEReZ */
 
 .resort-hero figcaption {

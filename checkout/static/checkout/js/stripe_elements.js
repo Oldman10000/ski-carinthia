@@ -1,9 +1,9 @@
-var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
-var stripe = Stripe(stripePublicKey);
-var elements = stripe.elements();
+let stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+let clientSecret = $('#id_client_secret').text().slice(1, -1);
+let stripe = Stripe(stripePublicKey);
+let elements = stripe.elements();
 
-var style = {
+let style = {
     base: {
         color: "black",
         fontFamily: 'Inter, sans-serif',
@@ -20,7 +20,7 @@ var style = {
     }
 };
 
-var card = elements.create('card', {
+let card = elements.create('card', {
     hidePostalCode: true,
     style: style
 });
@@ -28,14 +28,14 @@ card.mount('#card-element');
 
 // handle realtime validation errors on the card element
 card.addEventListener('change', function (e) {
-    var errorDiv = document.getElementById('card-errors');
+    let errorDiv = document.getElementById('card-errors');
     if (e.error) {
-        var html = `
+        let html = `
             <span class="icon" role="alert">
                 <i class="fas fa-times"></i>
             </span>
             <span>${e.error.message}</span>
-        `
+        `;
         $(errorDiv).html(html);
     } else {
         errorDiv.textContent = '';
@@ -43,7 +43,7 @@ card.addEventListener('change', function (e) {
 });
 
 // Handle form submit
-var form = document.getElementById('payment-form');
+let form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -54,14 +54,14 @@ form.addEventListener('submit', function (e) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-    var postData = {
+    let saveInfo = Boolean($('#id-save-info').attr('checked'));
+    let csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    let postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
     };
-    var url = '/checkout/cache_checkout_data/';
+    let url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
@@ -83,8 +83,8 @@ form.addEventListener('submit', function (e) {
             }
         }).then(function(result) {
             if (result.error) {
-                var errorDiv = document.getElementById('card-errors');
-                var html = `
+                let errorDiv = document.getElementById('card-errors');
+                let html = `
                     <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
                     </span>
@@ -103,5 +103,5 @@ form.addEventListener('submit', function (e) {
     }).fail(function () {
         // just reload the page, the error will be in django messages
         location.reload();
-    })
+    });
 });
