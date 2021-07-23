@@ -407,3 +407,47 @@ On smaller/narrower devices the cards are displayed vertically aligned.
 ![index-4](documentation/index-4.jpg)
 
 These fulfil user story 2 :heavy_check_mark:
+
+## Device and Browser Testing
+
+
+* Chrome developer tools used throughout development to check usability on different devices/sizes. Devices "used" on dev tools include:
+  - Moto G4 and iPhone 6/7/8, as these are fairly standard sizes for mobile devices
+  - iPhone 5/SE and Samsung Galaxy Fold, as these are relatively narrow mobile devices
+  - Pixel 2 XL and iPhone X, as these are larger mobile devices
+  - Ipad and Surface Pro, as these are standard sizes for tablet devices
+  - Ipad Pro, as this is a higher resolution tablet device
+
+* Personal devices used to check usability after deployment
+  - OnePlus Nord mobile phone
+  - Huawei Mediapad M5 10" tablet
+  - Dell Inspiron 7577 laptop
+  - Dell U2520D monitor
+
+* Friends and family asked to check usability on their Apple mobile, laptop, desktop, and tablet devices, particularly to check usability on Safari browser
+
+* Browsers checked were Chrome, Firefox, Edge, Opera, and Safari on all device types
+
+### Bugs
+
+#### Map popups on home page
+
+On the home page, there is a map of carinthia with pins for each resort. The expected behaviour when clicking on a resort is for a small popup to appear with some details to the resort and a link to the detail page. However, on the Safari browser it was found that this pop up did not appear as expected. I can't find anything online or in the Leaflet.js docs that indicate that this shouldn't work on the Safari browser, so it may simply have been to do with the permissions/settigns the owner had set on their browser. This issue did not occur on any other devices or browsers.
+
+### Bugs fixed
+
+#### Billing address
+
+On the checkout page, the user is prompted to enter their billing and card details. There was an issue with the checkout function, as the user would enter the billing postcode twice - once in the form itself, then again in the Stripe card details input. For the order to be processed correctly, both input values needed to match. If the values did not match, the order would be processed twice - two orders enter the system one with each postcode entered.
+
+This was due to the way the checkout handler functions. As a Stripe webhook is used to place the order in the system if for any reason the window is closed or the process is interrupted in any other way server side, the function checks to see if the order already exists in the system and if not adds a new order to the system. It checks all the fields entered by the user to check for a match to do this.
+
+If the postcodes on the inputs differed, the function did not find a match between the orders as the order in the system. The order would be placed in the system using the postcode from the form, but the handler would check for a match using the postcode form the Stripe input. This caused the order to enter the system twice.
+
+This bug was fixed by adding a 'hidePostalCode' property to the Stripe input element so the user only enters one postcode, which is in the form itself.
+
+#### Map pin links
+
+On the home page, there is a map of carinthia with pins for each resort as described above. On each popup, I wanted to add a link to the resort detail page itself. For the data on each popup I used a JavaScript function which first took the whole 'resorts' queryset from the database, then loops through each one to add the relevant data. For plaintext this worked well, as well as for the map coordinates for each pin. However for some reason Django did not accept the resort primary key as an anchor tag, giving me a 'NoReverseMatch at /' error as it did not recognise the url.
+
+![url-bug](documentation/url-bug.jpg)
