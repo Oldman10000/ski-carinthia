@@ -418,8 +418,19 @@ On smaller/narrower devices the cards are displayed vertically aligned.
 
 These fulfil user story 2 :heavy_check_mark:
 
-## Device and Browser Testing
+### API features
 
+I used two front end APIs in this project, [LeafletJS](https://leafletjs.com/) for the maps and [AccuWeather](https://developer.accuweather.com/) for the weather information.
+
+LeafletJS was recommended to me by my mentor Tim, as I had initially planned on using Google Maps as taught on the Code Institute course. LeafletJS turned out to be incredibly easy to implement, and allowed me to use a custom map of Austria from [basemap.at](https://www.basemap.at) and add custom map pins with popups. I added map references to each 'resort' model, which allowed me to iterate through each to add the pins in the correct locations programmatically.
+
+The AccuWeather API allows a user to pull the current and future weather conditions for anywhere in the world. I used their [5 day forecast](https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D) API, using the map references for each resort to get the correct location. There is a vast amount of information available from this API, I only scratched the surface of the possible information just getting the dates, temperature, icon number, description and snow levels. For the icons themselves I used free icons downloaded from [adamwhitcroft.com](https://adamwhitcroft.com).
+
+### QR Code
+
+As mentioned above, the checkout success/order history detail page shows a dynamically created QR code. The QR is generated using code from [this project](https://davidshimjs.github.io/qrcodejs/) by David Shim. Scanning the code will just take the user to the same checkout success page they are on, however it also serves as a 'proof of purchase' to redeem ski passes from the relevant ticket office. Originally I had planned to include the QR code in the order confirmation email, unfortunately I was unable to get the JavaScript elements to function when embedded in the confirmation email body so just included the link in text form.
+
+## Device and Browser Testing
 
 * Chrome developer tools used throughout development to check usability on different devices/sizes. Devices "used" on dev tools include:
   - Moto G4 and iPhone 6/7/8, as these are fairly standard sizes for mobile devices
@@ -460,6 +471,6 @@ This bug was fixed by adding a 'hidePostalCode' property to the Stripe input ele
 
 On the home page, there is a map of carinthia with pins for each resort as described above. On each popup, I wanted to add a link to the resort detail page itself. For the data on each popup I used a JavaScript function which first took the whole 'resorts' queryset from the database, then loops through each one to add the relevant data. For plaintext this worked well, as well as for the map coordinates for each pin. However for some reason Django did not accept the resort primary key as an anchor tag, giving me a 'NoReverseMatch at /' error as it did not recognise the url.
 
-![url-bug](documentation/url-bug.jpg)
+![url-bug](documentation/url-bug.png)
 
 The fix was to use a JavaScript replace method. First I needed to define the 'url' variable, using a random set of numbers as the url argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
