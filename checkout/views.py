@@ -180,9 +180,13 @@ def checkout_success(request, order_number):
             if user_profile_form.is_valid():
                 user_profile_form.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. Your pass(es) will be \
-            emailed to {order.email}.')
+    user = str(request.user)
+    owner = str(order.user_profile)
+
+    if user == owner:
+        messages.success(request, f'Order successfully processed! \
+            Your order number is {order_number}. Your pass(es) will be \
+                emailed to {order.email}.')
 
     if 'bag' in request.session:
         del request.session['bag']
