@@ -544,3 +544,74 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [JS Hint](https://jshint.com/) - Used to validate JavaScript code
 * [PEP8 Online](http://pep8online.com/) - used to validate Python code
 
+## Deployment
+
+### Cloning the Repository
+
+To clone the repository please follow the below steps. It is recommended to work in a virtual environment i.e. Gitpod, however the project can also be run on a local system.
+
+If working on the project locally, you must install the following:
+
+* [Python](https://www.python.org/downloads/)
+* [Pip](https://pip.pypa.io/en/stable/installation/)
+* [Git](https://www.atlassian.com/git/tutorials/install-git)
+* An IDE to develop your project, for example [VS Code](https://code.visualstudio.com/)
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Oldman10000/ski-carinthia)
+2. Under the repository name, click "Clone or download".
+3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+4. Open Git Bash
+5. Change the current working directory to the location where you want the cloned directory to be made.
+6. Type `git clone`, and then paste the URL you copied in Step 3.
+
+Alternatively, you can enter the following command into the Git CLI terminal of your dev environment:
+
+```
+git clone https://github.com/Oldman10000/ski-carinthia.git.
+```
+
+Then you must navigate to the correct file location using the following command in the CLI terminal:
+
+```
+cd <path to folder>
+```
+
+### Local Deployment
+
+Follow the below steps to deploy the project locally:
+
+1. Install all project requirements using the below command in the CLI terminal:
+
+    ```
+    pip3 install -r requirements.txt
+    ```
+2. Launch the Django Project using the below command in the CLI terminal:
+
+    ```
+    python3 manage.py runserver
+    ```
+
+3. The server should now be running locally on [http://127.0.0.1:8000/](http://127.0.0.1:8000/). Running the server should also create a new SQLite3 database file: db.sqlite3
+
+4. You will need to make migrations to create the local database using the following commands in the CLI terminal:
+
+    ```
+    python3 manage.py makemigrations
+    ```
+    ```
+    python3 manage.py migrate
+    ```
+
+5. Now create a superuser to gain access to the Django Admin page using the following command in the CLI terminal, then follow the automatic prompts to create a username, email address and password:
+
+    ```
+    python3 manage.py createsuperuser
+    ```
+
+6. Finally, you will need to import the fixtures for the 'Resort' app. This is a json file which contains all of the data for each resort. Use the following command in the CLI terminal:
+
+    ```
+    python3 manage.py loaddata resorts
+    ```
+
+7. The project should now run as expected within your local development environment :)
