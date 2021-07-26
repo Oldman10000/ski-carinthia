@@ -558,22 +558,27 @@ If working on the project locally, you must install the following:
 * An IDE to develop your project, for example [VS Code](https://code.visualstudio.com/)
 
 1. Log in to GitHub and locate the [GitHub Repository](https://github.com/Oldman10000/ski-carinthia)
+
 2. Under the repository name, click "Clone or download".
+
 3. To clone the repository using HTTPS, under "Clone with HTTPS", copy the link.
+
 4. Open Git Bash
+
 5. Change the current working directory to the location where you want the cloned directory to be made.
+
 6. Type `git clone`, and then paste the URL you copied in Step 3.
 
 Alternatively, you can enter the following command into the Git CLI terminal of your dev environment:
 
 ```
-git clone https://github.com/Oldman10000/ski-carinthia.git.
+$ git clone https://github.com/Oldman10000/ski-carinthia.git.
 ```
 
 Then you must navigate to the correct file location using the following command in the CLI terminal:
 
 ```
-cd <path to folder>
+$ cd <path to folder>
 ```
 
 ### Local Deployment
@@ -583,35 +588,193 @@ Follow the below steps to deploy the project locally:
 1. Install all project requirements using the below command in the CLI terminal:
 
     ```
-    pip3 install -r requirements.txt
+    $ pip3 install -r requirements.txt
     ```
 2. Launch the Django Project using the below command in the CLI terminal:
 
     ```
-    python3 manage.py runserver
+    $ python3 manage.py runserver
     ```
 
 3. The server should now be running locally on [http://127.0.0.1:8000/](http://127.0.0.1:8000/). Running the server should also create a new SQLite3 database file: db.sqlite3
 
-4. You will need to make migrations to create the local database using the following commands in the CLI terminal:
+4. Create an .env file for the following requirements, or if using Gitpod, you can enter these variables within the settings section of your github account. Remember to restart the workspace after creating the variables:
+
+    Name | Value
+    -----|------
+    DEVELOPMENT|True
+    SECRET_KEY|'your_secret_key'
+    STRIPE_PUBLIC_KEY|'your_stripe_public_key'
+    STRIPE_SECRET_KEY|'your_stripe_secret_key'
+    STRIPE_WH_SECRET|'your_stripe_wh_key'
+
+    - A secret key can be generated at [Djecrety.ir](https://djecrety.ir/)
+
+    - To create the Stripe public and secret keys, sign up for a free [Stripe](https://stripe.com/gb) account. In the 'Developers' section, click on 'API Keys'. Here you should find the publishable key and secret key which you can use for the variables above.
+
+    - To create the Stripe wh key, click on 'Webhooks' under the 'Developers' section on your Stripe dashboard. Select 'Add endpoint', and enter the following url:
+      ```
+      https://<yourhosturl>/checkout/wh/
+      ```
+      Select 'receive all events' and add endpoint. Now you should be able to view your 'signing secret' to use as your wh key.
+
+5. You will need to make migrations to create the local database using the following commands in the CLI terminal:
 
     ```
-    python3 manage.py makemigrations
+    $ python3 manage.py makemigrations
     ```
     ```
-    python3 manage.py migrate
-    ```
-
-5. Now create a superuser to gain access to the Django Admin page using the following command in the CLI terminal, then follow the automatic prompts to create a username, email address and password:
-
-    ```
-    python3 manage.py createsuperuser
+    $ python3 manage.py migrate
     ```
 
-6. Finally, you will need to import the fixtures for the 'Resort' app. This is a json file which contains all of the data for each resort. Use the following command in the CLI terminal:
+6. Now create a superuser to gain access to the Django Admin page using the following command in the CLI terminal, then follow the automatic prompts to create a username, email address and password:
 
     ```
-    python3 manage.py loaddata resorts
+    $ python3 manage.py createsuperuser
     ```
 
-7. The project should now run as expected within your local development environment :)
+7. Finally, you will need to import the fixtures for the 'Resort' app. This is a json file which contains all of the data for each resort. Use the following command in the CLI terminal:
+
+    ```
+    $ python3 manage.py loaddata resorts
+    ```
+
+8. The project should now run as expected within your local development environment :)
+
+### Deploying to Heroku
+
+Follow the below steps to deploy the project on Heroku:
+
+1. Create a GitHub repository for the app
+
+2. Initialize git for the app by using the below command in the terminal:
+
+    ```
+    $ git init
+    ```
+
+3. To link the project to your new GitHub repository, use the following command in the terminal:
+
+    ```
+    $ git remote add origin https://github.com/<USERNAME>/<REPONAME>.gitgit push -u origin master
+    ```
+    From now on any further pushes will be automatically pushed to this location.
+
+4. Create a new file called 'Procfile' within the root directory of the project and enter the following content:
+
+    ```
+    web: gunicorn ski_carinthia.wsgi:application
+    ```
+
+5. Create a requirements.txt file for Heroku to install the required dependencies using the following command:
+
+    ```
+    $ pip3 freeze > requirements.txt
+    ```
+
+6. Create a Heroku account, create a new app and select your local region based on your location.
+
+7. Enter the 'Deploy' tab within your Heroku app, select GitHub as the deployment method. Choose the GitHub repository from your account as the default connection. Select automatic deployment. The app should push to heroku 
+
+8. Enter the 'Resources' tab and search for 'Heroku Postgres'. Add this to your app, selecting the 'Hobby' level for free access.
+
+9. Now you need to rebuild the migrations to the new database using the below commands:
+    First you need to login to your Heroku account in the CLI using:
+    ```
+    $ heroku login -i
+    ```
+    Now enter your heroku email address and password, then enter the following to the CLI terminal:
+    ```
+    $ heroku run python3 manage.py migrate
+    ```
+    ```
+    $ heroku run python3 manage.py createsuperuser
+    ```
+    Now follow the prompts to create the superuser as previously, then finally enter:
+    ```
+    $ heroku run python3 manage.py loaddata resorts
+    ```
+
+10. Now you need to set up AWS for media file hosting.
+    - First sign up for a free [AWS account](https://aws.amazon.com/)
+    - Find the 'S3 Buckets' section and create a new unique bucket for the application.
+    - Follow the below steps:
+      ```
+      Permissions > Bucket Policy
+      {
+          "Version": "2012-10-17",
+          "Id": "Policy1626430899842",
+          "Statement": [
+              {
+                  "Sid": "Stmt1626430897110",
+                  "Effect": "Allow",
+                  "Principal": "*",
+                  "Action": "s3:GetObject",
+                  "Resource": "arn:aws:s3:::<your-bucket-name>/*"
+              }
+          ]
+      }
+      ```
+      Permissions > CORS configuration
+      ```
+      [
+          {
+              "AllowedHeaders": [
+                  "Authorization"
+              ],
+              "AllowedMethods": [
+                  "GET"
+              ],
+              "AllowedOrigins": [
+                  "*"
+              ],
+              "ExposeHeaders": []
+          }
+      ]
+      ```
+    - Navigate to the 'IAM' section
+    - Create a new user group
+    - Create a policy from the 'policy' tab
+      - Select import managed policy
+      - Select s3 full access policy
+    - Paste the following into the 'resource' section of the policy, overwriting any existing content:
+      ```
+      [
+        arn:aws:s3:::<your-bucket-name>",
+        "arn:aws:s3:::<your-bucket-name>/*"
+      ]
+      ```
+    - Continue to create policy
+    - Attach the new policy to the user group by finding the group, select 'attach policy' and click 'attach policy' next to your new policy.
+    - Finally, create a user by clicking 'add user' in the 'users' tab. Create a name, give 'programmatic access' and add to the group.
+    - Once the user has been added to the group, you will be provided with a .csv file with access information. You MUST download this file, and save the variables for use in the Heroku environment variables later
+    - Finally, enter your bucket and manually upload all of the files in the 'media' folder of the project into the bucket.
+
+11. Finally, you need to update the config vars for the deployed project under the 'settings' tab of your Heroku app.
+    
+    Name | Value
+    -----|------
+    AWS_ACCESS_KEY_ID|'your_aws_access_key_id'
+    AWS_SECRET_ACCESS_KEY|'your_aws_secret_access_key'
+    DATABASE_URL|'your_database_url'
+    EMAIL_HOST_PASSWORD|'your_email_host_password'
+    EMAIL_HOST_USER|'your_email_address'
+    SECRET_KEY|'your_secret_key'
+    STRIPE_PUBLIC_KEY|'your_stripe_public_key'
+    STRIPE_SECRET_KEY|'your_stripe_secret_key'
+    STRIPE_WH_SECRET|'your_stripe_wh_key'
+    USE_AWS|True
+
+    The secret key, stripe public and secret keys should be the same as in your development environment.
+    
+    The AWS access and secret access keys can be found in the csv file you downloaded from your AWS user account.
+
+    The Database url can be found within your PostgreSQL credentials.
+
+    You will need to create a new Stripe WH key using your Heroku url:
+
+    ```
+      https://<yourherokuurl>/checkout/wh/
+    ```
+
+12. Congratulations, the project should now be deployed and ready to use :)
