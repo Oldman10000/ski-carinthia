@@ -20,16 +20,13 @@
     <div class="row">
         <div class="col-12 col-lg-6 order-lg-last mb-5">
             <div class="row">
-                <div class="col-7 offset-2">
-                    <h5 class="mb-1 mt-0 small text-muted">Order Contents</h5>
+                <div class="col">
+                    <h3 class="mb-4">Order Contents</h3>
                 </div>
             </div>
             {% for item in bag_items %}
             {% if item.adult_ticket %}
             <div class="row mb-2">
-                <div class="col-2 mb-1">
-                    <a href="{ url 'product_detal' item.product.id %}"></a>
-                </div>
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.quantity }} Adult Pass{% if item.quantity > 1 %}es{% endif %}
                             for {{ item.product.name }}</strong></p>
@@ -41,9 +38,6 @@
             {% endif %}
             {% if item.child_ticket %}
             <div class="row mb-2">
-                <div class="col-2 mb-1">
-                    <a href="{ url 'product_detal' item.product.id %}"></a>
-                </div>
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.quantity }} Child Pass{% if item.quantity > 1 %}es{% endif %}
                             for {{ item.product.name }}</strong></p>
@@ -55,9 +49,6 @@
             {% endif %}
             {% if item.family_ticket %}
             <div class="row mb-2">
-                <div class="col-2 mb-1">
-                    <a href="{ url 'product_detal' item.product.id %}"></a>
-                </div>
                 <div class="col-7">
                     <p class="my-0"><strong>{{ item.quantity }} Family Pass{% if item.quantity > 1 %}es{% endif %}
                             for {{ item.product.name }}</strong></p>
@@ -70,11 +61,11 @@
             {% endfor %}
             <hr>
             <div class="row">
-                <div class="col-7 offset-2">
-                    <p class="my-0">Order Total</p>
+                <div class="col-7">
+                    <p class="my-0">Order Total:</p>
                 </div>
                 <div class="col-3">
-                    <p class="my-0">€{{ total | floatformat:2 }}</p>
+                    <p class="my-0"><strong>€{{ total | floatformat:2 }}</strong></p>
                 </div>
             </div>
         </div>
@@ -116,11 +107,11 @@
                     <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
 
-                <div class="submit-button text-right mt-5 mb-2">
-                    <a href="{% url 'view_bag' %}" class="btn btn-blue">
+                <div class="submit-button text-right mt-5">
+                    <a href="{% url 'view_bag' %}" class="btn btn-blue mb-2">
                         Adjust Bag <i class="fas fa-shopping-bag"></i>
                     </a>
-                    <button class="btn btn-green">
+                    <button class="btn btn-green mb-2">
                         Secure Payment <i class="fas fa-key"></i>
                     </button>
                     <p class="small text-danger mt-2 my-0">

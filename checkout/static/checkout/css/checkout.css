@@ -8,6 +8,10 @@ select option[value=""] {
   color: #aab7c4 !important
 }
 
+h3 {
+  font-size: 1.17em;
+}
+
 .StripeElement,
 .stripe-style-input {
   box-sizing: border-box;
