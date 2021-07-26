@@ -1,7 +1,15 @@
+p.hero-text {
+    font-size: 1.1em;
+}
+
 .card {
     height: 400px;
     width: auto;
     color: #2E2F2F;
+}
+
+.card h3 {
+    font-size: 1.17em;
 }
 
 .card:hover {
@@ -21,10 +29,6 @@
 
 .hero-text {
     text-shadow: 0 0 3px #000;
-}
-
-p.hero-text {
-    font-size: 1.1em;
 }
 
 #hero h1 {
