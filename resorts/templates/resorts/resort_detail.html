@@ -46,37 +46,34 @@
                                     {% csrf_token %}
                                     <div class="form-row mb-4 mt-4">
                                         <div class="col-12 col-md-6">
-                                            <label for="adult-quantity">Adult Pass | €{{ resort.adult_price }}
+                                            <label for="adult-ticket">Adult Pass | €{{ resort.adult_price }}
                                                 each</label>
                                         </div>
                                         <div class="col-8 col-md-4">
                                             <input class="form-control" type="number" id="adult-ticket"
-                                                name="adult_quantity" min="0" value="0" data-item_id="{{ resort.id }}"
-                                                id="">
+                                                name="adult_quantity" min="0" value="0" data-item_id="{{ resort.id }}">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="form-row mb-4">
                                         <div class="col-12 col-md-6">
-                                            <label for="child-quantity">Child Pass | €{{ resort.child_price }}
+                                            <label for="child-ticket">Child Pass | €{{ resort.child_price }}
                                                 each</label>
                                         </div>
                                         <div class="col-8 col-md-4">
                                             <input class="form-control" type="number" id="child-ticket"
-                                                name="child_quantity" min="0" value="0" data-item_id="{{ resort.id }}"
-                                                id="">
+                                                name="child_quantity" min="0" value="0" data-item_id="{{ resort.id }}">
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="form-row mb-4">
                                         <div class="col-12 col-md-6">
-                                            <label for="family-quantity">Family Pass | €{{ resort.family_price }}
+                                            <label for="family-ticket">Family Pass | €{{ resort.family_price }}
                                                 each</label>
                                         </div>
                                         <div class="col-8 col-md-4">
                                             <input class="form-control" type="number" id="family-ticket"
-                                                name="family_quantity" min="0" value="0" data-item_id="{{ resort.id }}"
-                                                id="">
+                                                name="family_quantity" min="0" value="0" data-item_id="{{ resort.id }}">
                                         </div>
                                     </div>
                                     <hr>
@@ -87,7 +84,8 @@
                         </div>
                     </div>
                     {% else %}
-                    <p>Please <a href="{% url 'account_signup' %}">register</a> or <a href="{% url 'account_login' %}">login</a> to buy ski passes</p>
+                    <p>Please <a href="{% url 'account_signup' %}">register</a> or <a
+                            href="{% url 'account_login' %}">login</a> to buy ski passes</p>
                     {% endif %}
                 </div>
 
@@ -97,8 +95,7 @@
                 <h3 class="text-center mb-4">Ski Map <small>(click to enlarge)</small></h3>
                 {% if resort.map_image %}
                 <figure class="ski-map shadow">
-                    <img data-fancybox data-caption="map"
-                        src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
+                    <img data-fancybox data-caption="map" src="{{ resort.map_image.url }}" alt="{{ resort.map_image }}">
                 </figure>
                 {% else %}
                 <p>No map data exists</p>
@@ -110,7 +107,7 @@
         <div class="row">
             <div class="col-10 offset-1">
                 <h3 class="text-center mb-2">5 Day Forecast</h3>
-                    <hr>
+                <hr>
             </div>
             <div class="col-12 mb-2">
                 <div class="row mt-3">

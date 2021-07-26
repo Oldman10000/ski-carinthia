@@ -109,7 +109,7 @@
                 <span class="step-links">
                     {% if page_obj.has_previous %}
                     <a href="?page=1" class="btn btn-blue">&laquo; First</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue"><i
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue" title="previous"><i
                             class="fas fa-arrow-left"></i></a>
                     {% endif %}
 
@@ -118,7 +118,7 @@
                     {% endfor %}
 
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue"><i
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue" title="next"><i
                             class="fas fa-arrow-right"></i></a>
                     <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-blue">Last &raquo;</a>
                     {% endif %}
