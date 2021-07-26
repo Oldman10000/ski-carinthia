@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-lg-6">
-                <h5 class="mb-3">User Details</h5>
+                <h3 class="mb-3">User Details</h3>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
@@ -28,7 +28,7 @@
                 <hr>
             </div>
             <div class="col-12 col-lg-6">
-                <h5>Order History</h5>
+                <h3 class="mb-2">Order History</h3 class="mb-2">
                 {% if orders %}
                 <div class="history table-responsive">
                     <table class="table table-sm table-borderless">
@@ -68,7 +68,7 @@
                 <hr>
             </div>
             <div class="col-12 col-lg-6 mt-4">
-                <h5>Blog History</h5>
+                <h3 class="mb-2">Blog History</h3 class="mb-2">
                 {% if blogs %}
                 <div class="history table-responsive">
                     <table class="table table-sm table-borderless">
