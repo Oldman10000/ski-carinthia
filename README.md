@@ -475,6 +475,17 @@ On the home page, there is a map of carinthia with pins for each resort as descr
 
 The fix was to use a JavaScript replace method. First I needed to define the 'url' variable, using a random set of numbers as the url argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
 
+### Code Validation
+
+* [W3C HTML Validator](https://validator.w3.org/) found no HTML errors throughout the site
+
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) found no CSS errors throughout my files
+
+* [JS Hint](https://jshint.com/) found no JavaScript errors throughout my files
+
+* [PEP8 Online](http://pep8online.com/) found no Python errors throught my files, except for settings.py. This is a known issue with the built in Django settings file, but it is acceptable not to force a line break here.
+  - line too long (>79 characters) - AUTH_PASSWORD_VALIDATORS = [{}] x4
+
 ## Technologies Used
 
 ### Languages Used
@@ -497,9 +508,6 @@ The fix was to use a JavaScript replace method. First I needed to define the 'ur
 * [Balsamiq](https://balsamiq.com/) - Used to create the wireframe
 * [Coolors](https://coolors.co) Used to create the colour scheme
 * [Compressjpeg](https://compressjpeg.com/) - Used to compress images
-* [W3C Validator](https://validator.w3.org/) - Used to validate HTML file
-* [W3C Validator](https://jigsaw.w3.org/css-validator/) - Used to validate CSS file
-* [JS Hint](https://jshint.com/) - Used to check JavaScript code
 * [LeafletJS](https://leafletjs.com/) - Used to generate maps
 * [AccuWeather](https://developer.accuweather.com/) - Used to get weather conditions
 * [csv2json](https://csvjson.com/csv2json )) - Used to convert my csv resorts fixtures file to json format
@@ -507,3 +515,12 @@ The fix was to use a JavaScript replace method. First I needed to define the 'ur
 * [lucidchart.com](https://www.lucidchart.com/) - Used to create ER chart for database schema
 * [WPS Office](https://www.wps.com/) - Used to create spreadsheets of models and user stories in advance of starting the project
 * [FancyApps FancyBox](https://fancyapps.com/docs/ui/fancybox/) - Used to create zoomed in overlay of resort map images
+* [AWS (Amazon Web Services)](https://aws.amazon.com/) - Used to store media files
+
+#### Validation Programs Used
+
+* [W3C HTML Validator](https://validator.w3.org/) - Used to validate HTML file
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) - Used to validate CSS file
+* [JS Hint](https://jshint.com/) - Used to validate JavaScript code
+* [PEP8 Online](http://pep8online.com/) - used to validate Python code
+
