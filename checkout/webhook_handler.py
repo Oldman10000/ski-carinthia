@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.core.mail import send_mail, EmailMultiAlternatives
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from django import template
@@ -30,8 +30,10 @@ class StripeWH_Handler:
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             {'order': order}
         )
-        plaintext = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.txt')
-        htmltemp = template.loader.get_template('checkout/confirmation_emails/confirmation_email_body.html')
+        plaintext = template.loader.get_template(
+            'checkout/confirmation_emails/confirmation_email_body.txt')
+        htmltemp = template.loader.get_template(
+            'checkout/confirmation_emails/confirmation_email_body.html')
         c = {
             'order': order,
             'contact_email': settings.DEFAULT_FROM_EMAIL,
@@ -39,7 +41,8 @@ class StripeWH_Handler:
         text_content = plaintext.render(c)
         html_content = htmltemp.render(c)
 
-        msg = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [cust_email])
+        msg = EmailMultiAlternatives(
+            subject, text_content, settings.DEFAULT_FROM_EMAIL, [cust_email])
         msg.attach_alternative(html_content, "text/html")
 
         print(msg)
@@ -116,7 +119,8 @@ class StripeWH_Handler:
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | Success: Verified order already in database',
+                    content=f'Webhook received: {event["type"]} |\
+                         Success: Verified order already in database',
                     status=200)
         else:
             try:
@@ -177,7 +181,8 @@ class StripeWH_Handler:
                     status=500)
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} |\
+                 SUCCESS: Created order in webhook',
             status=200
         )
 
