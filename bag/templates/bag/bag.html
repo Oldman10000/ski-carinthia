@@ -45,7 +45,7 @@
                                 {% csrf_token %}
                                 <input class="form-control form-control-sm mb-1" type="number" id="adult-ticket"
                                     name="adult_quantity" min="0" value="{{ item.quantity }}"
-                                    data-item_id="{{ item.item_id }}" id="">
+                                    data-item_id="{{ item.item_id }}" aria-label="adult-quantity">
                             </form>
                             <a class="update-link btn btn-green btn-sm mb-1">Update <i class="fas fa-wrench"></i></a>
                             <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
@@ -68,7 +68,7 @@
                                 {% csrf_token %}
                                 <input class="form-control form-control-sm mb-1" type="number" id="child-ticket"
                                     name="child_quantity" min="0" value="{{ item.quantity }}"
-                                    data-item_id="{{ item.item_id }}" id="">
+                                    data-item_id="{{ item.item_id }}" aria-label="child-quantity">
                             </form>
                             <a class="update-link btn btn-green btn-sm mb-1">Update <i class="fas fa-wrench"></i></a>
                             <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
@@ -91,7 +91,7 @@
                                 {% csrf_token %}
                                 <input class="form-control form-control-sm mb-1" type="number" id="family-ticket"
                                     name="family_quantity" min="0" value="{{ item.quantity }}"
-                                    data-item_id="{{ item.item_id }}" id="">
+                                    data-item_id="{{ item.item_id }}" aria-label="family-quantity">
                             </form>
                             <a class="update-link btn btn-green btn-sm mb-1">Update <i class="fas fa-wrench"></i></a>
                             <a class="remove-item btn btn-red btn-sm mb-1" id="remove_{{ item.item_id }}"
