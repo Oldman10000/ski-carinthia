@@ -486,6 +486,26 @@ The fix was to use a JavaScript replace method. First I needed to define the 'ur
 * [PEP8 Online](http://pep8online.com/) found no Python errors throught my files, except for settings.py. This is a known issue with the built in Django settings file, but it is acceptable not to force a line break here.
   - line too long (>79 characters) - AUTH_PASSWORD_VALIDATORS = [{}] x4
 
+### Chrome Dev Tools Lighthouse
+
+Chrome dev tools lighthouse was used to test the site for performance, accessibility, best practises and SEO. Tests were run in incognito mode on the Chrome browser to prevent cached data from affecting loading times/performance.
+
+#### Performance
+
+Performance was consistently good throughout all pages, only being slowed down slightly by images (which were already compressed), and external JavaScript resources such as JQuery. On all pages this scored at least 85, generally in the mid 90s.
+
+#### Accessibility
+
+Accessibility scored similarly well, all blank anchor tags (that had no text) were appropriately named, and all inputs were labelled. Initially, the text colour in the navbar was considered to have an insufficient contrast ratio to the background colour. This was fixed by using a lighter shade for the text. I also changed all header elements to be sequential (i.e. h1, h2, h3) rather than non sequential (h1, h2, h5).
+
+#### Best Practises
+
+Scored between 95 - 100 on every page.
+
+#### SEO
+
+The SEO score tended to be around 90. This was due to the exclusion of a 'robots.txt' file, which provides instructions to search engine bots and helps web crawling.
+
 ## Technologies Used
 
 ### Languages Used
