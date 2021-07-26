@@ -66,7 +66,7 @@
                 <span class="step-links">
                     {% if page_obj.has_previous %}
                     <a href="?page=1" class="btn btn-blue">&laquo; First</a>
-                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue"><i
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue" title="previous"><i
                             class="fas fa-arrow-left"></i></a>
                     {% endif %}
 
@@ -75,11 +75,10 @@
                     {% endfor %}
 
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue"><i
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue" title="next"><i
                             class="fas fa-arrow-right"></i></a>
                     <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-blue">Last &raquo;</a>
                     {% endif %}
-
                 </span>
             </div>
         </div>
@@ -102,9 +101,9 @@
         <div class="col-12 col-md-6 mb-3">
             <div class="card shadow border-blue">
                 <div class="card-body">
-                    <h5 class="card-title">{{ post.title }}</h5>
+                    <h3 class="card-title">{{ post.title }}</h3>
                     <hr>
-                    <h6 class="card-subitle text-muted mb-2">{{ post.user_profile }}</h6>
+                    <h4 class="card-subitle text-muted mb-2">{{ post.user_profile }}</h4>
                     <p>{{ post.content|truncatewords:10 }}</p>
                     <p class="mb-1"><small><strong>Published on:</strong> {{ post.published_date|date:"d M Y" }} @ {{ post.published_date|time:"TIME_FORMAT" }}</small></p>
                     <p class="mb-1"><small><strong>Views:</strong> {{ post.views }}</small></p>
@@ -124,18 +123,39 @@
         {% endfor %}
         {% else %}
         <div class="col">
-            <h5>:( No Posts Found{% if search_term %} for {{ search_term }}{% endif %}</h5>
+            <h3>:( No Posts Found{% if search_term %} for {{ search_term }}{% endif %}</h3>
         </div>
         {% endif %}
     </div>
     <div class="row mt-2">
         {% if page_obj %}
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mb-2">
             <span class="current">
                 Page <strong>{{ page_obj.number }}</strong> of {{ page_obj.paginator.num_pages }}
             </span>
         </div>
         {% endif %}
+        <div class="col-12">
+            <div class="pagination justify-content-center">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page=1" class="btn btn-blue">&laquo; First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-blue" title="previous"><i
+                            class="fas fa-arrow-left"></i></a>
+                    {% endif %}
+
+                    {% for page in page_obj.paginator %}
+                    <a href="?page={{ forloop.counter }}" class="btn btn-blue">{{ forloop.counter }}</a>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-blue" title="next"><i
+                            class="fas fa-arrow-right"></i></a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-blue">Last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
     </div>
 </main>
 
