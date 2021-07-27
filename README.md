@@ -82,7 +82,9 @@ I picked a very simple palette for this project. The standout scheme is a blue n
 * #008100 'Ao English' - used for 'positive' buttons
 * #F95738 'Orange Soda' - used for 'negative' buttons
 
-There were a few images and icons used for the project, all within the 'skiing' theme. 
+There were a few images and icons used for the project, all within the 'skiing' theme. Weather icons are also included, these are simple and descriptive.
+
+I chose the font 'Quicksand' from the Google fonts collection due to it being easy to read, but distinctive. I also liked the softer effect of the lettering compared to most other san-serif style fonts.
 
 ![Colour Pallette](documentation/ski-carinthia_palette.png)
 
