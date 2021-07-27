@@ -524,7 +524,7 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [Git](https://git-scm.com/) - Used for version control
 * [Gitpod](https://gitpod.io/) - Text editor used to write all code
 * [Github](https://github.com/) - GitHub is used to store the project's code after being pushed from Git
-* [Heroku](https://id.heroku.com/) - Used to deploy website
+* [Heroku](https://id.heroku.com/) - Used to deploy website - Heroku PostgreSQL used for relational database in deployed site
 * [Balsamiq](https://balsamiq.com/) - Used to create the wireframe
 * [Coolors](https://coolors.co) Used to create the colour scheme
 * [Compressjpeg](https://compressjpeg.com/) - Used to compress images
@@ -778,3 +778,50 @@ Follow the below steps to deploy the project on Heroku:
     ```
 
 12. Congratulations, the project should now be deployed and ready to use :)
+
+## Credits
+
+### Code
+
+The project is influenced by the Code Institute 'Boutique Ado' Django tutorial series. As such, several elements of the website use similar/adapted code. These include:
+
+* Models - the UserProfile, Order and OrderLineItem models
+* The Stripe webhooks, views and JavaScript
+* Sort Selector JavaScript
+
+These were the most efficient and obvious ways to implement the necessary functionality in my project.
+
+#### CSS
+
+* Figcaption in resort detail page copied and adapted from this [codepen](https://codepen.io/jhermansen/pen/YqEReZ)
+* Fancybox CSS used for zoomed in resort-map image taken from this fancyapps [playground](https://fancyapps.com/playground/gd)
+
+#### JavaScript
+
+* Weather API code adapted from [this Udemy course](https://www.udemy.com/course/modern-javascript-from-novice-to-ninja/) by [Shaun Pelling](https://www.udemy.com/user/47fd83f6-5e4a-4e87-a0f0-519ac51f91b6/)
+* QR Code JavaScript downloaded form [this project](https://davidshimjs.github.io/qrcodejs/)
+
+### Content and Images
+
+* The text content and images used for the resort fixtures were all taken from the offical [visit Carinthia](https://www.visitcarinthia.at/ski/) website. Images have been appropriately credited on the site.
+* Hero image from [unsplash](https://unsplash.com/photos/2plEwASgMnQ) - Photographer credit [William Ling](https://unsplash.com/@willling)
+* Image used for the link to 'Best for Families' from [visit Carinthia](https://www.visitcarinthia.at/ski/) - no photographer credit
+* Image used for the link to 'Show me those views!' from [unsplash](https://unsplash.com/photos/oRPTM3fJk-E) - Photographe credit [Vitamina Poleznova](https://unsplash.com/@poleznova)
+* Image used for the link to 'Supersize me!' from [unsplash](https://unsplash.com/photos/xZIFEPtRsRI) - Photographer credit [Sebastian Staines](https://unsplash.com/@seabas)
+* 'Skier' icon used for loading overlays from [svgrepo](https://www.svgrepo.com/svg/76456/ski)
+* 'Skis' icon used as map pins from [svgrepo](https://www.svgrepo.com/svg/222353/ski)
+* Weather icons originally from [adamwhitcroft.com](https://adamwhitcroft.com/), downloaded via [this Udemy course](https://www.udemy.com/course/modern-javascript-from-novice-to-ninja/) as the icons are no longer available on the original website.
+
+### Acknowledgements
+
+* Thanks to my mentor Tim Nelson for his generosity in providing his time, resources and feedback
+    - In particular for helping with a particular issue with the map pins as explained [here](#map-pin-links)
+* Thanks to the Code Institute Slack community for providing resources and tips as well as peer-reviewing the project
+* Thanks to friends and family for taking the time to look at the site and give advice on both content and user stories, in particular, thanks to Robert Smith for his UX and content ideas and feedback
+* [W3 Schools](https://www.w3schools.com/) and [Stackoverflow](https://stackoverflow.com/) were useful as always to double-check things and get the correct syntax for functions etc
+* [Django Documentation](https://docs.djangoproject.com/en/3.2/)
+* Chrome Dev Tools
+  - Testing and adjusting CSS styles
+  - Testing my JavaScript using the console
+  - Testing local storage in the Application section
+  - Testing using the Lighthouse
