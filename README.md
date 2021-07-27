@@ -4,20 +4,20 @@
 
 This is my fourth and final Milestone Project for the Full Stack Software Development Diploma with Code Institute. This project requires all elements of software development I have learned so far. It uses HTML, CSS and JavaScript for the front end and makes use of Python and the Django framework for the backend, which also uses the PostgreSQL relational database system.
 
-This project is a website for skiers visiting Carinthia, Austria. It allows visitors to view ski areas/resorts/mountains, purchase tickets using the Stripe Authentication software as well as contribute to a form/blog on the website. Users must be logged in and authenticated in order to make a purchase and view their orders.
+This project is a website for skiers visiting Carinthia, Austria. It allows visitors to view ski areas/resorts/mountains, purchase tickets using the Stripe Authentication software as well as contribute to a form/blog on the website. Users must be logged in and authenticated to make a purchase and view their orders.
 
 ## UXD
 
 ### Strategy
 
-I want any user to instantly recognise the purpose of the site, and to feel at ease every step of the way. There is no specific user base this website caters to, just the general public. To that end, the user stories below are non specific in terms of demographic, and only differentiate insofar as whether a user is a first time visitor, a general visitor, a logged in user or a shopper.
+I want any user to instantly recognise the purpose of the site, and to feel at ease every step of the way. There is no specific user base this website caters to, just the general public. To that end, the user stories below are non-specific in terms of demographic and only differentiate insofar as whether a user is a first time visitor, a general visitor, a logged-in user or a shopper.
 
 #### User Stories
 
 User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 --------------|-----------|----------------------|---------------|--------------
 1|first time visitor|recognise the purpose of the site immediately|identify whether I am interested in the content and wish to use the site|[Complete](#home-page) :heavy_check_mark:
-2|general visitor|easily navigate the site on any device|easily use and navigate the site|[Complete](#navigation-and-responsiveness)
+2|general visitor|easily navigate the site on any device|easily use and navigate the site|[Complete](#navigation-and-responsiveness) :heavy_check_mark:
 3|general visitor|view a list of ski resorts|find which resort I would like to visit|[Complete](#resorts-page) :heavy_check_mark:
 4|general visitor|view individual ski resort details|identify which resort is best for my purposes|[Complete](#resort-detail) :heavy_check_mark:
 5|general visitor|view weather for ski resorts|identify which resort has the best conditions on a particular day|[Complete](#resort-detail) :heavy_check_mark:
@@ -45,17 +45,17 @@ User Story ID | As a user | I want to be able to | So that I can | Fulfilled
 
 The site has a simple layout, heavily influenced by the Bootstrap framework.
 
-The navbar always sits at the top of each page, taking the user to all the site sections they can access. Only the pages relevant to the user are displayed e.g. a logged in user will not see a link to the 'login' page as they are logged in. Equally a logged out user will not see a link to the 'logout' page as they are alerady logged out. If a user tries to manually enter an invalid page url, they will be redirected automatically to the homepage. There is also a search bar on the navbar, prompting a user to search for a 'mountain' or resort.
+The navbar always sits at the top of each page, taking the user to all the site sections they can access. Only the pages relevant to the user are displayed e.g. a logged-in user will not see a link to the 'login' page as they are logged in. Equally, a logged out user will not see a link to the 'logout' page as they are already logged out. If a user tries to manually enter an invalid page URL, they will be redirected automatically to the homepage. There is also a search bar on the navbar, prompting a user to search for a 'mountain' or resort.
 
 Similarly, an unauthenticated user cannot access certain parts of the website such as the 'bag' and 'checkout' pages as only an authenticated user can make purchases.
 
-If a user tries to access a 'forbidden' page, they will be either automatically redirected with an error message toast appearing, or asked to log in/register as required.
+If a user tries to access a 'forbidden' page, they will be either automatically redirected with an error message toast appearing or asked to log in/register as required.
 
-As an example, I will outline a few features as included in the home page that are beneficial to the general user experrience below. I will expand on the rest of the website in further detail in the 'Features' section of this readme.
+As an example, I will outline a few features as included in the home page that are beneficial to the general user experience below. I will expand on the rest of the website in further detail in the 'Features' section of this readme.
 
-The home page features call to action buttons for a user to immediately either view resorts or to view the blogs. There is also a button with a downward arrow at the bottom of the image which indicates to a user they can continue scrolling. The rest of the homepage contains links to filtered results of the resorts page. These are commonly desired ski resort 'types' such as family friendly resorts, or large, expansive resorts for example. The final section of the home page shows a map, displaying all of the resorts as tacks. Clicking on each tack opens up a tooltip with extra information to the resort and a link to the relevant detailed page.
+The home page features call to action buttons for a user to immediately either view resorts or to view the blogs. There is also a button with a downward arrow at the bottom of the image which indicates to a user they can continue scrolling. The rest of the homepage contains links to filtered results of the resorts page. These are commonly desired ski resort 'types' such as family-friendly resorts, or large, expansive resorts for example. The final section of the home page shows a map, displaying all of the resorts as tacks. Clicking on each tack opens up a tooltip with extra information to the resort and a link to the relevant detailed page.
 
-Links and interactive elements are clearly signposted. Buttons have a colour scheme where 'positive' feedback buttons have green text, 'neutral' buttons have blue text and 'negative' buttons have red text. This is in line with the Bootstrap colour library (success, info and danger) but with the colours amended to suit the colour scheme for this project.
+Links and interactive elements are signposted. Buttons have a colour scheme where 'positive' feedback buttons have green text, 'neutral' buttons have blue text and 'negative' buttons have red text. This is in line with the Bootstrap colour library (success, info and danger) but with the colours amended to suit the colour scheme for this project.
 
 ### Skeleton
 
@@ -70,11 +70,11 @@ Below are the wireframes created in advance of starting the project. I used the 
 * Desktop Wireframe
   ![Wireframe for Desktop](documentation/wireframes/Desktop_Wireframe.png)
 
-The wireframes were useful when constructing the site, but as can be seen on some pages, I deviated from the original design in some aspects. This was to be expected, as the wireframes only gave me a rough idea of what I wanted. For example, on the desktop version of the ski resort detail, the layout is significantly different in the final product. The wirefraem was still very useful when creating the page however, as it gave me a firm outline of all the most important features needed.
+The wireframes were useful when constructing the site, but as can be seen on some pages, I deviated from the original design in some aspects. This was to be expected, as the wireframes only gave me a rough idea of what I wanted. For example, on the desktop version of the ski resort detail, the layout is significantly different in the final product. The wireframe was still very useful when creating the page, however, as it gave me a firm outline of all the most important features needed.
 
 ### Surface
 
-I picked a very simple palette for this project. The standout scheme is a blue navbar, with an off-white main section below. This is to imitate a mountain scene with a blue sky and a white snow covered mountain below.
+I picked a very simple palette for this project. The standout scheme is a blue navbar, with an off-white main section below. This is to imitate a mountain scene with a blue sky and white snow-covered mountain below.
 
 * #3F68B8 'True Blue' - used for navbar, card, input borders, 'neutral' buttons
 * #F4F4F9 'Ghost White' - main background colour
@@ -220,13 +220,13 @@ I will list and briefly outline the main features of the site page by page below
 
 ### Home Page
 
-Upon entering the home page of the website, the user sees a large hero image, which displays a ski slope. The user is also prompted to 'Discover all Resorts' or to 'Check out our Blogs' as call to action buttons. There is also a 'down arrow' button towards the bottom which prompts a user to either scroll down or select the button to be taken to the next section of the page.
+Upon entering the home page of the website, the user sees a large hero image, which displays a ski slope. The user is also prompted to 'Discover all Resorts' or to 'Check out our Blogs' as a call to action button. There is also a 'down arrow' button towards the bottom which prompts a user to either scroll down or select the button to be taken to the next section of the page.
 
 This fulfills user story 1 :heavy_check_mark:
 
 ![index-hero](documentation/index-hero.jpg)
 
-Scrolling down/selecting the 'down arrow' button takes the user to the 'Where to Go?' section of the page. The page features a brief text with info for the user and links to 3 common/popular types of resort (Family, Spectacular Views, Large Resort).
+Scrolling down/selecting the 'down arrow' button takes the user to the 'Where to Go?' section of the page. The page features a brief text with info for the user and links to 3 common/popular types of the resort (Family, Spectacular Views, Large Resort).
 
 ![index-2](documentation/index-2.jpg)
 
@@ -240,9 +240,9 @@ This fulfills user story 21 :heavy_check_mark:
 
 The resorts page of the website displays a list of all of the resorts. A user can search for a resort by name, description term, extra info or town. This is probably most useful for a user to search for a specific resort or town that they are to some extent familiar with. For a first time user, it is perhaps more useful to be able to filter or sort the results to find the most suitable resort.
 
-The function of this page fulfills user story 3 :heavy_check_mark:
+The function of this page fulfils user story 3 :heavy_check_mark:
 
-The search bar fulfills user story 20 :heavy_check_mark:
+The search bar fulfils user story 20 :heavy_check_mark:
 
 The sort and filter options fulfull user story 22 :heavy_check_mark:
 
@@ -261,9 +261,9 @@ Each resort is listed in a 'card' format, showing an image of the resort followe
 
 The resort detail page contains all the info a user needs about a resort, as well as allowing them to add ski passes to their shopping bag.
 
-The general function of the page fulfills user story 4 :heavy_check_mark:
+The general function of the page fulfils user story 4 :heavy_check_mark:
 
-A large hero image of the resort is displayed at the top of the page, followed by the description and some extra information, generally pertaining to the size of resort and number of lifts. Hovering over the image with the mouse displays the image credit in the bottom right corner.
+A large hero image of the resort is displayed at the top of the page, followed by the description and some extra information, generally on the size of the resort and the number of lifts. Hovering over the image with the mouse displays the image credit in the bottom right corner.
 
 ![resort-detail1](documentation/resort-detail1.jpg)
 
@@ -275,13 +275,13 @@ Below this, an image of the ski map for the resort is shown. A user can select t
 * Ski map enlarged
 ![ski-map2](documentation/ski-map2.jpg)
 
-The next section allows a user to add ski passes to their shopping bag. There are three types of ticket available for each resort - adult, child and family passes. All of these vary in price and are 'valid for any date'. A future feature that could be implemented is for a user to buy tickets for a specific date as well. This section is only visible for authenticated users, unauthenticated users are prompted to either log in or register in order to place an order.
+The next section allows a user to add ski passes to their shopping bag. There are three types of tickets available for each resort - adult, child and family passes. All of these vary in price and are 'valid for any date'. A future feature that could be implemented is for a user to buy tickets for a specific date as well. This section is only visible for authenticated users, unauthenticated users are prompted to either login or register to place an order.
 
 This function fulfills user story 10 :heavy_check_mark:
 
 ![add-to-bag](documentation/add-to-bag.jpg)
 
-Below, the 5 day weather forecast is shown for the resort. This is useful if a user is in the area and wishes to see the conditions for the upcoming days. Information displayed is the dates, temperature ranges, a weather description and the level of snow, which is especially important for a skiing resort. At the time of writing it is mid summer, so the displayed snow units are at 0cm, however during skiing season these numbers will 'hopefully' be higher.
+Below, the 5-day weather forecast is shown for the resort. This is useful if a user is in the area and wishes to see the conditions for the upcoming days. The information displayed is the dates, temperature ranges, a weather description and the level of snow, which is especially important for a skiing resort. At the time of writing it is mid-summer, so the displayed snow units are at 0cm, however, during skiing season these numbers will 'hopefully' be higher.
 
 This fulfills user story 5 :heavy_check_mark:
 
@@ -297,13 +297,13 @@ The structure of the blog page is similar to the resorts page. There is a search
 
 ![blog1](documentation/blog1.jpg)
 
-Just like in the resorts page, each blog is shown in card form. The list is paginated with maximum 8 blogs shown per page. There are buttons which appear on the card, which differ depending on who is using the website. An anonymous user will only see the 'read more' button, while the author of a post will have buttons providing options to either delete or edit that post. A superuser account will see the delete and edit buttons for all posts. The screenshot below demonstrates the appearance for the 'admin' superuser account. As can be seen, the post was published by user 'Patrick', but the superuser has full CRUD functionality.
+Just like on the resorts page, each blog is shown in card form. The list is paginated with a maximum of 8 blogs shown per page. Some buttons appear on the card, which differs depending on who is using the website. An anonymous user will only see the 'read more button, while the author of a post will have buttons providing options to either delete or edit that post. A superuser account will see the delete and edit buttons for all posts. The screenshot below demonstrates the appearance of the 'admin' superuser account. As can be seen, the post was published by user 'Patrick', but the superuser has full CRUD functionality.
 
 ![blog-card](documentation/blog-card.jpg)
 
 ### Add Blog Post
 
-If a user selects the 'add blog post' button from the blog page, they are taken to the 'new blog' page. This button and page is only accessible for authenticated users. The page contains a simple form, allowing a user to add a short blog post. The title and content fields are mandatory. The database automatically stores the current time and the authenticated user (author) upon form submission.
+If a user selects the 'add blog post' button from the blog page, they are taken to the 'new blog' page. This button and page are only accessible for authenticated users. The page contains a simple form, allowing a user to add a short blog post. The title and content fields are mandatory. The database automatically stores the current time and the authenticated user (author) upon form submission.
 
 This page fulfills user story 19 :heavy_check_mark:
 
@@ -313,12 +313,12 @@ This page fulfills user story 19 :heavy_check_mark:
 
 As with resort detail pages, any user can access the blog detail page for any existing blog post. Once again, the author or superuser can access the edit/delete options from this page. The page shows the full blog content, date of publication, post views and tags.
 
-This page fulfills user story 18 :heavy_check_mark:
-Superuser has full admin control, which fulfills user story 23, this can also be done from the Django admin page :heavy_check_mark:
+This page fulfils user story 18 :heavy_check_mark:
+Superuser has full admin control, which fulfils user story 23, this can also be done from the Django admin page :heavy_check_mark:
 
 ![blog-detail](documentation/blog-detail.jpg)
 
-I added an extra feature to this page that hadn't been originally planned, which was the comments section. Each blog has a comment section where an authenticated user can leave their feedback on a blog. Any user can see blog comments, but only authenticated users can post them. The author of a comment or the superuser has the authority to delete a comment. On top of this, any authenticated user can either 'upvote' or 'downvote' a comment, similar to online forums like Reddit. However, a user is able to up or down-vote a comment as many times as they like - a useful future feature would be to allow a user to only leave one vote per comment. Comments can be sorted, the default option is newest first.
+I added an extra feature to this page that hadn't been originally planned, which was the comments section. Each blog has a comment section where an authenticated user can leave their feedback on a blog. Any user can see blog comments, but only authenticated users can post them. The author of a comment or the superuser has the authority to delete a comment. On top of this, any authenticated user can either 'upvote' or 'downvote' a comment, similar to online forums like Reddit. However, a user can up or down-vote a comment as many times as they like - a useful future feature would be to allow a user to only leave one vote per comment. Comments can be sorted, the default option is newest first.
 
 ![comments](documentation/comments.jpg)
 
@@ -334,9 +334,9 @@ If an unauthenticated user attempts to access this page, they are automatically 
 
 ### Checkout Page
 
-The checkout page follows a simple layout. The user is displayed their order contents and full price. They then need to fill in their personal and billing details for the order, including card details. The project uses [Stripe](https://stripe.com/gb) for payment authentication. The project currently only uses test stripe api keys, which means that the card data must be one of the preset Stripe test card details. During testing I have used the basic 4242 4242 4242 4242 test card number.
+The checkout page follows a simple layout. The user is shown their order contents and full price. They then need to fill in their personal and billing details for the order, including card details. The project uses [Stripe](https://stripe.com/gb) for payment authentication. The project currently only uses test stripe API keys, which means that the card data must be one of the preset Stripe test card details. During testing, I have used the basic 4242 4242 4242 4242 test card number.
 
-The function of this page fulfills user story 13 :heavy_check_mark
+The function of this page fulfils user story 13 :heavy_check_mark
 
 ![checkout](documentation/checkout.jpg)
 
@@ -350,13 +350,13 @@ If an unauthenticated user attempts to access this page, they are automatically 
 
 ### Checkout Success
 
-Once an order is successfully completed, the user is redirected to the checkout success page. The page shows the full order details for the customer as well as a QR code at the bottom of the page which the user 'can redeem' to get their ski passes at the counter. In fact, the QR code simply redirects to the same page as this is not an official website.
+Once an order is completed, the user is redirected to the checkout success page. The page shows the full order details for the customer as well as a QR code at the bottom of the page which the user 'can redeem' to get their ski passes at the counter. The QR code simply redirects to the same page as this is not an official website.
 
 This fulfills user stories 15 and 16 :heavy_check_mark:
 
 ![checkout-success](documentation/checkout-success.jpg)
 
-The user also receives email confirmation of the purchase along with a link to return to the checkout-success page.
+The user also receives an email confirmation of the purchase along with a link to return to the checkout-success page.
 
 This fulfills user story 17 :heavy_check_mark:
 
@@ -366,21 +366,21 @@ Only the purchaser of an order may access the contents of this page. Anyone else
 
 ### Register
 
-A user can register from the 'register' page. All user registration/login etc is handled by the 'django-allauth' module.
+A user can register from the 'register' page. All user registration/login etc is handled by the 'Django-allauth' module.
 
-This fulfills user story 6 :heavy_check_mark:
+This fulfils user story 6 :heavy_check_mark:
 
 The layout is simple. The inputs prompt the user to enter and confirm their email address, provide a username, and enter and confirm a password.
 
 ![register](documentation/register.jpg)
 
-If a user enters invalid data (i.e. username already taken/passwords do not match etc) then the form will not submit and the errors will be displayed in the relevant location on screen.
+If a user enters invalid data (i.e. username already taken/passwords do not match etc) then the form will not submit and the errors will be displayed in the relevant location on the screen.
 
 ![register-error](documentation/register-error.jpg)
 
 ### Sign In
 
-A registered user can sign in from the sign in page. A user can enter either their username or email along with the password.
+A registered user can sign in from the sign-in page. A user can enter either their username or email along with the password.
 
 This page fulfills user story 7 :heavy_check_mark:
 
@@ -406,11 +406,11 @@ This fulfills user story 24 :heavy_check_mark:
 
 The site uses a simple Bootstrap responsive navbar. All sections of the site can be reached from here - the resorts, blog, bag sections for everyone. Profile + logout for an authenticated user, and register/sign in for an unauthenticated user. The navbar menu items can be found within the standard 'hamburger' menu icon on smaller devices.
 
-If a user is authenticated, their username is displayed on the navbar on the link to their personal profile. If they have added items to their bag, the bag total is also displayed on the link to the bag page.
+If a user is authenticated, their username is displayed on the navbar on the link to their profile. If they have added items to their bag, the bag total is also displayed on the link to the bag page.
 
 ![navbar](documentation/navbar.jpg)
 
-All pages are designed with a mobile first approach using the Bootstrap responsive flexbox grid. For example the cards on the index page are displayed horizontally inline on a large device as in the image below.
+All pages are designed with a mobile-first approach using the Bootstrap responsive flexbox grid. For example, the cards on the index page are displayed horizontally inline on a large device as in the image below.
 
 ![index-2](documentation/index-2.jpg)
 
@@ -424,25 +424,25 @@ These fulfil user story 2 :heavy_check_mark:
 
 I used two front end APIs in this project, [LeafletJS](https://leafletjs.com/) for the maps and [AccuWeather](https://developer.accuweather.com/) for the weather information.
 
-LeafletJS was recommended to me by my mentor Tim, as I had initially planned on using Google Maps as taught on the Code Institute course. LeafletJS turned out to be incredibly easy to implement, and allowed me to use a custom map of Austria from [basemap.at](https://www.basemap.at) and add custom map pins with popups. I added map references to each 'resort' model, which allowed me to iterate through each to add the pins in the correct locations programmatically.
+LeafletJS was recommended to me by my mentor Tim, as I had initially planned on using Google Maps as taught on the Code Institute course. LeafletJS turned out to be incredibly easy to implement and allowed me to use a custom map of Austria from [basemap.at](https://www.basemap.at) and add custom map pins with popups. I added map references to each 'resort' model, which allowed me to iterate through each to add the pins in the correct locations programmatically.
 
-The AccuWeather API allows a user to pull the current and future weather conditions for anywhere in the world. I used their [5 day forecast](https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D) API, using the map references for each resort to get the correct location. There is a vast amount of information available from this API, I only scratched the surface of the possible information just getting the dates, temperature, icon number, description and snow levels. For the icons themselves I used free icons downloaded from [adamwhitcroft.com](https://adamwhitcroft.com).
+The AccuWeather API allows a user to pull the current and future weather conditions for anywhere in the world. I used their [5-day forecast](https://developer.accuweather.com/accuweather-forecast-api/apis/get/forecasts/v1/daily/5day/%7BlocationKey%7D) API, using the map references for each resort to get the correct location. There is a vast amount of information available from this API, I only scratched the surface of the possible information just getting the dates, temperature, icon number, description and snow levels. For the icons themselves, I used free icons downloaded from [adamwhitcroft.com](https://adamwhitcroft.com).
 
 ### QR Code
 
-As mentioned above, the checkout success/order history detail page shows a dynamically created QR code. The QR is generated using code from [this project](https://davidshimjs.github.io/qrcodejs/) by David Shim. Scanning the code will just take the user to the same checkout success page they are on, however it also serves as a 'proof of purchase' to redeem ski passes from the relevant ticket office. Originally I had planned to include the QR code in the order confirmation email, unfortunately I was unable to get the JavaScript elements to function when embedded in the confirmation email body so just included the link in text form.
+As mentioned above, the checkout success/order history detail page shows a dynamically created QR code. The QR is generated using code from [this project](https://davidshimjs.github.io/qrcodejs/) by David Shim. Scanning the code will just take the user to the same checkout success page they are on, however it also serves as a 'proof of purchase' to redeem ski passes from the relevant ticket office. Originally I had planned to include the QR code in the order confirmation email, unfortunately, I was unable to get the JavaScript elements to function when embedded in the confirmation email body so just included the link in text form.
 
 ### Future Features
 
-I will define below a few nice future features for the site which I either didn't have the technical knowhow to implement, or ideas which came to me upon completion of the project. Or otherwise ideas which were impractical due to the nature the project being academic rather than an official site.
+I will define below a few nice future features for the site which I either didn't have the technical know-how to implement, or ideas that came to me upon completion of the project. Or otherwise, ideas that were impractical due to the nature of the project being academic rather than an official site.
 
-* It would be nice if users could buy a skiing ticket for a specific day rather than it being 'valid for any day'. Even nicer would be if the available dates were limited to the dates a resort is open, as it would be impractical to buy a skiing ticket in mid summer for example, as the resort would be closed.
+* It would be nice if users could buy a skiing ticket for a specific day rather than it being 'valid for any day. Even nicer would be if the available dates were limited to the dates a resort is open, as it would be impractical to buy a skiing ticket in mid-summer for example, as the resort would be closed.
 
-* For users to have 'membership levels' as part of their account. For example users could pay an annual subscription fee, for which they receive added benefits i.e. discounted ski passes, or a limited amount of free guest passes etc.
+* For users to have 'membership levels' as part of their account. For example, users could pay an annual subscription fee, for which they receive added benefits i.e. discounted ski passes, or a limited amount of free guest passes etc.
 
 * Ski shop. The site could sell skiing equipment, merchandise etc. There could be a tie in with local ski shops - i.e. most resorts will have a ski shop nearby where visitors can either purchase or hire ski equipment and it would be nice to have a collaboration with those. Users with a higher membership level as defined above could have discounted prices.
 
-* For the blogs section to be more closely tied to the resorts section. For example, on the resort detail page for a particular resort one could access all blogs which relate to that particular resort.
+* For the blogs section to be more closely tied to the resorts section. For example, on the resort detail page for a particular resort, one could access all blogs which relate to that particular resort.
 
 ## Device and Browser Testing
 
@@ -467,7 +467,7 @@ I will define below a few nice future features for the site which I either didn'
 
 #### Map popups on home page
 
-On the home page, there is a map of carinthia with pins for each resort. The expected behaviour when clicking on a resort is for a small popup to appear with some details to the resort and a link to the detail page. However, on the Safari browser it was found that this pop up did not appear as expected. I can't find anything online or in the Leaflet.js docs that indicate that this shouldn't work on the Safari browser, so it may simply have been to do with the permissions/settigns the owner had set on their browser. This issue did not occur on any other devices or browsers.
+On the home page, there is a map of Carinthia with pins for each resort. The expected behaviour when clicking on a resort is for a small popup to appear with some details to the resort and a link to the detail page. However, on the Safari browser, it was found that this pop up did not appear as expected. I can't find anything online or in the Leaflet.js docs that indicate that this shouldn't work on the Safari browser, so it may simply have been to do with the permissions/settings the owner had set on their browser. This issue did not occur on any other devices or browsers.
 
 ### Bugs fixed
 
@@ -475,19 +475,19 @@ On the home page, there is a map of carinthia with pins for each resort. The exp
 
 On the checkout page, the user is prompted to enter their billing and card details. There was an issue with the checkout function, as the user would enter the billing postcode twice - once in the form itself, then again in the Stripe card details input. For the order to be processed correctly, both input values needed to match. If the values did not match, the order would be processed twice - two orders enter the system one with each postcode entered.
 
-This was due to the way the checkout handler functions. As a Stripe webhook is used to place the order in the system if for any reason the window is closed or the process is interrupted in any other way server side, the function checks to see if the order already exists in the system and if not adds a new order to the system. It checks all the fields entered by the user to check for a match to do this.
+This was due to the way the checkout handler functions. As a Stripe webhook is used to place the order in the system if for any reason the window is closed or the process is interrupted in any other way server-side, the function checks to see if the order already exists in the system and if not adds a new order to the system. It checks all the fields entered by the user to check for a match to do this.
 
-If the postcodes on the inputs differed, the function did not find a match between the orders as the order in the system. The order would be placed in the system using the postcode from the form, but the handler would check for a match using the postcode form the Stripe input. This caused the order to enter the system twice.
+If the postcodes on the inputs differed, the function did not find a match between the orders as the order in the system. The order would be placed in the system using the postcode from the form, but the handler would check for a match using the postcode from the Stripe input. This caused the order to enter the system twice.
 
 This bug was fixed by adding a 'hidePostalCode' property to the Stripe input element so the user only enters one postcode, which is in the form itself.
 
 #### Map pin links
 
-On the home page, there is a map of carinthia with pins for each resort as described above. On each popup, I wanted to add a link to the resort detail page itself. For the data on each popup I used a JavaScript function which first took the whole 'resorts' queryset from the database, then loops through each one to add the relevant data. For plaintext this worked well, as well as for the map coordinates for each pin. However for some reason Django did not accept the resort primary key as an anchor tag, giving me a 'NoReverseMatch at /' error as it did not recognise the url.
+On the home page, there is a map of Carinthia with pins for each resort as described above. On each popup, I wanted to add a link to the resort detail page itself. For the data on each popup, I used a JavaScript function that first took the whole 'resorts' queryset from the database, then loops through each one to add the relevant data. For plaintext, this worked well, as well as for the map coordinates for each pin. However, for some reason Django did not accept the resort primary key as an anchor tag, giving me a 'NoReverseMatch at /' error as it did not recognise the URL.
 
 ![url-bug](documentation/url-bug.png)
 
-The fix was to use a JavaScript replace method. First I needed to define the 'url' variable, using a random set of numbers as the url argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
+The fix was to use a JavaScript replace method. First I needed to define the 'URL variable, using a random set of numbers as the URL argument, then replace this set of numbers with the correct primary key number. This fix was found using [this Stackoverflow thread](https://stackoverflow.com/questions/17832194/get-javascript-variables-value-in-django-url-template-tag/17832677#17832677) and with help from my mentor Tim.
 
 ### Code Validation
 
@@ -497,16 +497,16 @@ The fix was to use a JavaScript replace method. First I needed to define the 'ur
 
 * [JS Hint](https://jshint.com/) found no JavaScript errors throughout my files
 
-* [PEP8 Online](http://pep8online.com/) found no Python errors throught my files, except for settings.py. This is a known issue with the built in Django settings file, but it is acceptable not to force a line break here.
+* [PEP8 Online](http://pep8online.com/) found no Python errors throughout my files, except for settings.py. This is a known issue with the built-in Django settings file, but it is acceptable not to force a line break here.
   - line too long (>79 characters) - AUTH_PASSWORD_VALIDATORS = [{}] x4
 
 ### Chrome Dev Tools Lighthouse
 
-Chrome dev tools lighthouse was used to test the site for performance, accessibility, best practises and SEO. Tests were run in incognito mode on the Chrome browser to prevent cached data from affecting loading times/performance.
+Chrome dev tools lighthouse was used to test the site for performance, accessibility, best practices and SEO. Tests were run in incognito mode on the Chrome browser to prevent cached data from affecting loading times/performance.
 
 #### Performance
 
-Performance was consistently good throughout all pages, only being slowed down slightly by images (which were already compressed), and external JavaScript resources such as JQuery. On all pages this scored at least 85, generally in the mid 90s.
+Performance was consistently good throughout all pages, only being slowed down slightly by images (which were already compressed), and external JavaScript resources such as JQuery. On all pages, this scored at least 85, generally in the mid-90s.
 
 #### Accessibility
 
@@ -562,7 +562,7 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 
 ### Cloning the Repository
 
-To clone the repository please follow the below steps. It is recommended to work in a virtual environment i.e. Gitpod, however the project can also be run on a local system.
+To clone the repository please follow the below steps. It is recommended to work in a virtual environment i.e. Gitpod, however, the project can also be run on a local system.
 
 If working on the project locally, you must install the following:
 
@@ -612,7 +612,7 @@ Follow the below steps to deploy the project locally:
 
 3. The server should now be running locally on [http://127.0.0.1:8000/](http://127.0.0.1:8000/). Running the server should also create a new SQLite3 database file: db.sqlite3
 
-4. Create an .env file for the following requirements, or if using Gitpod, you can enter these variables within the settings section of your github account. Remember to restart the workspace after creating the variables:
+4. Create an .env file for the following requirements, or if using Gitpod, you can enter these variables within the settings section of your GitHub account. Remember to restart the workspace after creating the variables:
 
     Name | Value
     -----|------
@@ -626,7 +626,7 @@ Follow the below steps to deploy the project locally:
 
     - To create the Stripe public and secret keys, sign up for a free [Stripe](https://stripe.com/gb) account. In the 'Developers' section, click on 'API Keys'. Here you should find the publishable key and secret key which you can use for the variables above.
 
-    - To create the Stripe wh key, click on 'Webhooks' under the 'Developers' section on your Stripe dashboard. Select 'Add endpoint', and enter the following url:
+    - To create the Stripe wh key, click on 'Webhooks' under the 'Developers' section on your Stripe dashboard. Select 'Add endpoint', and enter the following URL:
       ```
       https://<yourhosturl>/checkout/wh/
       ```
@@ -647,7 +647,7 @@ Follow the below steps to deploy the project locally:
     $ python3 manage.py createsuperuser
     ```
 
-7. Finally, you will need to import the fixtures for the 'Resort' app. This is a json file which contains all of the data for each resort. Use the following command in the CLI terminal:
+7. Finally, you will need to import the fixtures for the 'Resort' app. This is a JSON file that contains all of the data for each resort. Use the following command in the CLI terminal:
 
     ```
     $ python3 manage.py loaddata resorts
@@ -688,16 +688,16 @@ Follow the below steps to deploy the project on Heroku:
 
 6. Create a Heroku account, create a new app and select your local region based on your location.
 
-7. Enter the 'Deploy' tab within your Heroku app, select GitHub as the deployment method. Choose the GitHub repository from your account as the default connection. Select automatic deployment. The app should push to heroku 
+7. Enter the 'Deploy' tab within your Heroku app, select GitHub as the deployment method. Choose the GitHub repository from your account as the default connection. Select automatic deployment. The app should push to Heroku 
 
 8. Enter the 'Resources' tab and search for 'Heroku Postgres'. Add this to your app, selecting the 'Hobby' level for free access.
 
 9. Now you need to rebuild the migrations to the new database using the below commands:
-    First you need to login to your Heroku account in the CLI using:
+    First, you need to login to your Heroku account in the CLI using:
     ```
     $ heroku login -i
     ```
-    Now enter your heroku email address and password, then enter the following to the CLI terminal:
+    Now enter your Heroku email address and password, then enter the following to the CLI terminal:
     ```
     $ heroku run python3 manage.py migrate
     ```
@@ -710,7 +710,7 @@ Follow the below steps to deploy the project on Heroku:
     ```
 
 10. Now you need to set up AWS for media file hosting.
-    - First sign up for a free [AWS account](https://aws.amazon.com/)
+    - First, sign up for a free [AWS account](https://aws.amazon.com/)
     - Find the 'S3 Buckets' section and create a new unique bucket for the application.
     - Follow the below steps:
       ```
@@ -781,11 +781,11 @@ Follow the below steps to deploy the project on Heroku:
 
     The secret key, stripe public and secret keys should be the same as in your development environment.
     
-    The AWS access and secret access keys can be found in the csv file you downloaded from your AWS user account.
+    The AWS access and secret access keys can be found in the CSV file you downloaded from your AWS user account.
 
-    The Database url can be found within your PostgreSQL credentials.
+    The Database URL can be found within your PostgreSQL credentials.
 
-    You will need to create a new Stripe WH key using your Heroku url:
+    You will need to create a new Stripe WH key using your Heroku URL:
 
     ```
       https://<yourherokuurl>/checkout/wh/
@@ -808,7 +808,7 @@ These were the most efficient and obvious ways to implement the necessary functi
 #### CSS
 
 * Figcaption in resort detail page copied and adapted from this [codepen](https://codepen.io/jhermansen/pen/YqEReZ)
-* Fancybox CSS used for zoomed in resort-map image taken from this fancyapps [playground](https://fancyapps.com/playground/gd)
+* Fancybox CSS used for zoomed-in resort-map image taken from this fancyapps [playground](https://fancyapps.com/playground/gd)
 
 #### JavaScript
 
@@ -831,7 +831,7 @@ These were the most efficient and obvious ways to implement the necessary functi
 * Thanks to my mentor Tim Nelson for his generosity in providing his time, resources and feedback
     - In particular for helping with a particular issue with the map pins as explained [here](#map-pin-links)
 * Thanks to the Code Institute Slack community for providing resources and tips as well as peer-reviewing the project
-* Thanks to friends and family for taking the time to look at the site and give advice on both content and user stories, in particular, thanks to Robert Smith for his UX and content ideas and feedback
+* Thanks to friends and family for taking the time to look at the site and give advice on both content and user stories
 * [W3 Schools](https://www.w3schools.com/) and [Stackoverflow](https://stackoverflow.com/) were useful as always to double-check things and get the correct syntax for functions etc
 * [Django Documentation](https://docs.djangoproject.com/en/3.2/)
 * Chrome Dev Tools
