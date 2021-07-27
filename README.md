@@ -430,6 +430,18 @@ The AccuWeather API allows a user to pull the current and future weather conditi
 
 As mentioned above, the checkout success/order history detail page shows a dynamically created QR code. The QR is generated using code from [this project](https://davidshimjs.github.io/qrcodejs/) by David Shim. Scanning the code will just take the user to the same checkout success page they are on, however it also serves as a 'proof of purchase' to redeem ski passes from the relevant ticket office. Originally I had planned to include the QR code in the order confirmation email, unfortunately I was unable to get the JavaScript elements to function when embedded in the confirmation email body so just included the link in text form.
 
+### Future Features
+
+I will define below a few nice future features for the site which I either didn't have the technical knowhow to implement, or ideas which came to me upon completion of the project. Or otherwise ideas which were impractical due to the nature the project being academic rather than an official site.
+
+* It would be nice if users could buy a skiing ticket for a specific day rather than it being 'valid for any day'. Even nicer would be if the available dates were limited to the dates a resort is open, as it would be impractical to buy a skiing ticket in mid summer for example, as the resort would be closed.
+
+* For users to have 'membership levels' as part of their account. For example users could pay an annual subscription fee, for which they receive added benefits i.e. discounted ski passes, or a limited amount of free guest passes etc.
+
+* Ski shop. The site could sell skiing equipment, merchandise etc. There could be a tie in with local ski shops - i.e. most resorts will have a ski shop nearby where visitors can either purchase or hire ski equipment and it would be nice to have a collaboration with those. Users with a higher membership level as defined above could have discounted prices.
+
+* For the blogs section to be more closely tied to the resorts section. For example, on the resort detail page for a particular resort one could access all blogs which relate to that particular resort.
+
 ## Device and Browser Testing
 
 * Chrome developer tools used throughout development to check usability on different devices/sizes. Devices "used" on dev tools include:
