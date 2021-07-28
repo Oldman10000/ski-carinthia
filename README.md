@@ -491,11 +491,21 @@ The fix was to use a JavaScript replace method. First I needed to define the 'UR
 
 ### Code Validation
 
-* [W3C HTML Validator](https://validator.w3.org/) found no HTML errors throughout the site
+* [W3C HTML Validator](https://validator.w3.org/) found no HTML errors throughout the site - result for home page shown below
 
-* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) found no CSS errors throughout my files
+  ![html-validation](documentation/html-validation.jpg)
 
-* [JS Hint](https://jshint.com/) found no JavaScript errors throughout my files
+* [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) found no CSS errors throughout my files - result for all CSS shown below
+
+  ![css-validation](documentation/css-validation.jpg)
+
+* [JS Hint](https://jshint.com/) found no serious JavaScript errors throughout my files. There were a couple of minor issues:
+    - JS Hint did not recognise the below variable definition as it used templating syntax
+      ```
+      let resorts = {{ resorts|safe }}
+      ```
+    - The syntax used to create the map layers failed, as it considered the variables 'L', and 'marker' to be undefined, however these were already defined in the LeafletJS CDN.
+    - Declaring empty array variables 'days' and 'details' in the weather API function and empty variable 'Stripe' in the stripe_elements.js file
 
 * [PEP8 Online](http://pep8online.com/) found no Python errors throughout my files, except for settings.py. This is a known issue with the built-in Django settings file, but it is acceptable not to force a line break here.
   - line too long (>79 characters) - AUTH_PASSWORD_VALIDATORS = [{}] x4
@@ -514,11 +524,15 @@ Accessibility scored similarly well, all blank anchor tags (that had no text) we
 
 #### Best Practises
 
-Scored between 95 - 100 on every page.
+Scored between 95 - 100 on every page, except for pages using the Leafletjs where sometimes not all map tiles would load correctly, resulting in errors being loaded to the console.
 
 #### SEO
 
 The SEO score tended to be around 90. This was due to the exclusion of a 'robots.txt' file, which provides instructions to search engine bots and helps web crawling.
+
+#### Screenshot from Home page
+
+![Dev-tools](documentation/dev-tools.jpg)
 
 ## Technologies Used
 
