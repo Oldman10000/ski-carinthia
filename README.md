@@ -62,13 +62,13 @@ Links and interactive elements are signposted. Buttons have a colour scheme wher
 Below are the wireframes created in advance of starting the project. I used the wireframing software [Balsamiq](https://balsamiq.com/) for this project.
 
 * Mobile Wireframe
-  ![Wireframe for Mobile](documentation/wireframes/Mobile_Wireframe.png)
+  ![Wireframe for Mobile](documentation/wireframes/mobile_wireframe.png)
 
 * Tablet Wireframe
-  ![Wireframe for Tablet](documentation/wireframes/Tablet_Wireframe.png)
+  ![Wireframe for Tablet](documentation/wireframes/tablet_wireframe.png)
 
 * Desktop Wireframe
-  ![Wireframe for Desktop](documentation/wireframes/Desktop_Wireframe.png)
+  ![Wireframe for Desktop](documentation/wireframes/desktop_wireframe.png)
 
 The wireframes were useful when constructing the site, but as can be seen on some pages, I deviated from the original design in some aspects. This was to be expected, as the wireframes only gave me a rough idea of what I wanted. For example, on the desktop version of the ski resort detail, the layout is significantly different in the final product. The wireframe was still very useful when creating the page, however, as it gave me a firm outline of all the most important features needed.
 
@@ -336,7 +336,7 @@ If an unauthenticated user attempts to access this page, they are automatically 
 
 The checkout page follows a simple layout. The user is shown their order contents and full price. They then need to fill in their personal and billing details for the order, including card details. The project uses [Stripe](https://stripe.com/gb) for payment authentication. The project currently only uses test stripe API keys, which means that the card data must be one of the preset Stripe test card details. During testing, I have used the basic 4242 4242 4242 4242 test card number.
 
-The function of this page fulfils user story 13 :heavy_check_mark
+The function of this page fulfils user story 13 :heavy_check_mark:
 
 ![checkout](documentation/checkout.jpg)
 
@@ -544,7 +544,7 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [Compressjpeg](https://compressjpeg.com/) - Used to compress images
 * [LeafletJS](https://leafletjs.com/) - Used to generate maps
 * [AccuWeather](https://developer.accuweather.com/) - Used to get weather conditions
-* [csv2json](https://csvjson.com/csv2json )) - Used to convert my csv resorts fixtures file to json format
+* [csv2json](https://csvjson.com/csv2json/) - Used to convert my csv resorts fixtures file to json format
 * [tabletomarkdown](https://tabletomarkdown.com/convert-spreadsheet-to-markdown/ ) - Used to convert spreadsheet tables to markdown for use in this readme
 * [lucidchart.com](https://www.lucidchart.com/) - Used to create ER chart for database schema
 * [WPS Office](https://www.wps.com/) - Used to create spreadsheets of models and user stories in advance of starting the project
@@ -586,7 +586,7 @@ If working on the project locally, you must install the following:
 Alternatively, you can enter the following command into the Git CLI terminal of your dev environment:
 
 ```
-$ git clone https://github.com/Oldman10000/ski-carinthia.git.
+$ git clone https://github.com/Oldman10000/ski-carinthia.git
 ```
 
 Then you must navigate to the correct file location using the following command in the CLI terminal:
@@ -612,7 +612,7 @@ Follow the below steps to deploy the project locally:
 
 3. The server should now be running locally on [http://127.0.0.1:8000/](http://127.0.0.1:8000/). Running the server should also create a new SQLite3 database file: db.sqlite3
 
-4. Create an .env file for the following requirements, or if using Gitpod, you can enter these variables within the settings section of your GitHub account. Remember to restart the workspace after creating the variables:
+4. Create an env.py file for the following requirements, or if using Gitpod, you can enter these variables within the settings section of your GitHub account. Remember to restart the workspace after creating the variables:
 
     Name | Value
     -----|------
@@ -667,10 +667,11 @@ Follow the below steps to deploy the project on Heroku:
     $ git init
     ```
 
-3. To link the project to your new GitHub repository, use the following command in the terminal:
+3. To link the project to your new GitHub repository, use the following commands in the terminal:
 
     ```
-    $ git remote add origin https://github.com/<USERNAME>/<REPONAME>.gitgit push -u origin master
+    $ git remote add origin https://github.com/<USERNAME>/<REPONAME>.git
+    $ git push -u origin master
     ```
     From now on any further pushes will be automatically pushed to this location.
 
@@ -828,7 +829,7 @@ These were the most efficient and obvious ways to implement the necessary functi
 
 ### Acknowledgements
 
-* Thanks to my mentor Tim Nelson for his generosity in providing his time, resources and feedback
+* Thanks to my mentor [Tim Nelson](https://github.com/TravelTimN) for his generosity in providing his time, resources and feedback
     - In particular for helping with a particular issue with the map pins as explained [here](#map-pin-links)
 * Thanks to the Code Institute Slack community for providing resources and tips as well as peer-reviewing the project
 * Thanks to friends and family for taking the time to look at the site and give advice on both content and user stories
