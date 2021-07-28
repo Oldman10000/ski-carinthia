@@ -453,15 +453,23 @@ I will define below a few nice future features for the site which I either didn'
   - Ipad and Surface Pro, as these are standard sizes for tablet devices
   - Ipad Pro, as this is a higher resolution tablet device
 
-* Personal devices used to check usability after deployment
+* Personal devices used to check usability and appearance after deployment
   - OnePlus Nord mobile phone
+      - Chrome Screenshot
+        ![mobile-chrome](documentation/mobile-chrome.jpg)
+      - Opera Screenshot
+        ![mobile-chrome](documentation/mobile-opera.jpg)
   - Huawei Mediapad M5 10" tablet
+      - Portrait Screenshot (Chrome)
+        ![tablet-portrait](documentation/tablet-portrait.jpg)
+        - Landscape Screenshot (Chrome)
+        ![tablet-portrait](documentation/tablet-landscape.jpg)
   - Dell Inspiron 7577 laptop
   - Dell U2520D monitor
 
 * Friends and family asked to check usability on their Apple mobile, laptop, desktop, and tablet devices, particularly to check usability on Safari browser
 
-* Browsers checked were Chrome, Firefox, Edge, Opera, and Safari on all device types
+* Browsers checked were Chrome, Firefox, Edge, Opera, and Safari
 
 ### Bugs
 
