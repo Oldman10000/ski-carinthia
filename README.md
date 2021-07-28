@@ -555,6 +555,7 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [Heroku](https://id.heroku.com/) - Used to deploy website - Heroku PostgreSQL used for relational database in deployed site
 * [Balsamiq](https://balsamiq.com/) - Used to create the wireframe
 * [Coolors](https://coolors.co) Used to create the colour scheme
+* [Favicon.io](favicon.io) - used to create favicon image
 * [Compressjpeg](https://compressjpeg.com/) - Used to compress images
 * [LeafletJS](https://leafletjs.com/) - Used to generate maps
 * [AccuWeather](https://developer.accuweather.com/) - Used to get weather conditions
