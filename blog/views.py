@@ -48,7 +48,7 @@ def blogs(request):
                     )
             posts = posts.filter(queries)
 
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 8)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
