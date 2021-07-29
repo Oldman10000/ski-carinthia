@@ -33,12 +33,10 @@ $('#filter-form').submit(function (e) {
     $('.filter-checkbox').each(function() {
         if ($(this).prop('checked')) {
             filters += $(this).val();
-            filters += '+';
-            console.log($(this).val());
         }
     });
 
-    if (filters && filters != 'every+') {
+    if (filters && filters != 'every') {
         currentUrl.searchParams.set("filters", filters);
         window.location.replace(currentUrl);
     } else {
