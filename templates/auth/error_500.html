@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include '../headers/header.html' %}
+
+<main class="container">
+    <div class="div">
+        <div class="col">
+            <h2>Oops!! Internal server error.
+            </h2>
+            <p>Return <a href="{% url 'home' %}">Home</a></p>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

@@ -15,3 +15,4 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = 'ski_carinthia.views.error_404_view'
+handler500 = 'ski_carinthia.views.error_500_view'
