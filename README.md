@@ -444,6 +444,8 @@ I will define below a few nice future features for the site which I either didn'
 
 * For the blogs section to be more closely tied to the resorts section. For example, on the resort detail page for a particular resort, one could access all blogs which relate to that particular resort.
 
+* It would be nice for the site to be usable in different languages, especially as the local language of the area is German - so it would make sense to be able to navigate the website in German as well as in English. A language toggle would be a good fit for this site.
+
 ## Device and Browser Testing
 
 * Chrome developer tools used throughout development to check usability on different devices/sizes. Devices "used" on dev tools include:
@@ -826,6 +828,7 @@ The project is influenced by the Code Institute 'Boutique Ado' Django tutorial s
 * Models - the UserProfile, Order and OrderLineItem models
 * The Stripe webhooks, views and JavaScript
 * Sort Selector JavaScript
+* Toast messages
 
 These were the most efficient and obvious ways to implement the necessary functionality in my project.
 
@@ -838,6 +841,10 @@ These were the most efficient and obvious ways to implement the necessary functi
 
 * Weather API code adapted from [this Udemy course](https://www.udemy.com/course/modern-javascript-from-novice-to-ninja/) by [Shaun Pelling](https://www.udemy.com/user/47fd83f6-5e4a-4e87-a0f0-519ac51f91b6/)
 * QR Code JavaScript downloaded form [this project](https://davidshimjs.github.io/qrcodejs/)
+
+#### Python
+
+Filter/Pagination template tag code used for resorts and blogs pages copied from [https://cheat.readthedocs.io/en/latest/django/filter.html](https://cheat.readthedocs.io/en/latest/django/filter.html)
 
 ### Content and Images
 
