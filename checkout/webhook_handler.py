@@ -45,8 +45,6 @@ class StripeWH_Handler:
             subject, text_content, settings.DEFAULT_FROM_EMAIL, [cust_email])
         msg.attach_alternative(html_content, "text/html")
 
-        print(msg)
-
         msg.send()
 
     def handle_event(self, event):
@@ -110,10 +108,8 @@ class StripeWH_Handler:
                     stripe_pid=pid,
                 )
                 order_exists = True
-                print('exists')
                 break
             except Order.DoesNotExist:
-                print('doesnotexist')
                 attempt += 1
                 time.sleep(1)
         if order_exists:

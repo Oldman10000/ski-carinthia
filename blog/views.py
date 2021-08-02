@@ -128,7 +128,6 @@ def add_point(request, pk, postpk):
     comment = get_object_or_404(PostComment, pk=pk)
 
     if request.user.is_authenticated:
-        print(request.user)
         comment.points += 1
         comment.save()
         post.views -= 1
