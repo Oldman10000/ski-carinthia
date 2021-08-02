@@ -6,6 +6,10 @@ This is my fourth and final Milestone Project for the Full Stack Software Develo
 
 This project is a website for skiers visiting Carinthia, Austria. It allows visitors to view ski areas/resorts/mountains, purchase tickets using the Stripe Authentication software as well as contribute to a form/blog on the website. Users must be logged in and authenticated to make a purchase and view their orders.
 
+### Mockup
+
+![Mockup](documentation/mockup.png)
+
 ## UXD
 
 ### Strategy
