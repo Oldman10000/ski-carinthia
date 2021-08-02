@@ -579,6 +579,7 @@ The SEO score tended to be around 90. This was due to the exclusion of a 'robots
 * [WPS Office](https://www.wps.com/) - Used to create spreadsheets of models and user stories in advance of starting the project
 * [FancyApps FancyBox](https://fancyapps.com/docs/ui/fancybox/) - Used to create zoomed in overlay of resort map images
 * [AWS (Amazon Web Services)](https://aws.amazon.com/) - Used to store media files
+* [Website Mockup Generator](https://websitemockupgenerator.com/) - Used to create Mockup in ReadMe file
 
 #### Validation Programs Used
 
